@@ -1,0 +1,251 @@
+// PALETA DE COLORES
+$primary-color: #f39c12;
+$secondary-color: #2c3e50;
+$accent-color: #e67e22;
+$danger-color: #e74c3c;
+$report-color: #3498db;
+$text-muted: #7f8c8d;
+$bg-light: #f4f6f9;
+
+// FONDO
+.overlay {
+  display: none;
+}
+
+// CONTENEDOR PRINCIPAL
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-light;
+}
+
+// SIDEBAR
+.sidebar {
+  width: 320px;
+  height: 100vh;
+  background: $secondary-color;
+  color: white;
+  padding: 4px 18px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+// INFORMACIÓN ADMIN
+.admin-info {
+  text-align: center;
+  margin-bottom: 25px;
+
+  .admin-avatar {
+    width: 85px;
+    height: 85px;
+    background: $primary-color;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  h3 {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+  }
+
+  .access-level {
+    font-size: 0.8rem;
+    background: $accent-color;
+    padding: 5px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: 600;
+  }
+}
+
+// MENÚ
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+// GRUPO SUPERIOR
+.nav-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// GRUPO INFERIOR
+.nav-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+// BOTONES
+.nav-btn {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #ecf0f1;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: $primary-color;
+    transform: translateX(3px);
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: $primary-color;
+  }
+
+  &.logout {
+    color: $danger-color;
+
+    &:hover {
+      background: rgba($danger-color, 0.1);
+    }
+  }
+}
+
+// CONTENIDO PRINCIPAL
+.main-content {
+  margin-left: 320px;
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+
+  .content-header {
+    margin-bottom: 35px;
+
+    h1 {
+      color: $secondary-color;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 1rem;
+    }
+  }
+}
+
+// GRID
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+// TARJETAS
+.action-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+  border-top: 5px solid $primary-color;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  .icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  h4 {
+    color: $secondary-color;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  &.danger {
+    border-top: 5px solid $danger-color;
+  }
+
+  &.report {
+    border-top: 5px solid $report-color;
+  }
+}
+
+// BOTONES PRINCIPALES
+.btn-action {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: $accent-color;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: darken($accent-color, 10%);
+  }
+}
+
+// REPORTES
+.report-display {
+  margin-top: 35px;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+  pre {
+    font-family: 'Courier New', Courier, monospace;
+    color: $secondary-color;
+    font-size: 0.9rem;
+  }
+}
+
+// RESPONSIVE
+@media (max-width: 768px) {
+
+  .admin-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

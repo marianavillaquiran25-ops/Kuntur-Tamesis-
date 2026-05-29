@@ -1,0 +1,333 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+.dashboard{
+  display:flex;
+  min-height:100vh;
+  background:#f8fafc;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:300px;
+  background:#0f172a;
+  color:white;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+/* LOGO */
+
+.logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:35px;
+  padding:20px 0;
+}
+
+.logo img{
+  width:190px;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+  border-radius:116px;
+  background:linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #fbb034 100%);
+  padding:10px;
+  box-shadow:0 10px 25px rgba(255, 107, 53, 0.3);
+ 
+}
+
+.logo h2{
+  color:white;
+  font-size:22px;
+  letter-spacing:0.5px;
+}
+
+
+/* PERFIL */
+
+.perfil{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:40px;
+  background:#1e293b;
+  padding:15px;
+  border-radius:18px;
+}
+
+.perfil-img{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+}
+
+/* MENU */
+
+.menu{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:-20px;
+}
+
+.menu button{
+  border:none;
+  padding:16px;
+  border-radius:14px;
+  background:#1e293b;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.menu button:hover{
+  background:#2563eb;
+}
+
+.active{
+  background:#2563eb !important;
+}
+
+/* BOTON CERRAR SESION */
+
+.logout-btn{
+  border:none;
+  padding:16px;
+  border-radius:14px;
+  background:#dc2626;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.logout-btn:hover{
+  background:#b91c1c;
+}
+
+/* CONTENIDO */
+
+.contenido{
+  flex:1;
+  padding:35px;
+}
+
+/* HERO */
+
+.hero{
+  height:320px;
+  border-radius:25px;
+
+  background-image:
+  linear-gradient(
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)
+  ),
+  url('https://laroussecocina.mx/wp-content/uploads/2021/11/Derivados-del-cacao.jpg.webp');
+
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  margin-bottom:40px;
+}
+
+.overlay{
+  text-align:center;
+  color:white;
+}
+
+.overlay h1{
+  font-size:55px;
+  margin-bottom:15px;
+}
+
+.overlay p{
+  font-size:22px;
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:white;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.card img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+}
+
+.card-body{
+  padding:20px;
+}
+
+.top-card{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.card button{
+  width:100%;
+  margin-top:15px;
+  border:none;
+  padding:14px;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+}
+
+.card button:hover{
+  background:#1d4ed8;
+}
+
+/* TABLA */
+
+.tabla-container{
+  background:white;
+  padding:30px;
+  border-radius:22px;
+  margin-top:20px;
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead{
+  background:#2563eb;
+  color:white;
+}
+
+th{
+  padding:18px;
+  text-align:left;
+}
+
+td{
+  padding:18px;
+  border-bottom:1px solid #e2e8f0;
+}
+
+tbody tr:hover{
+  background:#f8fafc;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  background:rgba(0,0,0,0.6);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  width:700px;
+  max-width:95%;
+  background:white;
+  border-radius:25px;
+  overflow:hidden;
+  position:relative;
+}
+
+.modal-content img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+}
+
+.modal-content h2{
+  padding:20px;
+}
+
+.descripcion{
+  padding:0 20px 20px;
+}
+
+.info-box{
+  padding:0 20px 20px;
+}
+
+.info-box h3{
+  margin-bottom:10px;
+  color:#2563eb;
+}
+
+.info-box ul{
+  padding-left:20px;
+}
+
+.cerrar{
+  position:absolute;
+  top:15px;
+  right:15px;
+
+  width:40px;
+  height:40px;
+
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+
+  background:#dc2626;
+  color:white;
+}
+
+.cerrar:hover{
+  background:#b91c1c;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .dashboard{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+  }
+
+  .overlay h1{
+    font-size:38px;
+  }
+
+}

@@ -1,0 +1,130 @@
+<div class="container">
+
+    <div class="register-container">
+
+        <h2>Únete a la Aventura</h2>
+
+        <p>Crea tu cuenta para explorar las mejores rutas</p>
+
+        <form (ngSubmit)="registrar()">
+
+            <!-- NOMBRE -->
+            <div class="input-group">
+
+                <label>Nombre</label>
+
+                <input
+                    type="text"
+                    placeholder="Tu nombre"
+                    [(ngModel)]="nombre"
+                    name="nombre"
+                    required>
+
+            </div>
+
+            <!-- FECHA -->
+            <div class="input-group">
+
+                <label>Fecha de Nacimiento</label>
+
+                <input
+                    type="date"
+                    [(ngModel)]="fechaNacimiento"
+                    name="fechaNacimiento"
+                    required>
+
+            </div>
+
+            <!-- DOCUMENTO -->
+            <div class="input-group">
+
+                <label>Documento de Identidad</label>
+
+                <input
+                    type="text"
+                    placeholder="Documento"
+                    [(ngModel)]="documentoIdentidad"
+                    name="documentoIdentidad"
+                    required>
+
+            </div>
+
+            <!-- CORREO -->
+            <div class="input-group">
+
+                <label>Correo</label>
+
+                <input
+                    type="email"
+                    placeholder="ejemplo@correo.com"
+                    [(ngModel)]="correo"
+                    name="correo"
+                    required>
+
+            </div>
+
+            <!-- TELÉFONO -->
+            <div class="input-group">
+
+                <label>Teléfono</label>
+
+                <input
+                    type="text"
+                    placeholder="300..."
+                    [(ngModel)]="telefono"
+                    name="telefono"
+                    required>
+
+            </div>
+
+            <!-- CONTRASEÑA -->
+            <div class="form-row">
+
+                <div class="input-group">
+
+                    <label>Contraseña</label>
+
+                    <input
+                        type="password"
+                        placeholder="••••••••"
+                        [(ngModel)]="password"
+                        name="password"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Confirmar</label>
+
+                    <input
+                        type="password"
+                        placeholder="••••••••"
+                        [(ngModel)]="confirmarPassword"
+                        name="confirmarPassword"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- BOTÓN -->
+            <button type="submit" class="btn-register">
+                Crear Cuenta
+            </button>
+
+        </form>
+
+        <div class="footer-link">
+
+            ¿Ya tienes una cuenta?
+
+            <a routerLink="">
+                Inicia sesión
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

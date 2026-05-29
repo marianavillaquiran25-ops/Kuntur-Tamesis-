@@ -1,0 +1,225 @@
+/* CONFIGURACIÓN GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* FONDO */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111111;
+    position: relative;
+    overflow: hidden;
+}
+
+/* IMAGEN DE FONDO */
+.container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url('/img/Tamesis-sol.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.55;
+    filter: brightness(0.75) blur(1px);
+
+    z-index: 1;
+}
+
+/* CAPA OSCURA */
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+/* CAJA DEL FORMULARIO */
+.form-box {
+    position: relative;
+    z-index: 3;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    padding: 40px;
+    border-radius: 20px;
+
+    width: 100%;
+    max-width: 450px;
+
+    text-align: center;
+
+    border: 2px solid #e1e1e1;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* TÍTULO */
+h2 {
+    color: #f39c12;
+    font-size: 2rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* TEXTO */
+p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+/* GRUPOS DE INPUT */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+/* LABELS */
+label {
+    display: block;
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 12px 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 0.95rem;
+
+    background-color: #fbfbfb;
+
+    transition: all 0.2s ease;
+}
+
+/* EFECTO INPUT */
+input:focus {
+    border-color: #f39c12;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(243, 156, 18, 0.15);
+}
+
+/* CONTRASEÑA */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* BOTÓN LOGIN */
+.btn-login {
+    width: 100%;
+
+    padding: 15px;
+
+    background: linear-gradient(to right, #f39c12, #e67e22);
+
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: transform 0.1s, box-shadow 0.2s;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* HOVER BOTÓN */
+.btn-login:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+}
+
+/* OLVIDASTE CONTRASEÑA */
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* LINK OLVIDASTE */
+.forgot-password a {
+    color: #e67e22;
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* HOVER LINK */
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* TEXTO FINAL */
+.footer-text {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* LINK REGISTRO */
+.footer-text a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* HOVER REGISTRO */
+.footer-text a:hover {
+    text-decoration: underline;
+}
+.mensaje {
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-weight: 600;
+
+}
+
+.success {
+
+    background: #d4edda;
+
+    color: #155724;
+
+}
+
+.error {
+
+    background: #f8d7da;
+
+    color: #721c24;
+
+}

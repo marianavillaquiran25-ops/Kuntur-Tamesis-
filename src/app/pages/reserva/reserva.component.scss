@@ -1,0 +1,109 @@
+.reserva-container{
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #f5f5f5;
+
+    padding: 40px;
+}
+
+.reserva-card{
+
+    width: 100%;
+
+    max-width: 500px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.reserva-card h1{
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    color: #f39c12;
+}
+
+.input-group{
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 20px;
+}
+
+.input-group label{
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+}
+
+.input-group input,
+.input-group select{
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 1rem;
+}
+
+.total{
+
+    margin: 25px 0;
+
+    font-size: 1.3rem;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    color: #333;
+}
+
+button{
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f39c12;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover{
+
+    background: #d68910;
+}

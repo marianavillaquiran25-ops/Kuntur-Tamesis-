@@ -1,0 +1,301 @@
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div>
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <img
+          src="/assets/logo/logokuntur.png"
+          alt="Kuntur Támesis"
+        > 
+
+      </div>
+
+      <!-- PERFIL -->
+
+      <div class="perfil">
+
+        <img
+          class="perfil-img"
+          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          alt="perfil"
+        >
+
+        <div>
+
+          <h3>Carlos Pérez</h3>
+
+          <p>Guía Turístico</p>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <nav class="menu">
+
+        <button
+          [class.active]="mostrarRutas"
+          (click)="toggleRutas()"
+        >
+
+          🗺️ Rutas asignadas
+
+        </button>
+
+        <button
+          [class.active]="mostrarTuristas"
+          (click)="toggleTuristas()"
+        >
+
+          👥 Turistas asignados
+
+        </button>
+
+        <button (click)="cambiarDisponibilidad()">
+
+          {{ guia.disponible ? '🟢 Disponible' : '🔴 No disponible' }}
+
+        </button>
+
+      </nav>
+
+    </div>
+
+    <!-- LOGOUT -->
+
+    <button
+      class="logout-btn"
+      (click)="cerrarSesion()"
+    >
+
+      🚪 Cerrar sesión
+
+    </button>
+
+  </aside>
+
+  <!-- CONTENIDO -->
+
+  <main class="contenido">
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+      <div class="overlay">
+
+        <h1>
+          Bienvenido, Carlos Pérez 👋
+        </h1>
+
+        <p>
+          Explora y administra tus rutas turísticas en Támesis Antioquia
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- RUTAS -->
+
+    <section *ngIf="mostrarRutas">
+
+      <h2 class="titulo">
+        🗺️ Rutas asignadas
+      </h2>
+
+      <div class="cards">
+
+        <div
+          class="card"
+          *ngFor="let ruta of rutas"
+        >
+
+          <img
+            [src]="ruta.imagen"
+            alt="ruta"
+          >
+
+          <div class="card-body">
+
+            <div class="top-card">
+
+              <h3>{{ ruta.nombre }}</h3>
+
+              <span>
+                👥 {{ ruta.cantidadTuristas }}
+              </span>
+
+            </div>
+
+            <p>
+              📍 {{ ruta.destino }}
+            </p>
+
+            <p>
+              ⏰ {{ ruta.duracion }}
+            </p>
+
+            <button (click)="verDetalles(ruta)">
+              Ver detalles →
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MODAL -->
+
+    <div
+      class="modal"
+      *ngIf="rutaSeleccionada"
+    >
+
+      <div class="modal-content">
+
+        <button
+          class="cerrar"
+          (click)="cerrarDetalles()"
+        >
+          ✖️
+        </button>
+
+        <img
+          [src]="rutaSeleccionada.imagen"
+          alt="ruta"
+        >
+
+        <h2>
+          {{ rutaSeleccionada.nombre }}
+        </h2>
+
+        <p class="descripcion">
+
+          {{ rutaSeleccionada.descripcion }}
+
+        </p>
+
+        <!-- RECOMENDACIONES -->
+
+        <div class="info-box">
+
+          <h3>
+            ✅ Recomendaciones
+          </h3>
+
+          <ul>
+
+            <li
+              *ngFor="let item of rutaSeleccionada.recomendaciones"
+            >
+
+              {{ item }}
+
+            </li>
+
+          </ul>
+
+        </div>
+
+        <!-- ATUENDOS -->
+
+        <div class="info-box">
+
+          <h3>
+            👕 Atuendos recomendados
+          </h3>
+
+          <ul>
+
+            <li
+              *ngFor="let item of rutaSeleccionada.atuendos"
+            >
+
+              {{ item }}
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TURISTAS -->
+
+    <section *ngIf="mostrarTuristas">
+
+      <div
+  class="tabla-container"
+  *ngIf="mostrarTuristas"
+>
+
+  <h2>
+    👥 Turistas asignados
+  </h2>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Nombre completo</th>
+
+        <th>Teléfono</th>
+
+        <th>Documento</th>
+
+        <th>Nacionalidad</th>
+
+        <th>Alergias</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let turista of turistas">
+
+        <td>
+          {{ turista.nombreCompleto }}
+        </td>
+
+        <td>
+          {{ turista.telefono }}
+        </td>
+
+        <td>
+          {{ turista.documento }}
+        </td>
+
+        <td>
+          {{ turista.nacionalidad }}
+        </td>
+
+        <td>
+          {{ turista.afeccionesAlergias }}
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

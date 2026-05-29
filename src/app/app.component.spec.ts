@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'turismoA' title`, () => {
+  it(`should have the 'turista' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('turismoA');
+    expect(app.title).toEqual('turista');
   });
 
-  it('should render title', () => {
+  it('should render the site brand', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, turismoA');
+    expect(compiled.querySelector('.brand')?.textContent).toContain('Kuntur Támesis');
   });
 });

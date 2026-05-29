@@ -1,0 +1,160 @@
+<div class="admin-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="admin-info">
+
+            <div class="admin-avatar">
+                ADM
+            </div>
+
+            <h3>{{ administradorLogueado.nombre }}</h3>
+
+            <span class="access-level">
+                Administrador
+            </span>
+
+        </div>
+
+        <!-- MENÚ -->
+        <nav class="admin-nav">
+
+            <button class="nav-btn active">
+                📊 General
+            </button>
+
+            <button (click)="irACrearRuta()" class="nav-btn">
+                📍 Gestionar Rutas
+            </button>
+
+            <button (click)="irAUsuarios()" class="nav-btn">
+                👥 Gestionar Turistas
+            </button>
+
+            <button (click)="irAReservas()" class="nav-btn">
+                📅 Reservas
+            </button>
+
+            <button (click)="irAPagos()" class="nav-btn">
+                💳 Pagos
+            </button>
+
+            <button (click)="generarReporte()" class="nav-btn">
+                📈 Reportes
+            </button>
+
+            <button (click)="logout()" class="nav-btn logout">
+                🚪 Cerrar Sesión
+            </button>
+
+            <button class="nav-btn">
+                ⚙ Configuración
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="main-content">
+
+        <header class="content-header">
+
+            <h1>Panel de Administración</h1>
+
+            <p>
+                Gestión operativa de Támesis, Antioquia
+            </p>
+
+        </header>
+
+        <!-- TARJETAS -->
+        <div class="admin-grid">
+
+            <!-- RUTAS -->
+            <div class="action-card">
+
+                <span class="icon">🗺️</span>
+
+                <h4>Total Rutas</h4>
+
+                <p>
+                    Administra las rutas turísticas registradas.
+                </p>
+
+                <button (click)="irACrearRuta()" class="btn-action">
+                    Ver Rutas
+                </button>
+
+            </div>
+
+            <!-- TURISTAS -->
+            <div class="action-card">
+
+                <span class="icon">👥</span>
+
+                <h4>Turistas Registrados</h4>
+
+                <p>
+                    Consulta todos los turistas del sistema.
+                </p>
+
+                <button (click)="irAUsuarios()" class="btn-action">
+                    Ver Turistas
+                </button>
+
+            </div>
+
+            <!-- RESERVAS -->
+            <div class="action-card">
+
+                <span class="icon">📅</span>
+
+                <h4>Reservas</h4>
+
+                <p>
+                    Gestiona reservas activas y pendientes.
+                </p>
+
+                <button (click)="irAReservas()" class="btn-action">
+                    Ver Reservas
+                </button>
+
+            </div>
+
+            <!-- PAGOS -->
+            <div class="action-card report">
+
+                <span class="icon">💳</span>
+
+                <h4>Pagos</h4>
+
+                <p>
+                    Consulta pagos y movimientos financieros.
+                </p>
+
+                <button (click)="irAPagos()" class="btn-action">
+                    Ver Pagos
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- REPORTES -->
+        <div *ngIf="reporteVisible" class="report-display">
+
+            <h3>
+                📈 Reporte General
+            </h3>
+
+            <hr>
+
+            <pre>{{ reporteTexto }}</pre>
+
+        </div>
+
+    </main>
+
+</div>

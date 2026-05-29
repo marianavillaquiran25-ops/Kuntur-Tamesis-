@@ -1,0 +1,304 @@
+<header class="navbar">
+
+    <!-- LOGO -->
+    <div class="logo-container">
+
+        <img
+        src="assets/logo.png"
+        alt="Logo"
+        class="logo-img">
+
+        <h2>Kuntur Támesis</h2>
+
+    </div>
+
+    <!-- MENÚ -->
+    <nav class="nav-links">
+
+        <a href="#">
+            Inicio
+        </a>
+
+        <a routerLink="/rutas">
+            Rutas Turísticas
+        </a>
+
+        <a href="#">
+            Contáctanos
+        </a>
+
+    </nav>
+
+    <!-- PERFIL -->
+    <div class="profile-container">
+
+        <button
+        class="profile-btn"
+        (click)="toggleMenu()">
+
+            <i class="fas fa-user"></i>
+
+        </button>
+
+        <!-- MENÚ DESPLEGABLE -->
+         
+        <div class="dropdown-menu" *ngIf="menuAbierto">
+            
+            <!-- SI NO HAY USUARIO -->
+             
+            <ng-container *ngIf="!usuario">
+                
+                <a routerLink="/login">
+                    Iniciar Sesión
+                
+                </a>
+                <a routerLink="/register">
+                    Crear Cuenta
+                </a>
+            
+            </ng-container>
+            <!-- SI HAY USUARIO -->
+             <ng-container *ngIf="usuario">
+                <a routerLink="/perfil">
+                    Ver Perfil
+                </a>
+                <a (click)="cerrarSesion()">
+                    Cerrar Sesión
+                </a>
+            </ng-container>
+        </div>
+        </div>
+
+</header>
+
+<main>
+
+    <section class="hero">
+
+        <div class="hero-inner container">
+
+            <div class="hero-text">
+
+                <h2>
+                    Descubre experiencias inolvidables
+                </h2>
+
+                <p>
+                    Recorridos guiados, paquetes con descuento y aventuras diseñadas para ti.
+                </p>
+
+            </div>
+
+            <div class="hero-media">
+
+                <img
+                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80&auto=format&fit=crop"
+                alt="Rutas"/>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="rutas" class="section container">
+
+        <h3>
+            Algunas rutas destacadas
+        </h3>
+
+        <div class="gallery">
+
+            <article class="card">
+
+                <h4>
+                    Ruta Aventura
+                </h4>
+
+                <img
+                src="https://turismoantioquia.travel/wp-content/uploads/2023/04/Banner-web-1600x900-Rappel_Mesa-de-trabajo-1.png"
+                alt="Ruta 1">
+                
+                <a
+                routerLink="/rutas"
+                class="btn-info">
+                Ver más Información
+            </a>
+
+        
+            </article>
+
+            <article class="card">
+                
+                <h4>
+                    Ruta Cultural
+                </h4>
+                <img
+                src="https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11"
+                alt="Ruta 2">
+
+                 <a
+                routerLink="/rutas"
+                class="btn-info">
+                Ver más Información
+            </a>
+            
+
+            </article>
+
+            <article class="card">
+
+                <h4>
+                    Ruta Naturaleza
+                </h4>
+
+                <img
+                src="https://pbs.twimg.com/ext_tw_video_thumb/1641491115051298844/pu/img/-doJjjS2u8OR4qij.jpg"
+                alt="Ruta 3">
+
+                 <a
+                routerLink="/rutas"
+                class="btn-info">
+                Ver más Información
+            </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <section class="section testimonials container">
+
+        <h3>
+            Lo que dicen nuestros clientes
+        </h3>
+
+        <div class="testi-grid">
+
+            <blockquote class="testi">
+
+                <p>
+                    "Excelente servicio, guía muy profesional y paisajes increíbles."
+                </p>
+
+                <cite>
+                    - María G.
+                </cite>
+
+            </blockquote>
+
+            <blockquote class="testi">
+
+                <p>
+                    "Reservamos un paquete familiar y todo fue perfecto."
+                </p>
+
+                <cite>
+                    - Familia R.
+                </cite>
+
+            </blockquote>
+
+            <blockquote class="testi">
+
+                <p>
+                    "Recomendado 100% para quienes aman la naturaleza."
+                </p>
+
+                <cite>
+                    - Jorge L.
+                </cite>
+
+            </blockquote>
+
+        </div>
+
+    </section>
+
+    <section class="section history container">
+
+        <h3>
+            Nuestra Historia
+        </h3>
+
+        <p>
+            Somos una empresa local dedicada a promover los atractivos turísticos de nuestra región, con énfasis en sostenibilidad y experiencia auténtica.
+        </p>
+
+    </section>
+
+
+</main>
+
+<footer class="site-footer">
+
+    <div class="container footer-inner">
+
+        <div class="footer-col">
+
+            <h4>
+                Ubicación
+            </h4>
+
+            <div class="map-wrap">
+
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.1234567890123!2d-78.467834!3d-0.180653!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDAwJzAwLjAiUyA3OMKwMjgnNDAuOCJX!5e0!3m2!1ses-419!2sus!4v1600000000000!5m2!1ses-419!2sus"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+
+                </iframe>
+
+            </div>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>
+                Síguenos
+            </h4>
+
+            <div class="socials">
+
+                <a href="#" class="social">
+                    Facebook
+                </a>
+
+                <a href="#" class="social">
+                    Instagram
+                </a>
+
+                <a href="#" class="social">
+                    Twitter
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>
+                Contacto
+            </h4>
+
+            <p>
+                info&#64;turismokunturtámesis.com
+            </p>
+
+            <p>
+                +58 123 456 789
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="site-copy">
+        © 2026 Kuntur Támesis
+    </div>
+
+</footer>

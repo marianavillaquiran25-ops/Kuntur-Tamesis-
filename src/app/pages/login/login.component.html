@@ -1,0 +1,68 @@
+<div class="container">
+
+    <div class="form-box">
+
+        <h2>Bienvenido de nuevo</h2>
+        <p>Ingresa tus datos para explorar nuevas rutas</p>
+
+        <form (ngSubmit)="iniciarSesion()">
+
+            <!-- USUARIO -->
+            <div class="input-group">
+
+                <label>Usuario</label>
+
+                <input
+                    type="text"
+                    placeholder="@correo o teléfono"
+                    [(ngModel)]="usuario"
+                    name="usuario"
+                    required>
+
+            </div>
+
+            <!-- CONTRASEÑA -->
+            <div class="input-group">
+
+                <label>Contraseña</label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        placeholder="••••••••"
+                        [(ngModel)]="password"
+                        name="password"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- BOTÓN -->
+            <button type="submit" class="btn-login">
+                Iniciar Sesión
+            </button>
+            <div 
+            *ngIf="mensaje"
+            class="mensaje"
+            [ngClass]="tipoMensaje">
+            
+            {{ mensaje }}
+        
+        </div>
+
+            <div class="forgot-password">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+
+        </form>
+
+        <p class="footer-text">
+            ¿No tienes cuenta?
+            <a href="#">Regístrate aquí</a>
+        </p>
+
+    </div>
+
+</div>

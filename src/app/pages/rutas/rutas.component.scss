@@ -1,0 +1,417 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 40px;
+
+    box-sizing: border-box;
+
+    background: #e68917;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+}
+
+/* LOGO */
+
+.logo-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.logo-img {
+
+    width: 70px;
+
+    height: 70px;
+
+    border-radius: 12px;
+
+    object-fit: cover;
+}
+
+.logo-container h2 {
+
+    color: white;
+
+    font-size: 2rem;
+
+    margin: 0;
+}
+
+/* LINKS */
+
+.nav-links {
+
+    display: flex;
+
+    gap: 40px;
+}
+
+.nav-links a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 1.1rem;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+
+    color: #ffe0b2;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+}
+.rutas-header{
+
+    margin-top: 150px;
+
+    text-align: center;
+
+    padding: 20px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #fff3e0,
+        #ffe0b2
+    );
+
+    border-bottom-left-radius: 30px;
+
+    border-bottom-right-radius: 30px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.rutas-header h1{
+
+    font-size: 3rem;
+
+    color: #d97706;
+
+    margin-bottom: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.rutas-header p{
+
+    font-size: 1.1rem;
+
+    color: #6b7280;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    line-height: 1.6;
+}
+
+.rutas-container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.ruta-card{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.ruta-card img{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.ruta-info{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ruta-info h2{
+    color: #f39c12;
+    margin-bottom: 15px;
+}
+
+.ruta-info p{
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.precio{
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #222;
+}
+.btn-reservar{
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f39c12;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    width: auto;
+}
+
+.btn-reservar:hover{
+
+    background: #d68910;
+}
+
+/* BOTONES */
+
+.botones{
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 15px;
+
+    align-items: center;
+
+    margin-top: 20px;
+
+    flex-wrap: nowrap;
+}
+
+/* MÁS INFORMACIÓN */
+
+.btn-info{
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f39c12;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    width: auto;
+}
+
+.btn-info:hover{
+
+    background: #c76f00;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px){
+
+    .ruta-card{
+
+        flex-direction: column;
+    }
+
+    .ruta-card img{
+
+        width: 100%;
+    }
+
+    .botones{
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay{
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 5000;
+}
+
+.modal{
+
+    width: 90%;
+
+    max-width: 450px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    position: relative;
+
+    text-align: center;
+
+    animation: aparecer 0.3s ease;
+}
+
+.modal h2{
+
+    color: #f39c12;
+
+    margin-bottom: 15px;
+}
+
+.modal p{
+
+    color: #555;
+
+    margin-bottom: 30px;
+
+    line-height: 1.5;
+}
+
+.modal-buttons{
+
+    display: flex;
+
+    gap: 15px;
+
+    justify-content: center;
+}
+
+.btn-login,
+.btn-register{
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f39c12;
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-login:hover,
+.btn-register:hover{
+
+    background: #d68910;
+}
+
+.cerrar-modal{
+
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    color: #888;
+}
+
+@keyframes aparecer{
+
+    from{
+
+        transform: scale(0.8);
+
+        opacity: 0;
+    }
+
+    to{
+
+        transform: scale(1);
+
+        opacity: 1;
+    }
+}

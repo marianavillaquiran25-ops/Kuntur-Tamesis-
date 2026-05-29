@@ -1,0 +1,329 @@
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div>
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <img
+          src="/assets/logo/logokuntur.png"
+          alt="logo"
+        >
+
+      </div>
+
+     
+      <!-- MENU -->
+
+      <nav class="menu">
+
+        <button
+          [class.active]="mostrarPagos"
+          (click)="verPagos()"
+        >
+
+          Todos los pagos
+
+        </button>
+
+        <button
+          [class.active]="mostrarPendientes"
+          (click)="verPendientes()"
+        >
+
+           Pagos pendientes
+
+        </button>
+
+      </nav>
+
+    </div>
+
+   
+
+  </aside>
+
+  <!-- CONTENIDO -->
+
+  <main class="contenido">
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+      <div class="overlay">
+
+        <h1>
+          Gestión de pagos turísticos de Kuntur Támesis
+        </h1>
+
+        <p>
+          Administra pagos turísticos de Kuntur Támesis 
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ESTADISTICAS -->
+
+    <div class="estadisticas">
+
+      <div class="stat-card">
+
+        <h2>$5.200.000</h2>
+
+        <p>
+          Ingresos totales
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h2>120</h2>
+
+        <p>
+          Pagos realizados
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h2>8</h2>
+
+        <p>
+          Pagos pendientes
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- TODOS LOS PAGOS -->
+
+    <div
+      class="tabla-container"
+      *ngIf="mostrarPagos"
+    >
+
+      <h2>
+        Todos los pagos
+      </h2>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Turista</th>
+
+            <th>Ruta</th>
+
+            <th>Valor</th>
+
+            <th>Método</th>
+
+            <th>Fecha</th>
+
+            <th>Estado</th>
+
+            <th>Acción</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let pago of pagosRealizados">
+
+            <td>{{ pago.turista }}</td>
+
+            <td>{{ pago.ruta }}</td>
+
+            <td>{{ pago.valor }}</td>
+
+            <td>{{ pago.metodo }}</td>
+
+            <td>{{ pago.fecha }}</td>
+
+            <td>
+
+              <span
+                [class]="
+                  pago.estado === 'Pagado'
+                  ? 'estado-pagado'
+                  : 'estado-pendiente'
+                "
+              >
+
+                {{ pago.estado }}
+
+              </span>
+
+            </td>
+
+            <td>
+
+              <button
+                class="btn-ver"
+                (click)="abrirComprobante(pago)"
+              >
+
+                Ver comprobante
+
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <!-- PAGOS PENDIENTES -->
+
+    <div
+      class="tabla-container"
+      *ngIf="mostrarPendientes"
+    >
+
+      <h2>
+        Pagos pendientes
+      </h2>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Turista</th>
+
+            <th>Ruta</th>
+
+            <th>Valor</th>
+
+            <th>Método</th>
+
+            <th>Fecha</th>
+
+            <th>Estado</th>
+
+            <th>Acción</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr
+            *ngFor="let pago of pagosPendientes">
+
+            <ng-container *ngIf="pago.estado === 'Pendiente'">
+
+              <td>{{ pago.turista }}</td>
+
+              <td>{{ pago.ruta }}</td>
+
+              <td>{{ pago.valor }}</td>
+
+              <td>{{ pago.metodo }}</td>
+
+              <td>{{ pago.fecha }}</td>
+
+              <td>
+
+                <span class="estado-pendiente">
+
+                  {{ pago.estado }}
+
+                </span>
+
+              </td>
+
+              <td>
+
+                <button
+                  class="btn-ver"
+                  (click)="abrirComprobante(pago)"
+                >
+
+                  Ver comprobante
+
+                </button>
+
+              </td>
+
+            </ng-container>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <!-- MODAL -->
+
+    <div
+      class="modal"
+      *ngIf="pagoSeleccionado"
+    >
+
+      <div class="modal-content">
+
+        <button
+          class="cerrar"
+          (click)="cerrarModal()"
+        >
+
+          ✖️
+
+        </button>
+
+        <h2>
+          Comprobante de pago
+        </h2>
+
+        <img
+          [src]="pagoSeleccionado.comprobante"
+          alt="comprobante"
+        >
+
+        <div class="info">
+
+          <p>
+            👤 {{ pagoSeleccionado.turista }}
+          </p>
+
+          <p>
+            🗺️ {{ pagoSeleccionado.ruta }}
+          </p>
+
+          <p>
+            💰 {{ pagoSeleccionado.valor }}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

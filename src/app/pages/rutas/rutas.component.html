@@ -1,0 +1,217 @@
+<header class="navbar">
+
+    <!-- LOGO -->
+    <div class="logo-container">
+
+        <img
+        src="assets/logo.png"
+        alt="Logo"
+        class="logo-img">
+
+        <h2>Kuntur Támesis</h2>
+
+    </div>
+
+    <!-- MENÚ -->
+    <nav class="nav-links">
+
+        <a routerLink="/">
+            Inicio
+        </a>
+
+
+
+    </nav>
+
+</header>
+
+<header class="rutas-header">
+
+    <h1>
+        Rutas Turísticas
+    </h1>
+
+    <p>
+        Descubre todas las experiencias que Kuntur Támesis tiene para ti.
+    </p>
+
+</header>
+
+<section class="rutas-container">
+
+    <!-- RUTA 1 -->
+    <div class="ruta-card">
+
+        <img
+        src="https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11"
+        alt="Ruta Natural">
+
+        <div class="ruta-info">
+
+            <h2>Ruta Natural</h2>
+
+            <p>
+                Recorre senderos ecológicos, montañas y paisajes naturales de Támesis Antioquia.
+            </p>
+
+            <span class="precio">
+                $120.000
+            </span>
+
+            <div class="botones">
+
+                <button
+                class="btn-reservar"
+                (click)="reservarRuta()">
+
+                    Reservar Ruta
+
+                </button>
+                
+                <button
+               class="btn-info"
+               routerLink="/ruta-detalle">
+               Más Información
+            </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RUTA 2 -->
+    <div class="ruta-card">
+
+        <img
+        src="https://pbs.twimg.com/ext_tw_video_thumb/1641491115051298844/pu/img/-doJjjS2u8OR4qij.jpg"
+        alt="Ruta Cultural">
+
+
+        <div class="ruta-info">
+
+            <h2>Ruta Cultural</h2>
+
+            <p>
+                Conoce la cultura, historia y tradiciones más importantes del municipio.
+            </p>
+
+            <span class="precio">
+                $95.000
+            </span>
+
+            <div class="botones">
+
+                <button
+                class="btn-reservar"
+                (click)="reservarRuta()">
+
+                    Reservar Ruta
+
+                </button>
+
+                <button
+                class="btn-info"
+                routerLink="/ruta-detalle">
+
+                    Más Información
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RUTA 3 -->
+    <div class="ruta-card">
+
+        <img
+        src="https://scontent.fczu1-1.fna.fbcdn.net/v/t39.30808-6/486508453_1200661638733870_2043200249288729569_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pJbb_Uo6Jg8Q7kNvwHCbQ2T&_nc_oc=Adq3Lkesp1MQYZS0H9AsbnNxKjw0lOYsmqxgbc3dQ94qNYIoWvp_NAfE2HZTB9BP-ls&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=1iBuGeG93pOpQMv_ihhudw&_nc_ss=7b289&oh=00_Af43o0SMhsRpZ4zq119No60h6htxWKuSWEkPoJ1J1Pcu0Q&oe=6A0FEDB2"
+        alt="Ruta Aventura">
+
+        <div class="ruta-info">
+
+            <h2>Ruta Aventura</h2>
+
+            <p>
+                Vive una experiencia llena de adrenalina y turismo ecológico extremo.
+            </p>
+
+            <span class="precio">
+                $150.000
+            </span>
+
+            <div class="botones">
+
+                <button
+                class="btn-reservar"
+                (click)="reservarRuta()">
+
+                    Reservar Ruta
+
+                </button>
+
+                <button
+                class="btn-info"
+                routerLink="/ruta-detalle">
+
+                    Más Información
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- MODAL LOGIN -->
+
+<div
+class="modal-overlay"
+*ngIf="mostrarModal">
+
+    <div class="modal">
+
+        <h2>
+            Debes iniciar sesión
+        </h2>
+
+        <p>
+            Debes Iniciar Sesión o Crear una Cuenta antes de Reservar tu Ruta.
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+            class="btn-login"
+            (click)="irLogin()">
+
+                Iniciar Sesión
+
+            </button>
+
+            <button
+            class="btn-register"
+            (click)="irRegister()">
+
+                Crear Cuenta
+
+            </button>
+
+        </div>
+
+        <button
+        class="cerrar-modal"
+        (click)="cerrarModal()">
+
+            ✕
+
+        </button>
+
+    </div>
+
+</div>
