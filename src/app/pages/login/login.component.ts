@@ -33,102 +33,114 @@ export class LoginComponent {
 
   iniciarSesion() {
 
-    this.mensaje = '';
+  this.mensaje = '';
 
-    this.loginService.obtenerUsuarios().subscribe({
+  this.loginService.obtenerUsuarios().subscribe({
 
-      next: (usuarios: any[]) => {
+    next: (usuarios: any[]) => {
 
-        const usuarioInput = this.usuario.trim().toLowerCase();
+      const usuarioInput = this.usuario.trim().toLowerCase();
 
-        const passwordInput = this.password.trim();
+      const passwordInput = this.password.trim();
 
-        const usuarioEncontrado = usuarios.find((u: any) => {
+      const usuarioEncontrado = usuarios.find((u: any) => {
 
-          const correoBD = String(u.correo).trim().toLowerCase();
+        const correoBD = String(u.correo).trim().toLowerCase();
 
-          const telefonoBD = String(u.telefono).trim();
+        const telefonoBD = String(u.telefono).trim();
 
-          const passwordBD = String(u.password).trim();
+        const passwordBD = String(u.password).trim();
 
-          return (
+        return (
 
-            (
-              correoBD === usuarioInput ||
+          (
+            correoBD === usuarioInput ||
+            telefonoBD === usuarioInput
+          )
 
-              telefonoBD === usuarioInput
-            )
+          &&
 
-            &&
+          passwordBD === passwordInput
 
-            passwordBD === passwordInput
+        );
 
-          );
+      });
 
-        });
+      if (usuarioEncontrado) {
 
-        // USUARIO ENCONTRADO
-        if (usuarioEncontrado) {
+        localStorage.setItem(
+          'usuario',
+          JSON.stringify(usuarioEncontrado)
+        );
 
-          localStorage.setItem(
-            'usuario',
-            JSON.stringify(usuarioEncontrado)
-          );
+        this.mensaje = 'Bienvenido';
 
-          this.mensaje = 'Bienvenido';
+        this.tipoMensaje = 'success';
 
-          this.tipoMensaje = 'success';
+        setTimeout(() => {
 
           // ADMINISTRADOR
           if (
-
             usuarioEncontrado.rol === 'ADMINISTRADOR' ||
-
             usuarioEncontrado.rol === 'administrador'
-
           ) {
 
-            setTimeout(() => {
+            this.router.navigate(['/administrador']);
 
-              this.router.navigate(['/administrador']);
+          }
 
-            }, 1000);
+          // GUÍA
+          else if (
+            usuarioEncontrado.rol === 'GUIA' ||
+            usuarioEncontrado.rol === 'guia' ||
+            usuarioEncontrado.rol === 'Guia'
+          ) {
+
+            this.router.navigate(['/guia']);
+
+          }
+
+          // AUXILIAR
+          else if (
+            usuarioEncontrado.rol === 'AUXILIAR' ||
+            usuarioEncontrado.rol === 'auxiliar' ||
+            usuarioEncontrado.rol === 'Auxiliar'
+          ) {
+
+            this.router.navigate(['/auxiliar']);
 
           }
 
           // TURISTA
           else {
 
-            setTimeout(() => {
-
-              this.router.navigate(['/']);
-
-            }, 1000);
+            this.router.navigate(['/']);
 
           }
 
-        }
+        }, 1000);
 
-        // ERROR LOGIN
-        else {
+      }
 
-          this.mensaje = 'Usuario o contraseña incorrectos';
+      else {
 
-          this.tipoMensaje = 'error';
-
-        }
-
-      },
-
-      error: () => {
-
-        this.mensaje = 'Error al conectar con el servidor';
+        this.mensaje = 'Usuario o contraseña incorrectos';
 
         this.tipoMensaje = 'error';
 
       }
 
-    });
+    },
+
+    error: () => {
+
+      this.mensaje = 'Error al conectar con el servidor';
+
+      this.tipoMensaje = 'error';
+
+    }
+
+  });
 
   }
 

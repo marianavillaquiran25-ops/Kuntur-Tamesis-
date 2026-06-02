@@ -15,6 +15,7 @@ import { CrearRutaComponent } from './pages/crear-ruta/crear-ruta.component';
 import { EditarRutaComponent } from './pages/editar-ruta/editar-ruta.component';
 import { EliminarRutaComponent } from './pages/eliminar-ruta/eliminar-ruta.component';
 import { VerReservasComponent } from './pages/ver-reservas/ver-reservas.component';
+import { VerRutasComponent } from './pages/ver-rutas/ver-rutas.component';
 
 export const routes: Routes = [
 
@@ -105,16 +106,22 @@ export const routes: Routes = [
         component: AuxiliarComponent
     },
 
-    // PAGOS
-    {
-        path: 'pagos',
-        component: PagosComponent
-    },
+   // PAGOS
+{
+    path: 'pagos',
+    component: PagosComponent
+},
 
-    // ERROR
-    {
-        path: '**',
-        redirectTo: ''
-    }
+// VER RUTAS
+{
+    path: 'ver-rutas',
+    component: VerRutasComponent
+},
+
+// ERROR
+{
+    path: '**',
+    redirectTo: ''
+}
 
 ];

@@ -3,88 +3,97 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-selector: 'app-administrador',
-standalone: true,
-imports: [CommonModule],
-templateUrl: './administrador.component.html',
-styleUrls: ['./administrador.component.scss']
+  selector: 'app-administrador',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './administrador.component.html',
+  styleUrls: ['./administrador.component.scss']
 })
 
 export class AdministradorComponent {
 
-administradorLogueado = {
-nombre: 'Administrador'
-};
+  administradorLogueado = {
+    nombre: 'Administrador'
+  };
 
-reporteVisible = false;
+  reporteVisible = false;
 
-reporteTexto = '';
+  reporteTexto = '';
 
-constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-irACrearRuta() {
+  // CREAR RUTA
+  irACrearRuta() {
 
-this.router.navigate(['/crear-ruta']);
+    this.router.navigate(['/crear-ruta']);
 
-}
+  }
 
-irAEditarRuta() {
+  // EDITAR RUTA
+  irAEditarRuta() {
 
-this.router.navigate(['/editar-ruta']);
+    this.router.navigate(['/editar-ruta']);
 
-}
+  }
 
-irAEliminarRuta() {
+  // ELIMINAR RUTA
+  irAEliminarRuta() {
 
-this.router.navigate(['/eliminar-ruta']);
+    this.router.navigate(['/eliminar-ruta']);
 
-}
+  }
 
-irAUsuarios() {
+  // TURISTAS
+  irAUsuarios() {
 
-this.router.navigate(['/ver-usuarios']);
+    this.router.navigate(['/turistas']);
 
-}
+  }
 
-irAReservas() {
+  // RESERVAS
+  irAReservas() {
 
-this.router.navigate(['/ver-reservas']);
+    this.router.navigate(['/reservas']);
 
-}
+  }
 
-irAPagos() {
+  // PAGOS
+  irAPagos() {
 
-this.router.navigate(['/ver-pagos']);
+    this.router.navigate(['/pagos']);
 
-}
+  }
 
-irAConfiguracion() {
+  generarReporte() {
 
-this.router.navigate(['/configuracion']);
+    this.reporteVisible = true;
 
-}
+    this.reporteTexto = `
 
-generarReporte() {
-
-this.reporteVisible = true;
-
-this.reporteTexto = `
+====================================
+REPORTE GENERAL KUNTUR TÁMESIS
+====================================
 
 ✔ Rutas activas: 12
+
 ✔ Turistas registrados: 45
+
 ✔ Reservas realizadas: 28
+
 ✔ Pagos completados: 20
+
 ✔ Ingresos estimados: $4.500.000
-`;
 
-}
+    `;
 
-logout() {
+  }
 
-localStorage.removeItem('usuario');
+  logout() {
 
-this.router.navigate(['/login']);
+    localStorage.removeItem('usuario');
 
-}
+    this.router.navigate(['/login']);
+
+  }
 
 }

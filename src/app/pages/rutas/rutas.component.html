@@ -38,66 +38,28 @@
 </header>
 
 <section class="rutas-container">
+<section class="rutas-container">
 
-    <!-- RUTA 1 -->
-    <div class="ruta-card">
+    <div
+    class="ruta-card"
+    *ngFor="let ruta of rutas">
 
         <img
-        src="https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11"
-        alt="Ruta Natural">
+        src="https://via.placeholder.com/500x300"
+        alt="Ruta">
 
         <div class="ruta-info">
 
-            <h2>Ruta Natural</h2>
+            <h2>
+                {{ ruta.nombre }}
+            </h2>
 
             <p>
-                Recorre senderos ecológicos, montañas y paisajes naturales de Támesis Antioquia.
+                {{ ruta.descripcion }}
             </p>
 
             <span class="precio">
-                $120.000
-            </span>
-
-            <div class="botones">
-
-                <button
-                class="btn-reservar"
-                (click)="reservarRuta()">
-
-                    Reservar Ruta
-
-                </button>
-                
-                <button
-               class="btn-info"
-               routerLink="/ruta-detalle">
-               Más Información
-            </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- RUTA 2 -->
-    <div class="ruta-card">
-
-        <img
-        src="https://pbs.twimg.com/ext_tw_video_thumb/1641491115051298844/pu/img/-doJjjS2u8OR4qij.jpg"
-        alt="Ruta Cultural">
-
-
-        <div class="ruta-info">
-
-            <h2>Ruta Cultural</h2>
-
-            <p>
-                Conoce la cultura, historia y tradiciones más importantes del municipio.
-            </p>
-
-            <span class="precio">
-                $95.000
+                ${{ ruta.precio }}
             </span>
 
             <div class="botones">
@@ -124,48 +86,7 @@
 
     </div>
 
-    <!-- RUTA 3 -->
-    <div class="ruta-card">
-
-        <img
-        src="https://scontent.fczu1-1.fna.fbcdn.net/v/t39.30808-6/486508453_1200661638733870_2043200249288729569_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pJbb_Uo6Jg8Q7kNvwHCbQ2T&_nc_oc=Adq3Lkesp1MQYZS0H9AsbnNxKjw0lOYsmqxgbc3dQ94qNYIoWvp_NAfE2HZTB9BP-ls&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=1iBuGeG93pOpQMv_ihhudw&_nc_ss=7b289&oh=00_Af43o0SMhsRpZ4zq119No60h6htxWKuSWEkPoJ1J1Pcu0Q&oe=6A0FEDB2"
-        alt="Ruta Aventura">
-
-        <div class="ruta-info">
-
-            <h2>Ruta Aventura</h2>
-
-            <p>
-                Vive una experiencia llena de adrenalina y turismo ecológico extremo.
-            </p>
-
-            <span class="precio">
-                $150.000
-            </span>
-
-            <div class="botones">
-
-                <button
-                class="btn-reservar"
-                (click)="reservarRuta()">
-
-                    Reservar Ruta
-
-                </button>
-
-                <button
-                class="btn-info"
-                routerLink="/ruta-detalle">
-
-                    Más Información
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+</section>
 
 </section>
 <!-- MODAL LOGIN -->

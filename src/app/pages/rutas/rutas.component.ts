@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { RutaService } from '../../services/ruta.service';
 
 @Component({
   selector: 'app-rutas',
@@ -11,42 +13,71 @@ import { CommonModule } from '@angular/common';
   styleUrl: './rutas.component.scss'
 })
 
-export class RutasComponent {
+export class RutasComponent implements OnInit {
 
   mostrarModal = false;
 
-  constructor(private router: Router) {}
+  rutas: any[] = [];
+
+  constructor(
+    private router: Router,
+    private rutaService: RutaService
+  ) {}
+
+  ngOnInit(): void {
+
+    this.cargarRutas();
+
+  }
+
+  cargarRutas() {
+
+    this.rutaService.obtenerRutas()
+      .subscribe({
+
+        next: (data) => {
+          console.log('RUTAS RECIBIDAS');
+          console.log(data);
+          this.rutas = data;
+        
+        }
+
+      });
+
+  }
 
   reservarRuta() {
 
-    // VALIDAR SI HAY USUARIO
     const usuario = localStorage.getItem('usuario');
 
-    // SI NO HAY LOGIN
     if (!usuario) {
 
       this.mostrarModal = true;
 
       return;
+
     }
 
-    // SI YA INICIÓ SESIÓN
     this.router.navigate(['/reserva']);
+
   }
 
   irLogin() {
 
     this.router.navigate(['/login']);
+
   }
 
   irRegister() {
 
     this.router.navigate(['/register']);
+
   }
 
   cerrarModal() {
 
     this.mostrarModal = false;
+
   }
 
 }
