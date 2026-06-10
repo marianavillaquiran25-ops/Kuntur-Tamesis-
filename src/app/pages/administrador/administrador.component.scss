@@ -1,251 +1,284 @@
-// PALETA DE COLORES
-$primary-color: #f39c12;
-$secondary-color: #2c3e50;
-$accent-color: #e67e22;
-$danger-color: #e74c3c;
-$report-color: #3498db;
-$text-muted: #7f8c8d;
-$bg-light: #f4f6f9;
 
-// FONDO
-.overlay {
-  display: none;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-// CONTENEDOR PRINCIPAL
-.admin-wrapper {
-  display: flex;
-  min-height: 100vh;
-  background: $bg-light;
+.dashboard-container{
+    display:flex;
+    min-height:100vh;
+    background:#f5f7fa;
 }
 
-// SIDEBAR
-.sidebar {
-  width: 320px;
-  height: 100vh;
-  background: $secondary-color;
-  color: white;
-  padding: 4px 18px;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 0;
-  top: 0;
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    background:#0f1115;
+    color:white;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-// INFORMACIÓN ADMIN
-.admin-info {
-  text-align: center;
-  margin-bottom: 25px;
-
-  .admin-avatar {
-    width: 85px;
-    height: 85px;
-    background: $primary-color;
-    border-radius: 50%;
-    margin: 0 auto 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-
-  h3 {
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-  }
-
-  .access-level {
-    font-size: 0.8rem;
-    background: $accent-color;
-    padding: 5px 14px;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: 600;
-  }
+.logo-section{
+    text-align:center;
 }
 
-// MENÚ
-.admin-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-  justify-content: space-between;
+.logo-section img{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    margin-bottom:10px;
 }
 
-// GRUPO SUPERIOR
-.nav-top {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.logo-section h2{
+    color:#d8b15a;
 }
 
-// GRUPO INFERIOR
-.nav-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: auto;
+nav{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:30px;
 }
 
-// BOTONES
-.nav-btn {
-  padding: 14px 16px;
-  border: none;
-  border-radius: 12px;
-  background: transparent;
-  color: #ecf0f1;
-  text-align: left;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+.menu-btn{
+    border:none;
+    background:transparent;
+    color:white;
+    text-align:left;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:15px;
+}
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: $primary-color;
-    transform: translateX(3px);
-  }
+.menu-btn:hover{
+    background:#006837;
+}
 
-  &.active {
-    background: rgba(255, 255, 255, 0.12);
-    color: $primary-color;
-  }
+.active{
+    background:#006837;
+}
 
-  &.logout {
-    color: $danger-color;
+.logout-btn{
+    background:#006837;
+    border:none;
+    color:white;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
 
-    &:hover {
-      background: rgba($danger-color, 0.1);
+.logout-btn:hover{
+    background:#004f29;
+}
+
+/* CONTENIDO */
+
+.main-content{
+    flex:1;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topbar input{
+    width:350px;
+    padding:12px 18px;
+    border-radius:30px;
+    border:1px solid #ddd;
+    outline:none;
+}
+
+.admin-user{
+    background:#006837;
+    color:white;
+    padding:10px 20px;
+    border-radius:30px;
+    font-weight:600;
+}
+
+/* TARJETAS */
+
+.cards{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.card h3{
+    color:#006837;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#666;
+}
+
+.highlight{
+    background:#006837;
+    color:white;
+}
+
+.highlight h3{
+    color:white;
+}
+
+.highlight p{
+    color:white;
+}
+
+/* GRID */
+
+.dashboard-grid{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+}
+
+.chart-card,
+.info-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.chart-card h2,
+.info-card h2{
+    color:#006837;
+    margin-bottom:20px;
+}
+
+/* GRAFICA */
+
+.grafica-admin{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.fila{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.fila span{
+    font-weight:600;
+    color:#333;
+}
+
+.barra{
+    width:100%;
+    height:35px;
+    background:#e5e5e5;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.valor{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:15px;
+    color:white;
+    font-weight:bold;
+    border-radius:30px;
+}
+
+.rutas{
+    background:#006837;
+}
+
+.turistas{
+    background:#0a8f4c;
+}
+
+.reservas{
+    background:#d8b15a;
+}
+
+/* ACCIONES */
+
+.info-card p{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+    cursor:pointer;
+}
+
+.info-card p:hover{
+    color:#006837;
+}
+
+/* REPORTE */
+
+.reporte-card{
+    margin-top:25px;
+}
+
+.reporte-card pre{
+    white-space:pre-wrap;
+    font-family:inherit;
+    line-height:1.8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
     }
-  }
-}
 
-// CONTENIDO PRINCIPAL
-.main-content {
-  margin-left: 320px;
-  flex: 1;
-  padding: 40px;
-  overflow-y: auto;
-
-  .content-header {
-    margin-bottom: 35px;
-
-    h1 {
-      color: $secondary-color;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
+    .dashboard-grid{
+        grid-template-columns:1fr;
     }
 
-    p {
-      color: $text-muted;
-      font-size: 1rem;
+}
+
+@media(max-width:768px){
+
+    .dashboard-container{
+        flex-direction:column;
     }
-  }
-}
 
-// GRID
-.admin-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-}
+    .sidebar{
+        width:100%;
+    }
 
-// TARJETAS
-.action-card {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-  transition: 0.3s;
-  border-top: 5px solid $primary-color;
+    .cards{
+        grid-template-columns:1fr;
+    }
 
-  &:hover {
-    transform: translateY(-6px);
-  }
+    .topbar{
+        flex-direction:column;
+        gap:15px;
+    }
 
-  .icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    display: block;
-  }
-
-  h4 {
-    color: $secondary-color;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-  }
-
-  p {
-    color: $text-muted;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-
-  &.danger {
-    border-top: 5px solid $danger-color;
-  }
-
-  &.report {
-    border-top: 5px solid $report-color;
-  }
-}
-
-// BOTONES PRINCIPALES
-.btn-action {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: $accent-color;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background: darken($accent-color, 10%);
-  }
-}
-
-// REPORTES
-.report-display {
-  margin-top: 35px;
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-
-  pre {
-    font-family: 'Courier New', Courier, monospace;
-    color: $secondary-color;
-    font-size: 0.9rem;
-  }
-}
-
-// RESPONSIVE
-@media (max-width: 768px) {
-
-  .admin-wrapper {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .main-content {
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  .admin-grid {
-    grid-template-columns: 1fr;
-  }
+    .topbar input{
+        width:100%;
+    }
 
 }

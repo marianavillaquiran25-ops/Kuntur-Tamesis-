@@ -1,53 +1,63 @@
 <div class="detalle-header">
 
-    <!-- LOGO -->
-
     <img
-    src="assets/logo.png"
-    alt="Logo"
-    class="logo-detalle">
-
-    <!-- BOTÓN VOLVER -->
+        src="assets/logo.png"
+        alt="Logo"
+        class="logo-detalle">
 
     <button
-    routerLink="/rutas"
-    class="btn-volver">
+        routerLink="/rutas"
+        class="btn-volver">
 
-        ➜
+        ←
 
     </button>
 
 </div>
 
-<!-- CONTENIDO -->
-
 <section class="detalle-container">
-
-    <!-- IMAGEN -->
 
     <div class="detalle-imagen">
 
         <img
-        src="https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11"
-        alt="Ruta">
+            src="https://www.tamesis-antioquia.gov.co/NuestraAlcaldia/SaladePrensa/PublishingImages/Paginas/T%C3%A1mesis-un-para%C3%ADso-para-descubrir/IMG_5234.JPG"
+            alt="Piedra del Pirú">
 
     </div>
 
-    <!-- INFORMACIÓN -->
-
     <div class="detalle-info">
 
+        <span class="badge-ruta">
+            Ruta Ecológica.
+        </span>
+
         <h1>
-            Ruta Natural Támesis Antioquia
+            Piedra del Pirú
         </h1>
 
         <p>
-
-            Disfruta una experiencia única recorriendo
-            senderos ecológicos, montañas, cascadas y
-            paisajes naturales de Támesis Antioquia.
-
+            Recorre uno de los senderos más representativos de Támesis Antioquia.
+            Disfruta de paisajes naturales, montañas, fauna y flora mientras vives
+            una experiencia única de turismo ecológico.
         </p>
+
+        <div class="detalle-meta">
+
+            <div>📍 Támesis Antioquia</div>
+
+            <div>⏰ Duración: 4 Horas</div>
+
+            <div>🥾 Dificultad: Media</div>
+
+            <div>👥 Cupos disponibles: 15</div>
+
+        </div>
+
+        <div class="precio">
+
+            $120.000 COP
+
+        </div>
 
         <h3>Incluye</h3>
 
@@ -67,27 +77,19 @@
 
         <ul>
 
-            <li>Llevar ropa cómoda</li>
-
-            <li>Usar bloqueador solar</li>
+            <li>Usar ropa cómoda</li>
 
             <li>Llevar hidratación</li>
 
-            <li>Usar tenis o botas</li>
+            <li>Protector solar</li>
+
+            <li>Calzado para senderismo</li>
 
         </ul>
-
-        <div class="precio">
-
-            $120.000 COP
-
-        </div>
 
     </div>
 
 </section>
-
-<!-- FORMULARIO -->
 
 <section class="formulario-reserva">
 
@@ -95,15 +97,30 @@
         Reservar Ruta
     </h2>
 
+    <p>
+        Completa la información para realizar tu reserva.
+    </p>
+
     <form>
 
         <input
-        type="text"
-        placeholder="Nombre Completo">
+            type="text"
+            placeholder="Nombre Completo">
 
         <input
-        type="number"
-        placeholder="Cantidad de Personas">
+            type="email"
+            placeholder="Correo Electrónico">
+
+        <input
+            type="number"
+            placeholder="Cantidad de Personas">
+
+        <input
+            type="tel"
+            placeholder="Número de Contacto">
+
+        <input
+            type="date">
 
         <select>
 
@@ -120,10 +137,20 @@
             </option>
 
             <option>
+                Nequi
+            </option>
+
+            <option>
                 Daviplata
             </option>
 
         </select>
+
+        <label>Observaciones adicionales</label>
+        <textarea
+        rows="5"
+        placeholder="Escriba aquí comentarios o solicitudes especiales">
+        </textarea>
 
         <button type="submit">
 

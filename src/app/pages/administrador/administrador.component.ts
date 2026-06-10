@@ -3,97 +3,75 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-administrador',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './administrador.component.html',
-  styleUrls: ['./administrador.component.scss']
+selector: 'app-administrador',
+standalone: true,
+imports: [CommonModule],
+templateUrl: './administrador.component.html',
+styleUrls: ['./administrador.component.scss']
 })
-
 export class AdministradorComponent {
 
-  administradorLogueado = {
-    nombre: 'Administrador'
-  };
+administradorLogueado = {
+nombre: 'Administrador'
+};
 
-  reporteVisible = false;
+totalRutas = 0;
+totalTuristas = 0;
+totalReservas = 0;
 
-  reporteTexto = '';
+reporteVisible = false;
+reporteTexto = '';
 
-  constructor(private router: Router) {}
+constructor(private router: Router) {}
 
-  // CREAR RUTA
-  irACrearRuta() {
+irACrearRuta() {
+this.router.navigate(['/crear-ruta']);
+}
 
-    this.router.navigate(['/crear-ruta']);
+irAVerRutas() {
+this.router.navigate(['/ver-rutas']);
+}
 
-  }
+irAEditarRuta() {
+this.router.navigate(['/editar-ruta']);
+}
 
-  // EDITAR RUTA
-  irAEditarRuta() {
+irAEliminarRuta() {
+this.router.navigate(['/eliminar-ruta']);
+}
 
-    this.router.navigate(['/editar-ruta']);
+irAUsuarios() {
+this.router.navigate(['/turistas']);
+}
 
-  }
+irAReservas() {
+this.router.navigate(['/reservas']);
+}
 
-  // ELIMINAR RUTA
-  irAEliminarRuta() {
+irAPagos() {
+this.router.navigate(['/pagos']);
+}
 
-    this.router.navigate(['/eliminar-ruta']);
+generarReporte() {
 
-  }
 
-  // TURISTAS
-  irAUsuarios() {
+this.reporteVisible = true;
 
-    this.router.navigate(['/turistas']);
+this.reporteTexto =
+  'REPORTE GENERAL KUNTUR TÁMESIS\n\n' +
+  'Rutas registradas: ' + this.totalRutas + '\n\n' +
+  'Turistas registrados: ' + this.totalTuristas + '\n\n' +
+  'Reservas realizadas: ' + this.totalReservas;
 
-  }
 
-  // RESERVAS
-  irAReservas() {
+}
 
-    this.router.navigate(['/reservas']);
+logout() {
 
-  }
 
-  // PAGOS
-  irAPagos() {
+localStorage.removeItem('usuario');
+this.router.navigate(['/login']);
 
-    this.router.navigate(['/pagos']);
-
-  }
-
-  generarReporte() {
-
-    this.reporteVisible = true;
-
-    this.reporteTexto = `
-
-====================================
-REPORTE GENERAL KUNTUR TÁMESIS
-====================================
-
-✔ Rutas activas: 12
-
-✔ Turistas registrados: 45
-
-✔ Reservas realizadas: 28
-
-✔ Pagos completados: 20
-
-✔ Ingresos estimados: $4.500.000
-
-    `;
-
-  }
-
-  logout() {
-
-    localStorage.removeItem('usuario');
-
-    this.router.navigate(['/login']);
-
-  }
+}
 
 }

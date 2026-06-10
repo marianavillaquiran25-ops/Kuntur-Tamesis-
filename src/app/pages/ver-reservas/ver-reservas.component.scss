@@ -1,0 +1,81 @@
+.admin-reservas {
+  padding: 24px;
+    max-width: 1100px;
+      margin: 0 auto;
+      }
+      
+.admin-reservas-header {
+  display: flex;
+    justify-content: space-between;
+      align-items: center;
+        margin-bottom: 20px;
+        }
+        
+.admin-reservas-header h1 {
+  margin: 0;
+    font-size: 2rem;
+      color: #203040;
+        }
+        
+.admin-reservas-header p {
+  margin: 8px 0 0;
+    color: #556270;
+      }
+      
+.loading-state, .error-state, .empty-state {
+  background: #fff6d6;
+      border: 1px solid #f2d68f;
+        color: #7a5a00;
+            padding: 16px;
+              border-radius: 10px;
+                margin-top: 16px;
+                }
+                
+.error-state {
+  background: #ffe6e6;
+      border-color: #f0a1a1;
+          color: #a12929;
+            }
+            
+.reservas-table {
+  width: 100%;
+    border-collapse: collapse;
+      background: #ffffff;
+          border-radius: 12px;
+            overflow: hidden;
+              box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+              }
+              
+.reservas-table th, .reservas-table td {
+  padding: 16px 14px;
+    text-align: left;
+      border-bottom: 1px solid #eef1f5;
+      }
+      
+.reservas-table thead {
+  background: #f8fbff;
+    }
+    
+.reservas-table th {
+  font-weight: 700;
+    color: #2b3a4b;
+      }
+      
+.reservas-table tbody tr:hover {
+  background: #f6f9ff;
+    }
+    
+.btn-eliminar {
+  background: #e74c3c;
+      color: #fff;
+          border: none;
+            border-radius: 8px;
+              padding: 10px 14px;
+                cursor: pointer;
+                  transition: background 0.2s ease;
+                  }
+                  
+.btn-eliminar:hover {
+  background: #c0392b;
+    }
+    

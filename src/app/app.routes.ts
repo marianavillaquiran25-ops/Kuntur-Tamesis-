@@ -69,7 +69,7 @@ export const routes: Routes = [
 
     // EDITAR RUTA
     {
-        path: 'editar-ruta',
+        path: 'editar-ruta/:id',
         component: EditarRutaComponent
     },
 

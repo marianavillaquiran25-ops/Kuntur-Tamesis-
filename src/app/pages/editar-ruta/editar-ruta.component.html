@@ -1,1 +1,54 @@
-<p>editar-ruta works!</p>
+<div class="contenedor">
+
+    <h1>Editar Ruta</h1>
+
+    <div *ngIf="cargando" class="cargando">
+        <p>Cargando información de la ruta...</p>
+    </div>
+
+    <div *ngIf="!cargando" class="formulario-card">
+
+        <div class="form-titulo">
+            <h2>Detalles de la ruta</h2>
+            <p>Revisa los datos y guarda los cambios para actualizar la ruta en la base de datos.</p>
+        </div>
+
+        <div class="fila">
+            <label>Nombre</label>
+            <input type="text" [(ngModel)]="ruta.nombre" placeholder="Nombre de la ruta">
+        </div>
+
+        <div class="fila">
+            <label>Destino</label>
+            <input type="text" [(ngModel)]="ruta.destino" placeholder="Destino">
+        </div>
+
+        <div class="fila">
+            <label>Descripción</label>
+            <textarea [(ngModel)]="ruta.descripcion" placeholder="Descripción"></textarea>
+        </div>
+
+        <div class="fila-doble">
+            <div class="fila">
+                <label>Precio</label>
+                <input type="number" [(ngModel)]="ruta.precio" placeholder="Precio">
+            </div>
+            <div class="fila">
+                <label>Duración</label>
+                <input type="text" [(ngModel)]="ruta.duracion" placeholder="Duración">
+            </div>
+        </div>
+
+        <div class="fila">
+            <label>Cupos disponibles</label>
+            <input type="number" [(ngModel)]="ruta.cuposDisponibles" placeholder="Cupos disponibles">
+        </div>
+
+        <div class="acciones-form">
+            <button class="btn-guardar" (click)="actualizarRuta()">Guardar cambios</button>
+            <button class="btn-volver" (click)="volver()">Volver</button>
+        </div>
+
+    </div>
+
+</div>

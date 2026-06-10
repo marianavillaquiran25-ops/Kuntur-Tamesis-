@@ -1,1 +1,43 @@
-<p>ver-reservas works!</p>
+<section class="admin-reservas">
+  <div class="admin-reservas-header">
+    <div>
+      <h1>Reservas registradas</h1>
+      <p>Gestiona las reservas realizadas por los turistas.</p>
+    </div>
+  </div>
+
+  <div *ngIf="cargando" class="loading-state">Cargando reservas...</div>
+  <div *ngIf="errorMensaje" class="error-state">{{ errorMensaje }}</div>
+
+  <div *ngIf="!cargando && !errorMensaje">
+    <table *ngIf="reservas.length; else sinReservas" class="reservas-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Turista</th>
+          <th>Ruta</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reserva of reservas">
+          <td>{{ reserva.id }}</td>
+          <td>{{ reserva.turista?.nombre || reserva.turista?.email || ('Turista ' + reserva.turista?.id) || '---' }}</td>
+          <td>{{ reserva.ruta?.nombre || ('Ruta ' + reserva.ruta?.id) || '---' }}</td>
+          <td>{{ reserva.fechaReserva | date:'medium' }}</td>
+          <td>{{ reserva.estado || 'Pendiente' }}</td>
+          <td>
+            <button class="btn-eliminar" (click)="eliminarReserva(reserva.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #sinReservas>
+    <div class="empty-state">No hay reservas registradas todavía.</div>
+  </ng-template>
+</section>
+        
