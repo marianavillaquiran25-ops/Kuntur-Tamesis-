@@ -1,7 +1,6 @@
-/* =========================
-   GENERAL
-========================= */
-
+/* ==========================================================================
+   ESTILOS GENERALES Y CONFIGURACIÓN
+   ========================================================================== */
 *{
     margin: 0;
     padding: 0;
@@ -10,463 +9,715 @@
 
 html{
     scroll-behavior: smooth;
+    background-color: #0d0d0d; 
 }
 
 body{
     font-family: 'Poppins', sans-serif;
-    background: #f5f5f5;
+    background: #520303;
+    color: white;
+    overflow-x: hidden; 
 }
 
-/* =========================
+.container{
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* ==========================================================================
    NAVBAR
-========================= */
-
+   ========================================================================== */
 .navbar{
-
-    width: 100%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 15px 40px;
-
-    background: #e68917;
-
     position: fixed;
-
     top: 0;
     left: 0;
-
+    width: 100%;
     z-index: 1000;
-}
-
-/* LOGO */
-
-.logo-container{
 
     display: flex;
-
+    justify-content: space-between;
     align-items: center;
 
-    gap: 15px;
+    padding: 20px 50px;
+
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo-img{
-
-    width: 65px;
-
-    height: 65px;
-
-    border-radius: 12px;
-
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 12px;
 }
 
 .logo-container h2{
-
     color: white;
-
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 }
 
-/* LINKS */
-
 .nav-links{
-
     display: flex;
-
     gap: 35px;
 }
 
 .nav-links a{
-
     color: white;
-
     text-decoration: none;
-
     font-weight: 600;
-
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .nav-links a:hover{
-
-    color: #ffe0b2;
-}
-
-/* PERFIL */
-
-.profile-container{
-
-    position: relative;
+    color: #ffd6c2;
 }
 
 .profile-btn{
-
     width: 50px;
-
     height: 50px;
-
-    border-radius: 12px;
-
     border: none;
-
-    background: rgba(255,255,255,0.15);
-
-    color: white;
-
-    font-size: 1.3rem;
-
+    border-radius: 50%;
     cursor: pointer;
-
-    transition: 0.3s;
+    background: rgba(255,255,255,.12);
+    color: white;
+    font-size: 1.2rem;
 }
-
-.profile-btn:hover{
-
-    background: rgba(255,255,255,0.3);
-}
-
-/* MENÚ */
 
 .dropdown-menu{
-
     position: absolute;
-
-    top: 65px;
-
+    top: 70px;
     right: 0;
-
-    background: white;
-
     width: 220px;
-
-    border-radius: 12px;
-
+    background: white;
+    border-radius: 15px;
     overflow: hidden;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 .dropdown-menu a{
-
     display: block;
-
     padding: 15px;
-
-    text-decoration: none;
-
     color: #333;
-
-    font-weight: 600;
+    text-decoration: none;
 }
 
-.dropdown-menu a:hover{
-
-    background: #f5f5f5;
-
-    color: #e68917;
-}
-
-/* =========================
+/* ==========================================================================
    HERO
-========================= */
-
+   ========================================================================== */
 .hero{
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
-    margin-top: 110px;
+.hero-carousel{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
 
-    padding: 40px 5%;
+.hero-carousel img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: heroFade 28s infinite;
+}
+
+.hero-carousel img:nth-child(1){ animation-delay: 0s; }
+.hero-carousel img:nth-child(2){ animation-delay: 4s; }
+.hero-carousel img:nth-child(3){ animation-delay: 8s; }
+.hero-carousel img:nth-child(4){ animation-delay: 12s; }
+.hero-carousel img:nth-child(5){ animation-delay: 16s; }
+.hero-carousel img:nth-child(6){ animation-delay: 20s; }
+.hero-carousel img:nth-child(7){ animation-delay: 24s; }
+
+@keyframes heroFade{
+    0%{ opacity: 0 }
+    4%{ opacity: 1 }
+    18%{ opacity: 1 }
+    22%{ opacity: 0 }
+    100%{ opacity: 0 }
+}
+
+.hero-overlay{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.85) 100%);
+    z-index: 1;
 }
 
 .hero-inner{
-
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
     display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 120px 0 80px;
+}
 
+.hero-content{
+    position: relative;
+    display: flex;
     align-items: center;
-
     justify-content: space-between;
-
     gap: 40px;
+    width: 100%;
 }
 
-.hero-text{
-
+.hero-left{
     flex: 1;
+    color: white;
+    max-width: 750px;
 }
 
-.hero-text h2{
-
-    font-size: 3rem;
-
-    color: #222;
-
-    margin-bottom: 20px;
+.hero-right{
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 25px;
+    border-radius: 24px;
 }
 
-.hero-text p{
+.hero-title{
+    font-size: 6rem;
+    line-height: 0.95;
+    margin: 10px 0 25px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
 
+.hero-lead{
+    color: rgba(255,255,255,0.9);
     font-size: 1.1rem;
-
-    color: #555;
-
     line-height: 1.7;
+    margin-bottom: 35px;
+}
 
-    margin-bottom: 25px;
+.hero-features{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+.feature{
+    background: rgba(255,255,255,0.06);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.feature .icon{
+    font-size: 1.8rem;
+}
+
+.feature .feat-text p{ 
+    margin: 6px 0 0; 
+    color: rgba(255,255,255,0.75); 
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.more-detailed{ 
+    display: inline-block; 
+    margin-top: 8px; 
+    color: #ffd6c2; 
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.vertical-index{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+    font-weight: 800;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.vertical-index span{
+    font-size: 1rem;
+    opacity: 0.55;
+}
+
+.vertical-images{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.vertical-images img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 16px 36px rgba(0,0,0,.4);
+}
+
+.hero-subtitle{
+    display: inline-block;
+    color: #ff5353;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .btn-primary{
-
     display: inline-block;
-
-    padding: 14px 28px;
-
-    background: #e68917;
-
-    color: white;
-
+    padding: 15px 35px;
+    border-radius: 40px;
     text-decoration: none;
-
-    border-radius: 12px;
-
-    font-weight: bold;
-
-    transition: 0.3s;
+    color: white;
+    background: #8d2727;
+    font-weight: 600;
+    transition: background .3s;
 }
 
 .btn-primary:hover{
-
-    background: #c76f00;
+    background: #a63232;
 }
 
-/* IMAGEN PRINCIPAL */
-
-.hero-media{
-
-    flex: 1;
-}
-
-.hero-media img{
-
+/* ==========================================================================
+   SECCIÓN: POPULAR TOURS
+   ========================================================================== */
+.section-popular-tours {
+    padding: 80px 0 20px 0;    /* Reducido levemente el espacio inferior para pegarla a testimonios */
+    background-color: #0d0d0d; /* Fondo Negro Puro */
     width: 100%;
-
-    max-width: 500px;
-
-    height: 350px;
-
-    object-fit: cover;
-
-    border-radius: 20px;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* =========================
-   RUTAS
-========================= */
-
-.section{
-
-    padding: 60px 5%;
-}
-
-.section h3{
-
+.tours-header {
     text-align: center;
-
-    font-size: 2.2rem;
-
-    margin-bottom: 40px;
-
-    color: #222;
+    margin-bottom: 50px;
 }
 
-/* GALERÍA */
+.tours-header h3 {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
-.gallery{
+.tours-header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+}
 
+.tours-grid {
     display: grid;
-
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
-/* TARJETAS */
-
-.card{
-
-    background: white;
-
-    border-radius: 10px;
-
+.tour-card {
+    height: 420px;
+    background-color: #111827;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
     overflow: hidden;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-
-    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .35);
+    transition: transform .4s ease, box-shadow .4s ease;
 }
 
-.card:hover{
-
-    transform: translateY(-8px);
+.tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .5);
 }
 
-/* IMÁGENES MÁS PEQUEÑAS */
+.tour-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13, 13, 13, 1) 0%, rgba(13, 13, 13, 0.4) 50%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
 
-.card img{
-
+.tour-content {
+    text-align: center;
     width: 100%;
-
-    height: 400px;
-
-    object-fit: cover;
 }
 
-/* TEXTO */
-
-.card-info{
-
-    padding: 20px;
-}
-
-.card-info h4{
-
-    color: #222;
-
-    margin-bottom: 10px;
-
-    font-size: 1.3rem;
-}
-
-.card-info p{
-
-    color: #666;
-
-    line-height: 1.6;
-
-    margin-bottom: 20px;
-}
-
-/* BOTÓN */
-
-.btn-info{
-
-    display: inline-block;
-
-    padding: 12px 20px;
-
-    background: #e68917;
-
-    color: white;
-
-    text-decoration: none;
-
-    border-radius: 10px;
-
+.tour-content h4 {
+    color: rgb(245, 116, 116);
+    font-size: 1.4rem;
+    margin-bottom: 6px;
     font-weight: 600;
-
-    transition: 0.3s;
 }
 
-.btn-info:hover{
-
-    background: #c76f00;
+.tour-content p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 18px;
 }
 
-/* =========================
-   TESTIMONIOS
-========================= */
+.btn-tour-link {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(245, 116, 116, 0.4);
+    padding-bottom: 4px;
+    transition: border-color .3s, color .3s;
+}
 
-.testi-grid{
+.btn-tour-link:hover {
+    color: rgb(245, 116, 116);
+    border-bottom-color: rgb(245, 116, 116);
+}
 
-    display: grid;
 
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
 
+/* ==========================================================================
+   SECCIÓN: DISCOVER THE WORLD (REPLICADO DE IMAGE_37E1E8)
+   ========================================================================== */
+.discover-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    /* Imagen de fondo del bosque con superposición oscura integrada */
+    background: linear-gradient(rgba(13, 13, 13, 0.6), rgba(13, 13, 13, 0.75)), 
+                url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto sutil de paralaje */
+    
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.discover-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Alinea los elementos hacia la parte inferior */
+    gap: 50px;
+}
+
+/* --- BLOQUE IZQUIERDO --- */
+.discover-left {
+    flex: 1;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
     gap: 25px;
 }
 
-.testi{
-
-    background: white;
-
-    padding: 30px;
-
-    border-radius: 20px;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.discover-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    color: white;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-.site-footer{
-
-    background: #222;
-
+.btn-watch-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    transition: opacity 0.3s;
 
-    padding: 50px 5% 20px;
+    .play-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border: 2px solid white;
+        border-radius: 50%;
+        font-size: 0.8rem;
+        padding-left: 3px; /* Centra el triángulo visualmente */
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.discover-quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    max-width: 500px;
+}
+
+.discover-author {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+/* --- BLOQUE DERECHO (MINIATURAS CON PLAY) --- */
+.discover-right {
+    display: flex;
+    gap: 25px;
+    align-items: flex-end;
+}
+
+.video-thumb-card {
+    position: relative;
+    width: 260px;
+    height: 160px;
+    border-radius: 4px; /* Bordes rectangulares limpios como en la muestra */
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    /* Botón flotante de play en el centro de la miniatura */
+    .video-overlay-btn {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+
+        .thumb-play-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            color: white;
+            font-size: 0.75rem;
+            padding-left: 2px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.05);
+        }
+        .video-overlay-btn {
+            background: rgba(0, 0, 0, 0.4);
+            
+            .thumb-play-icon {
+                transform: scale(1.1);
+                background: rgba(255, 255, 255, 0.4);
+            }
+        }
+    }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .discover-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 20px;
+    }
+    
+    .discover-right {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    .discover-title {
+        font-size: 2.5rem;
+    }
+    
+    .video-thumb-card {
+        width: 100%; /* Ocupan todo el ancho en celulares */
+        height: 180px;
+    }
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer{
+    background: #111111;
+    padding: 80px 0 30px;
+    width: 100%;
 }
 
 .footer-inner{
-
     display: grid;
-
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-
-    gap: 30px;
+    gap: 40px;
+    margin-bottom: 40px;
 }
 
 .footer-col h4{
+    color: #fffdfd;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-    margin-bottom: 15px;
+.map-wrap iframe{
+    width: 100%;
+    height: 220px;
+    border-radius: 15px;
+    border: none;
+}
 
-    color: #e68917;
+.social{
+    display: block;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social:hover {
+    color: #ff6b35;
 }
 
 .site-copy{
-
     text-align: center;
-
-    margin-top: 30px;
-
-    border-top: 1px solid rgba(255,255,255,0.1);
-
-    padding-top: 20px;
+    padding-top: 25px;
+    border-top: 1px solid rgb(107, 165, 175);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:500px){
-
-    .navbar{
-
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
+@media(max-width:992px){
+    .hero-content{
         flex-direction: column;
+        align-items: flex-start;
+    }
+    .hero-right{
+        position: static;
+        width: 100%;
+    }
+}
 
+@media(max-width:768px){
+    .navbar{
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .hero-title{
+        font-size: 3.5rem;
+    }
+
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 20px;
     }
 
-    .hero-inner{
+    .hero-features{
+        grid-template-columns: 1fr;
+    }
 
+    .discover-grid{
         flex-direction: column;
+        gap: 20px;
     }
 
-    .hero-text h2{
-
-        font-size: 2.2rem;
+    .discover-main{
+        width: 100%;
+        height: 300px;
     }
 
-    .hero-media img{
-
-        height: 280px;
+    .discover-thumbs{
+        flex-direction: row;
+        width: 100%;
+        gap: 15px;
     }
 
+    .discover-thumbs img{
+        height: 90px;
+    }
+
+    .hero,
+.section-popular-tours,
+.discover-section {
+    min-height: 100vh;
+}
+
+    .section-popular-tours,
+.discover-section {
+    display: flex;
+    align-items: center;
+}
+    
+    .hero {
+    height: 100vh;
+}
+    .section-popular-tours {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 }

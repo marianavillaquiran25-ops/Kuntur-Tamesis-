@@ -4,7 +4,7 @@
     <div class="logo-container">
 
         <img
-        src="assets/logo.png"
+        src="assets/imagenes/logo.jpeg"
         alt="Logo"
         class="logo-img">
 
@@ -41,33 +41,37 @@
         </button>
 
         <!-- MENÚ DESPLEGABLE -->
-         
         <div class="dropdown-menu" *ngIf="menuAbierto">
-            
+
             <!-- SI NO HAY USUARIO -->
-             
             <ng-container *ngIf="!usuario">
-                
+
                 <a routerLink="/login">
                     Iniciar Sesión
-                
                 </a>
+
                 <a routerLink="/register">
                     Crear Cuenta
                 </a>
-            
+
             </ng-container>
+
             <!-- SI HAY USUARIO -->
-             <ng-container *ngIf="usuario">
-                <a routerLink="/perfil">
-                    Ver Perfil
-                </a>
+            <ng-container *ngIf="usuario">
+
+                <span class="usuario-nombre">
+                    Hola {{ usuario.nombre }}
+                </span>
+
                 <a (click)="cerrarSesion()">
                     Cerrar Sesión
                 </a>
+
             </ng-container>
+
         </div>
-        </div>
+
+    </div>
 
 </header>
 
@@ -75,25 +79,33 @@
 
     <section class="hero">
 
+        <div class="hero-carousel">
+            <img src="assets/imagenes/imagen1.jpg" alt="imagen1" />
+            <img src="assets/imagenes/imagen2.jpg" alt="imagen2" />
+            <img src="assets/imagenes/imagen3.jpg" alt="imagen3" />
+            <img src="assets/imagenes/imagen4.jpg" alt="imagen4" />
+            <img src="assets/imagenes/imagen5.jpg" alt="imagen5" />
+            <img src="assets/imagenes/imagen6.jpg" alt="imagen6" />
+            <img src="assets/imagenes/imagen7.jpg" alt="imagen7" />
+        </div>
+
+        <div class="hero-overlay"></div>
+
         <div class="hero-inner container">
 
-            <div class="hero-text">
+            <div class="hero-content">
 
-                <h2>
-                    Descubre experiencias inolvidables
-                </h2>
+                <div class="hero-left">
 
-                <p>
-                    Recorridos guiados, paquetes con descuento y aventuras diseñadas para ti.
-                </p>
+                    <span class="hero-subtitle">Turismo • Naturaleza • Aventura</span>
 
-            </div>
+                    <h1 class="hero-title">Kuntur<br/>Támesis</h1>
 
-            <div class="hero-media">
+                    <p class="hero-lead">Descubre la riqueza natural, cultural y turística de Támesis a través de experiencias únicas diseñadas para conectar a cada viajero con la esencia del municipio..</p>
 
-                <img
-                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80&auto=format&fit=crop"
-                alt="Rutas"/>
+                    <a routerLink="/rutas" class="btn-primary">Explorar rutas</a>
+
+                </div>
 
             </div>
 
@@ -101,133 +113,93 @@
 
     </section>
 
-    <section id="rutas" class="section container">
+    <section id="rutas" class="section-popular-tours">
+    <div class="tours-header container">
+        <h3>Rutas Mas Populares</h3>
 
-        <h3>
-            Algunas rutas destacadas
-        </h3>
+    </div>
 
-        <div class="gallery">
-
-            <article class="card">
-
-                <h4>
-                    Ruta Aventura
-                </h4>
-
-                <img
-                src="https://turismoantioquia.travel/wp-content/uploads/2023/04/Banner-web-1600x900-Rappel_Mesa-de-trabajo-1.png"
-                alt="Ruta 1">
-                
-                <a
-                routerLink="/rutas"
-                class="btn-info">
-                Ver más Información
-            </a>
-
+    <div class="tours-grid container">
         
-            </article>
+        <div class="tour-card" style="background-image: url('https://turismoantioquia.travel/wp-content/uploads/2023/04/Banner-web-1600x900-Rappel_Mesa-de-trabajo-1.png');">
+            <div class="tour-overlay">
+                <div class="tour-content">
+                    <h4>Rappel</h4>
+                    <p>Ruta Aventura</p>
+                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
+                </div>
+            </div>
+        </div>
 
-            <article class="card">
-                
-                <h4>
-                    Ruta Cultural
-                </h4>
-                <img
-                src="https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11"
-                alt="Ruta 2">
+        <div class="tour-card" style="background-image: url('https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11');">
+            <div class="tour-overlay">
+                <div class="tour-content">
+                    <h4>Patrimonio Cultural</h4>
+                    <p>Ruta Cultural</p>
+                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
+                </div>
+            </div>
+        </div>
 
-                 <a
-                routerLink="/rutas"
-                class="btn-info">
-                Ver más Información
-            </a>
+        <div class="tour-card" style="background-image: url('https://pbs.twimg.com/ext_tw_video_thumb/1641491115051298844/pu/img/-doJjjS2u8OR4qij.jpg');">
+            <div class="tour-overlay">
+                <div class="tour-content">
+                    <h4>Cerro Crito Rey</h4>
+                    <p>Ruta Naturaleza</p>
+                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour-card" style="background-image: url('assets/imagenes/imagen4.jpg');">
+            <div class="tour-overlay">
+                <div class="tour-content">
+                    <h4>Ruta De Las Flores</h4>
+                    <p>There will be a small.</p>
+                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="discover-section">
+    <div class="container discover-container">
+        
+        <div class="discover-left">
+            <h2 class="discover-title">DESCUBRE EL MUNDO DE UNA MANERA NUEVA...</h2>
             
+        
+        </div>
 
-            </article>
+        <div class="discover-right">
+            
+            <div class="video-thumb-card">
+                <img src="assets/imagenes/mini 2.jpg">
+                <div class="video-overlay-btn">
+                </div>
+            </div>
 
-            <article class="card">
+            <div class="video-thumb-card">
+                <img src="assets/imagenes/mini 1.jpg">
+                <div class="video-overlay-btn">
+                    
+                </div>
+            </div>
 
-                <h4>
-                    Ruta Naturaleza
-                </h4>
+             <div class="video-thumb-card">
+                <img src="assets/imagenes/mini3.jpg">
+                <div class="video-overlay-btn">
+                    
+                </div>
+            </div>
 
-                <img
-                src="https://pbs.twimg.com/ext_tw_video_thumb/1641491115051298844/pu/img/-doJjjS2u8OR4qij.jpg"
-                alt="Ruta 3">
-
-                 <a
-                routerLink="/rutas"
-                class="btn-info">
-                Ver más Información
-            </a>
-
-            </article>
 
         </div>
 
-    </section>
-
-    <section class="section testimonials container">
-
-        <h3>
-            Lo que dicen nuestros clientes
-        </h3>
-
-        <div class="testi-grid">
-
-            <blockquote class="testi">
-
-                <p>
-                    "Excelente servicio, guía muy profesional y paisajes increíbles."
-                </p>
-
-                <cite>
-                    - María G.
-                </cite>
-
-            </blockquote>
-
-            <blockquote class="testi">
-
-                <p>
-                    "Reservamos un paquete familiar y todo fue perfecto."
-                </p>
-
-                <cite>
-                    - Familia R.
-                </cite>
-
-            </blockquote>
-
-            <blockquote class="testi">
-
-                <p>
-                    "Recomendado 100% para quienes aman la naturaleza."
-                </p>
-
-                <cite>
-                    - Jorge L.
-                </cite>
-
-            </blockquote>
-
-        </div>
-
-    </section>
-
-    <section class="section history container">
-
-        <h3>
-            Nuestra Historia
-        </h3>
-
-        <p>
-            Somos una empresa local dedicada a promover los atractivos turísticos de nuestra región, con énfasis en sostenibilidad y experiencia auténtica.
-        </p>
-
-    </section>
-
+    </div>
+</section>
 
 </main>
 

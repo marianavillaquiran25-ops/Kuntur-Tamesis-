@@ -84,5 +84,7 @@ export class CrearRutaComponent {
     this.router.navigate(['/login']);
 
   }
-
+  irAVerRutas(): void {
+  this.router.navigate(['/ver-rutas']);
+}
 }
