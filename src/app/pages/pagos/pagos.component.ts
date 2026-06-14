@@ -1,110 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { PagoService } from '../../services/pago.service';
+
 @Component({
-  selector: 'app-pagos',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './pagos.component.html',
-  styleUrls: ['./pagos.component.scss']
+selector: 'app-pagos',
+standalone: true,
+imports: [CommonModule],
+templateUrl: './pagos.component.html',
+styleUrls: ['./pagos.component.scss']
 })
+export class PagosComponent implements OnInit {
 
-export class PagosComponent {
+mostrarPagos = true;
 
-  mostrarPagos = true;
+mostrarPendientes = false;
 
-  mostrarPendientes = false;
+pagoSeleccionado: any = null;
 
-  pagoSeleccionado:any = null;
+pagos: any[] = [];
 
-  pagos = [
+pagosRealizados: any[] = [];
 
-    {
-      turista:'Juan Gómez',
-      ruta:'Cerro Cristo Rey',
-      valor:'$180.000',
-      metodo:'Nequi',
-      fecha:'26/05/2026',
-      estado:'Pagado',
-      comprobante:'https://images.unsplash.com/photo-1554224155-6726b3ff858f'
-    },
+pagosPendientes: any[] = [];
 
-    {
-      turista:'Ana López',
-      ruta:'Cascada La Peinada',
-      valor:'$220.000',
-      metodo:'Transferencia',
-      fecha:'25/05/2026',
-      estado:'Pendiente',
-      comprobante:'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e'
-    },
+constructor(
+private pagoService: PagoService
+) {}
 
-    {
-      turista:'Carlos Ruiz',
-      ruta:'Sendero Natural',
-      valor:'$150.000',
-      metodo:'Tarjeta',
-      fecha:'24/05/2026',
-      estado:'Pagado',
-      comprobante:'https://images.unsplash.com/photo-1563013544-824ae1b704d3'
-    }
+ngOnInit(): void {
+this.pagoService.obtenerPagos().subscribe({
 
-  ];
+  next: (data: any[]) => {
 
-  // TODOS LOS PAGOS
+    this.pagos = data;
 
-  pagosRealizados = this.pagos;
+    this.pagosRealizados = data;
 
-  // SOLO PENDIENTES
+    this.pagosPendientes = data.filter(
 
-  pagosPendientes = this.pagos.filter(
+      pago => pago.estado === 'Pendiente'
 
-    pago => pago.estado === 'Pendiente'
+    );
 
-  );
+  },
 
-  // MOSTRAR PAGOS
+  error: (err: any) => {
 
-  verPagos(){
-
-    this.mostrarPagos = true;
-
-    this.mostrarPendientes = false;
+    console.error(err);
 
   }
 
-  // MOSTRAR PENDIENTES
+});
 
-  verPendientes(){
+}
 
-    this.mostrarPagos = false;
+verPagos(): void {
+this.mostrarPagos = true;
+this.mostrarPendientes = false;
 
-    this.mostrarPendientes = true;
+}
 
-  }
+verPendientes(): void {
+this.mostrarPagos = false;
+this.mostrarPendientes = true;
 
-  // MODAL
+}
 
-  abrirComprobante(pago:any){
+abrirComprobante(pago: any): void {
+this.pagoSeleccionado = pago;
 
-    this.pagoSeleccionado = pago;
+}
 
-  }
+cerrarModal(): void {
+this.pagoSeleccionado = null;
 
-  cerrarModal(){
+}
 
-    this.pagoSeleccionado = null;
+cerrarSesion(): void {
 
-  }
 
-  // CERRAR SESION
+localStorage.clear();
 
-  cerrarSesion(){
+window.location.href = '/login';
 
-    localStorage.clear();
-
-    window.location.href = '/login';
-
-  }
+}
 
 }

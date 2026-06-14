@@ -1,7 +1,7 @@
 <div class="detalle-header">
 
     <img
-        src="assets/logo.png"
+        src="assets/logo/logokuntur.png"
         alt="Logo"
         class="logo-detalle">
 
@@ -15,47 +15,52 @@
 
 </div>
 
-<section class="detalle-container">
+<section
+class="detalle-container"
+*ngIf="ruta">
 
     <div class="detalle-imagen">
 
         <img
-            src="https://www.tamesis-antioquia.gov.co/NuestraAlcaldia/SaladePrensa/PublishingImages/Paginas/T%C3%A1mesis-un-para%C3%ADso-para-descubrir/IMG_5234.JPG"
-            alt="Piedra del Pirú">
+            [src]="ruta?.imagen || 'assets/imagenes/ruta-default.jpg'"
+            [alt]="ruta?.nombre">
 
     </div>
 
     <div class="detalle-info">
 
         <span class="badge-ruta">
-            Ruta Ecológica.
+            Ruta Ecológica
         </span>
 
         <h1>
-            Piedra del Pirú
+            {{ ruta?.nombre }}
         </h1>
 
         <p>
-            Recorre uno de los senderos más representativos de Támesis Antioquia.
-            Disfruta de paisajes naturales, montañas, fauna y flora mientras vives
-            una experiencia única de turismo ecológico.
+            {{ ruta?.descripcion }}
         </p>
 
         <div class="detalle-meta">
 
-            <div>📍 Támesis Antioquia</div>
+            <div>
+                📍 {{ ruta?.destino }}
+            </div>
 
-            <div>⏰ Duración: 4 Horas</div>
+            <div>
+                ⏰ Duración: {{ ruta?.duracion }}
+            </div>
 
-            <div>🥾 Dificultad: Media</div>
-
-            <div>👥 Cupos disponibles: 15</div>
+            <div>
+                👥 Cupos disponibles:
+                {{ ruta?.cuposDisponibles }}
+            </div>
 
         </div>
 
         <div class="precio">
 
-            $120.000 COP
+            ${{ ruta?.precio }} COP
 
         </div>
 
@@ -91,7 +96,9 @@
 
 </section>
 
-<section class="formulario-reserva">
+<section
+class="formulario-reserva"
+*ngIf="ruta">
 
     <h2>
         Reservar Ruta
@@ -146,10 +153,13 @@
 
         </select>
 
-        <label>Observaciones adicionales</label>
+        <label>
+            Observaciones adicionales
+        </label>
+
         <textarea
-        rows="5"
-        placeholder="Escriba aquí comentarios o solicitudes especiales">
+            rows="5"
+            placeholder="Escriba aquí comentarios o solicitudes especiales">
         </textarea>
 
         <button type="submit">
@@ -161,3 +171,11 @@
     </form>
 
 </section>
+
+<div *ngIf="cargando">
+
+    <h2>
+        Cargando información de la ruta...
+    </h2>
+
+</div>

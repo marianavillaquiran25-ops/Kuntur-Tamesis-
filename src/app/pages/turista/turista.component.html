@@ -17,14 +17,14 @@
         [formControl]="filtroDocumento"
         placeholder="Buscar por documento"
         />
-        <button type="button" (click)="buscarPorDocumento()">Buscar</button>
+        <button type="button" (click)="buscarPorDocumentoIdentidad()">Buscar</button>
         <button type="button" class="secondary" (click)="limpiarBusqueda()">Limpiar</button>
     </div>
 </section>
 <form [formGroup]="form" (ngSubmit)="guardar()" class="form-grid">
     <input type="text" formControlName="nombre" placeholder="Nombre" />
     <input type="text" formControlName="correo" placeholder="Correo" />
-    <input type="text" formControlName="documento" placeholder="Documento" />
+    <input type="text" formControlName="documentoIdentidad" placeholder="Documento de Identidad" />
     <input type="text" formControlName="telefono" placeholder="Telefono" />
     <input type="text" formControlName="direccion" placeholder="Direccion" />
     <input type="text" formControlName="password" placeholder="Password" />
@@ -55,7 +55,7 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Correo</th>
-                    <th>Documento</th>
+                    <th>DocumentoIdentidad</th>
                     <th>Telefono</th>
                     <th>Direccion</th>
                     <th>Password</th>
@@ -67,7 +67,7 @@
                         <td>{{ t.id }}</td>
                         <td>{{ t.nombre }}</td>
                         <td>{{ t.correo }}</td>
-                        <td>{{ t.documento }}</td>
+                        <td>{{ t.documentoIdentidad }}</td>
                         <td>{{ t.telefono }}</td>
                         <td>{{ t.direccion }}</td>
                         <td>{{ t.password }}</td>

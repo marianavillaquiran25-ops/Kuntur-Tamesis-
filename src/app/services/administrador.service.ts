@@ -9,7 +9,7 @@ import { Administrador, Ruta, Pago } from '../models/administrador.model';
 export class AdministradorService {
   
   // Ajusta esta URL según tu configuración de server.port en Spring Boot
-  private apiUrl = 'http://localhost:8080/api/administradores'; 
+  private apiUrl = 'http://localhost:8090/api/administradores'; 
 
   constructor(private http: HttpClient) { }
 

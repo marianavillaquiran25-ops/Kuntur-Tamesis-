@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './reserva.component.html',
-  styleUrl: './reserva.component.scss'
+  styleUrls: ['./reserva.component.scss']
 })
 export class ReservaComponent {
 

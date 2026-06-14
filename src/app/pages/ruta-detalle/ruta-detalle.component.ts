@@ -9,7 +9,7 @@ import { RutaService } from '../../services/ruta.service';
     standalone: true,
       imports: [CommonModule, RouterLink],
         templateUrl: './ruta-detalle.component.html',
-          styleUrl: './ruta-detalle.component.scss'
+          styleUrls: ['./ruta-detalle.component.scss']
           })
           export class RutaDetalleComponent implements OnInit {
           

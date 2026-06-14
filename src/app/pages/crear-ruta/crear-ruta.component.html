@@ -1,279 +1,214 @@
+
 <div class="dashboard">
 
-
-  <!-- CONTENIDO -->
-
   <main class="contenido">
-    <div class="top-actions">
+
+<!-- HERO -->
+
+<div class="hero">
 
   <button
     class="btn-volver"
     (click)="irAVerRutas()">
 
-     ⬅︎
+    ⬅︎
+
+  </button>
+
+  <div class="overlay">
+
+    <h1>
+      Crear nueva ruta turística
+    </h1>
+
+    <p>
+      Administra nuevas experiencias turísticas en Kuntur Támesis
+    </p>
+
+  </div>
+
+</div>
+
+<div
+  *ngIf="mensajeExito"
+  class="mensaje-exito">
+
+  ✅ Ruta creada correctamente
+
+</div>
+
+<!-- FORMULARIO -->
+
+<div class="form-container">
+
+  <div class="form-grid">
+
+    <div class="input-group">
+      <label>Nombre de la ruta</label>
+      <input
+        type="text"
+        [(ngModel)]="ruta.nombre"
+        placeholder="Ej: Cerro Cristo Rey">
+    </div>
+
+    <div class="input-group">
+      <label>Destino</label>
+      <input
+        type="text"
+        [(ngModel)]="ruta.destino"
+        placeholder="Ej: Támesis Antioquia">
+    </div>
+
+    <div class="input-group">
+      <label>Precio</label>
+      <input
+        type="number"
+        [(ngModel)]="ruta.precio"
+        placeholder="$150000">
+    </div>
+
+    <div class="input-group">
+      <label>Duración</label>
+      <input
+        type="text"
+        [(ngModel)]="ruta.duracion"
+        placeholder="Ej: 5 horas">
+    </div>
+
+    <div class="input-group">
+      <label>Cupos disponibles</label>
+      <input
+        type="number"
+        [(ngModel)]="ruta.cupos"
+        placeholder="20">
+    </div>
+
+    <div class="input-group">
+      <label>Fecha</label>
+      <input
+        type="date"
+        [(ngModel)]="ruta.fecha">
+    </div>
+
+    <div class="input-group">
+      <label>Hora de salida</label>
+      <input
+        type="time"
+        [(ngModel)]="ruta.hora">
+    </div>
+
+    <div class="input-group">
+      <label>Guía turístico</label>
+
+      <select [(ngModel)]="ruta.guia">
+
+        <option value="">
+          Seleccione
+        </option>
+
+        <option>
+          Carlos Pérez
+        </option>
+
+        <option>
+          Laura Gómez
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="input-group">
+
+      <label>
+        Nivel de dificultad
+      </label>
+
+      <select [(ngModel)]="ruta.dificultad">
+
+        <option>
+          Fácil
+        </option>
+
+        <option>
+          Media
+        </option>
+
+        <option>
+          Alta
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="input-group full-width">
+
+      <label>
+        URL imagen
+      </label>
+
+      <input
+        type="text"
+        [(ngModel)]="ruta.imagen"
+        placeholder="https://...">
+
+    </div>
+
+    <div class="input-group full-width">
+
+      <label>
+        Descripción
+      </label>
+
+      <textarea
+        rows="4"
+        [(ngModel)]="ruta.descripcion"
+        placeholder="Describe la experiencia turística...">
+      </textarea>
+
+    </div>
+
+    <div class="input-group full-width">
+
+      <label>
+        Recomendaciones
+      </label>
+
+      <textarea
+        rows="3"
+        [(ngModel)]="ruta.recomendaciones"
+        placeholder="Llevar agua, bloqueador...">
+      </textarea>
+
+    </div>
+
+    <div class="input-group full-width">
+
+      <label>
+        Atuendos recomendados
+      </label>
+
+      <textarea
+        rows="3"
+        [(ngModel)]="ruta.atuendos"
+        placeholder="Ropa cómoda, tenis...">
+      </textarea>
+
+    </div>
+
+  </div>
+
+  <button
+    class="btn-crear"
+    (click)="crearRuta()">
+
+    ➕ Crear ruta
 
   </button>
 
 </div>
 
-    <!-- HERO -->
-
-    <div class="hero">
-
-      <div class="overlay">
-
-        <h1>
-          Crear nueva ruta turística
-        </h1>
-
-        <p>
-          Administra nuevas experiencias turísticas en Kuntur Támesis
-        </p>
-
-      </div>
-
-    </div>
-
-    <div
-    *ngIf="mensajeExito"
-    class="mensaje-exito">
-    
-    ✅ Ruta creada correctamente
-  
-  </div>
-
-    <!-- FORMULARIO -->
-
-    <div class="form-container">
-
-      <div class="form-grid">
-
-        <!-- NOMBRE -->
-
-        <div class="input-group">
-
-          <label>
-            Nombre de la ruta
-          </label>
-
-          <input
-            type="text"
-            [(ngModel)]="ruta.nombre"
-            placeholder="Ej: Cerro Cristo Rey"
-          >
-
-        </div>
-
-        <!-- DESTINO -->
-
-        <div class="input-group">
-
-          <label>
-            Destino
-          </label>
-
-          <input
-            type="text"
-            [(ngModel)]="ruta.destino"
-            placeholder="Ej: Támesis Antioquia"
-          >
-
-        </div>
-
-        <!-- PRECIO -->
-
-        <div class="input-group">
-          <label>
-            Precio
-          </label>
-
-          <input
-            type="number"
-            [(ngModel)]="ruta.precio"
-            placeholder="$150000"
-          >
-        </div>
-
-        <!-- DURACION -->
-
-        <div class="input-group">
-          <label>
-            Duración
-          </label>
-
-          <input
-            type="text"
-            [(ngModel)]="ruta.duracion"
-            placeholder="Ej: 5 horas"
-          >
-        </div>
-
-        <!-- CUPOS -->
-
-        <div class="input-group">
-
-          <label>
-            Cupos disponibles
-          </label>
-
-          <input
-            type="number"
-            [(ngModel)]="ruta.cupos"
-            placeholder="20"
-          >
-        </div>
-
-        <!-- FECHA -->
-
-        <div class="input-group">
-
-          <label>
-            Fecha
-          </label>
-
-          <input
-            type="date"
-            [(ngModel)]="ruta.fecha"
-          >
-        </div>
-
-        <!-- HORA -->
-
-        <div class="input-group">
-
-          <label>
-            Hora de salida
-          </label>
-
-          <input
-            type="time"
-            [(ngModel)]="ruta.hora"
-          >
-        </div>
-
-        <!-- GUIA -->
-
-        <div class="input-group">
-
-          <label>
-            Guía turístico
-          </label>
-
-          <select
-            [(ngModel)]="ruta.guia"
-          >
-            <option value="">
-              Seleccione
-            </option>
-
-            <option>
-              Carlos Pérez
-            </option>
-
-            <option>
-              Laura Gómez
-            </option>
-
-          </select>
-
-        </div>
-
-        <!-- DIFICULTAD -->
-
-        <div class="input-group">
-
-          <label>
-            Nivel de dificultad
-          </label>
-
-          <select
-            [(ngModel)]="ruta.dificultad"
-          >
-
-            <option>
-              Fácil
-            </option>
-
-            <option>
-              Media
-            </option>
-
-            <option>
-              Alta
-            </option>
-
-          </select>
-
-        </div>
-
-        <!-- IMAGEN -->
-
-        <div class="input-group full-width">
-
-          <label>
-            URL imagen
-          </label>
-          <input
-            type="text"
-            [(ngModel)]="ruta.imagen"
-            placeholder="https://..."
-          >
-        </div>
-
-        <!-- DESCRIPCION -->
-
-        <div class="input-group full-width">
-          <label>
-            Descripción
-          </label>
-          <textarea
-            rows="4"
-            [(ngModel)]="ruta.descripcion"
-            placeholder="Describe la experiencia turística..."
-          ></textarea>
-        </div>
-
-        <!-- RECOMENDACIONES -->
-
-        <div class="input-group full-width">
-
-          <label>
-            Recomendaciones
-          </label>
-          <textarea
-            rows="3"
-            [(ngModel)]="ruta.recomendaciones"
-            placeholder="Llevar agua, bloqueador..."
-          ></textarea>
-        </div>
-
-        <!-- ATUENDOS -->
-
-        <div class="input-group full-width">
-          <label>
-            Atuendos recomendados
-          </label>
-
-          <textarea
-            rows="3"
-            [(ngModel)]="ruta.atuendos"
-            placeholder="Ropa cómoda, tenis..."
-          ></textarea>
-        </div>
-      </div>
-
-      <!-- BOTON -->
-
-      <button
-        class="btn-crear"
-        (click)="crearRuta()"
-      >
-
-        ➕ Crear ruta
-
-      </button>
-
-    </div>
 
   </main>
 

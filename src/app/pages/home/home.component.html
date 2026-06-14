@@ -1,6 +1,5 @@
 <header class="navbar">
 
-    <!-- LOGO -->
     <div class="logo-container">
 
         <img
@@ -12,7 +11,6 @@
 
     </div>
 
-    <!-- MENÚ -->
     <nav class="nav-links">
 
         <a href="#">
@@ -29,7 +27,6 @@
 
     </nav>
 
-    <!-- PERFIL -->
     <div class="profile-container">
 
         <button
@@ -40,10 +37,8 @@
 
         </button>
 
-        <!-- MENÚ DESPLEGABLE -->
         <div class="dropdown-menu" *ngIf="menuAbierto">
 
-            <!-- SI NO HAY USUARIO -->
             <ng-container *ngIf="!usuario">
 
                 <a routerLink="/login">
@@ -56,7 +51,6 @@
 
             </ng-container>
 
-            <!-- SI HAY USUARIO -->
             <ng-container *ngIf="usuario">
 
                 <span class="usuario-nombre">
@@ -80,13 +74,13 @@
     <section class="hero">
 
         <div class="hero-carousel">
-            <img src="assets/imagenes/imagen1.jpg" alt="imagen1" />
-            <img src="assets/imagenes/imagen2.jpg" alt="imagen2" />
-            <img src="assets/imagenes/imagen3.jpg" alt="imagen3" />
-            <img src="assets/imagenes/imagen4.jpg" alt="imagen4" />
-            <img src="assets/imagenes/imagen5.jpg" alt="imagen5" />
-            <img src="assets/imagenes/imagen6.jpg" alt="imagen6" />
-            <img src="assets/imagenes/imagen7.jpg" alt="imagen7" />
+            <img src="assets/imagenes/imagen1.jpg" alt="imagen1">
+            <img src="assets/imagenes/imagen2.jpg" alt="imagen2">
+            <img src="assets/imagenes/imagen3.jpg" alt="imagen3">
+            <img src="assets/imagenes/imagen4.jpg" alt="imagen4">
+            <img src="assets/imagenes/imagen5.jpg" alt="imagen5">
+            <img src="assets/imagenes/imagen6.jpg" alt="imagen6">
+            <img src="assets/imagenes/imagen7.jpg" alt="imagen7">
         </div>
 
         <div class="hero-overlay"></div>
@@ -97,13 +91,27 @@
 
                 <div class="hero-left">
 
-                    <span class="hero-subtitle">Turismo • Naturaleza • Aventura</span>
+                    <span class="hero-subtitle">
+                        Turismo • Naturaleza • Aventura
+                    </span>
 
-                    <h1 class="hero-title">Kuntur<br/>Támesis</h1>
+                    <h1 class="hero-title">
+                        Kuntur<br>Támesis
+                    </h1>
 
-                    <p class="hero-lead">Descubre la riqueza natural, cultural y turística de Támesis a través de experiencias únicas diseñadas para conectar a cada viajero con la esencia del municipio..</p>
+                    <p class="hero-lead">
+                        Descubre la riqueza natural, cultural y turística de Támesis
+                        a través de experiencias únicas diseñadas para conectar a cada
+                        viajero con la esencia del municipio.
+                    </p>
 
-                    <a routerLink="/rutas" class="btn-primary">Explorar rutas</a>
+                    <a
+                    routerLink="/rutas"
+                    class="btn-primary">
+
+                        Explorar rutas
+
+                    </a>
 
                 </div>
 
@@ -114,92 +122,89 @@
     </section>
 
     <section id="rutas" class="section-popular-tours">
+
     <div class="tours-header container">
-        <h3>Rutas Mas Populares</h3>
+
+        <h3>
+            Rutas Más Populares
+        </h3>
 
     </div>
 
     <div class="tours-grid container">
-        
-        <div class="tour-card" style="background-image: url('https://turismoantioquia.travel/wp-content/uploads/2023/04/Banner-web-1600x900-Rappel_Mesa-de-trabajo-1.png');">
+
+        <div
+            class="tour-card"
+            *ngFor="let ruta of rutas"
+            [style.background-image]="'url(' + ruta.imagen + ')'">
+
             <div class="tour-overlay">
+
                 <div class="tour-content">
-                    <h4>Rappel</h4>
-                    <p>Ruta Aventura</p>
-                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
+
+                    <h4>
+                        {{ ruta.nombre }}
+                    </h4>
+
+                    <p>
+                        {{ ruta.destino }}
+                    </p>
+
+                    <a
+                        routerLink="/rutas"
+                        class="btn-tour-link">
+
+                        Ver más
+
+                    </a>
+
                 </div>
+
             </div>
-        </div>
-
-        <div class="tour-card" style="background-image: url('https://scontent.fczu1-1.fna.fbcdn.net/v/t1.6435-9/86171546_2785547068200136_4223673579075534848_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4hjFnWuvRdEQ7kNvwHMUJpG&_nc_oc=Adra3oy1KmyUE_ZYqvV5gkzFNmamdb1HeVooAeAbaGF6e24nthY2PsOixc7HBajPU8I&_nc_zt=23&_nc_ht=scontent.fczu1-1.fna&_nc_gid=FYzC6F5U2lLjsNkfYFd10Q&_nc_ss=7b289&oh=00_Af41IscqA4dZd80zg0b1MPQsxIAgkwqiDFa8THIYPiUGug&oe=6A318E11');">
-            <div class="tour-overlay">
-                <div class="tour-content">
-                    <h4>Patrimonio Cultural</h4>
-                    <p>Ruta Cultural</p>
-                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="tour-card" style="background-image: url('https://pbs.twimg.com/ext_tw_video_thumb/1641491115051298844/pu/img/-doJjjS2u8OR4qij.jpg');">
-            <div class="tour-overlay">
-                <div class="tour-content">
-                    <h4>Cerro Crito Rey</h4>
-                    <p>Ruta Naturaleza</p>
-                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="tour-card" style="background-image: url('assets/imagenes/imagen4.jpg');">
-            <div class="tour-overlay">
-                <div class="tour-content">
-                    <h4>Ruta De Las Flores</h4>
-                    <p>There will be a small.</p>
-                    <a routerLink="/rutas" class="btn-tour-link">Ver más</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="discover-section">
-    <div class="container discover-container">
-        
-        <div class="discover-left">
-            <h2 class="discover-title">DESCUBRE EL MUNDO DE UNA MANERA NUEVA...</h2>
-            
-        
-        </div>
-
-        <div class="discover-right">
-            
-            <div class="video-thumb-card">
-                <img src="assets/imagenes/mini 2.jpg">
-                <div class="video-overlay-btn">
-                </div>
-            </div>
-
-            <div class="video-thumb-card">
-                <img src="assets/imagenes/mini 1.jpg">
-                <div class="video-overlay-btn">
-                    
-                </div>
-            </div>
-
-             <div class="video-thumb-card">
-                <img src="assets/imagenes/mini3.jpg">
-                <div class="video-overlay-btn">
-                    
-                </div>
-            </div>
-
 
         </div>
 
     </div>
+
 </section>
+
+    <section class="discover-section">
+
+        <div class="container discover-container">
+
+            <div class="discover-left">
+
+                <h2 class="discover-title">
+                    DESCUBRE EL MUNDO DE UNA MANERA NUEVA...
+                </h2>
+
+            </div>
+
+            <div class="discover-right">
+
+                <div class="video-thumb-card">
+
+                    <img src="assets/imagenes/mini 2.jpg">
+
+                </div>
+
+                <div class="video-thumb-card">
+
+                    <img src="assets/imagenes/mini 1.jpg">
+
+                </div>
+
+                <div class="video-thumb-card">
+
+                    <img src="assets/imagenes/mini3.jpg">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
@@ -220,7 +225,6 @@
                 style="border:0;"
                 allowfullscreen=""
                 loading="lazy">
-
                 </iframe>
 
             </div>

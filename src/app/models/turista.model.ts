@@ -2,7 +2,7 @@ export interface Turista {
     id?: number;
     nombre: string;
     correo: string;
-    documento: string;
+    documentoIdentidad: string;
     telefono: string;
     direccion: string;
     password: string;

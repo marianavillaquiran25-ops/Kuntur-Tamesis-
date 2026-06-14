@@ -13,7 +13,6 @@ import { AuxiliarComponent } from './pages/auxiliar/auxiliar.component';
 
 import { CrearRutaComponent } from './pages/crear-ruta/crear-ruta.component';
 import { EditarRutaComponent } from './pages/editar-ruta/editar-ruta.component';
-import { EliminarRutaComponent } from './pages/eliminar-ruta/eliminar-ruta.component';
 import { VerReservasComponent } from './pages/ver-reservas/ver-reservas.component';
 import { VerRutasComponent } from './pages/ver-rutas/ver-rutas.component';
 
@@ -51,7 +50,7 @@ export const routes: Routes = [
 
     // DETALLE RUTA
     {
-        path: 'ruta-detalle',
+        path: 'ruta-detalle/:id',
         component: RutaDetalleComponent
     },
 
@@ -71,12 +70,6 @@ export const routes: Routes = [
     {
         path: 'editar-ruta/:id',
         component: EditarRutaComponent
-    },
-
-    // ELIMINAR RUTA
-    {
-        path: 'eliminar-ruta',
-        component: EliminarRutaComponent
     },
 
     // RESERVAS

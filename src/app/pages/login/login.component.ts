@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
-
 import { CommonModule } from '@angular/common';
-
 import { Router } from '@angular/router';
-
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -15,7 +11,6 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-
 export class LoginComponent {
 
   usuario: string = '';
@@ -33,40 +28,14 @@ export class LoginComponent {
 
   iniciarSesion() {
 
-  this.mensaje = '';
+    this.mensaje = '';
 
-  this.loginService.obtenerUsuarios().subscribe({
+    this.loginService.login({
+      correo: this.usuario,
+      password: this.password
+    }).subscribe({
 
-    next: (usuarios: any[]) => {
-
-      const usuarioInput = this.usuario.trim().toLowerCase();
-
-      const passwordInput = this.password.trim();
-
-      const usuarioEncontrado = usuarios.find((u: any) => {
-
-        const correoBD = String(u.correo).trim().toLowerCase();
-
-        const telefonoBD = String(u.telefono).trim();
-
-        const passwordBD = String(u.password).trim();
-
-        return (
-
-          (
-            correoBD === usuarioInput ||
-            telefonoBD === usuarioInput
-          )
-
-          &&
-
-          passwordBD === passwordInput
-
-        );
-
-      });
-
-      if (usuarioEncontrado) {
+      next: (usuarioEncontrado: any) => {
 
         localStorage.setItem(
           'usuario',
@@ -74,12 +43,10 @@ export class LoginComponent {
         );
 
         this.mensaje = 'Bienvenido';
-
         this.tipoMensaje = 'success';
 
         setTimeout(() => {
 
-          // ADMINISTRADOR
           if (
             usuarioEncontrado.rol === 'ADMINISTRADOR' ||
             usuarioEncontrado.rol === 'administrador'
@@ -89,7 +56,6 @@ export class LoginComponent {
 
           }
 
-          // GUÍA
           else if (
             usuarioEncontrado.rol === 'GUIA' ||
             usuarioEncontrado.rol === 'guia' ||
@@ -100,7 +66,6 @@ export class LoginComponent {
 
           }
 
-          // AUXILIAR
           else if (
             usuarioEncontrado.rol === 'AUXILIAR' ||
             usuarioEncontrado.rol === 'auxiliar' ||
@@ -111,7 +76,6 @@ export class LoginComponent {
 
           }
 
-          // TURISTA
           else {
 
             this.router.navigate(['/']);
@@ -120,27 +84,16 @@ export class LoginComponent {
 
         }, 1000);
 
-      }
+      },
 
-      else {
+      error: () => {
 
         this.mensaje = 'Usuario o contraseña incorrectos';
-
         this.tipoMensaje = 'error';
 
       }
 
-    },
-
-    error: () => {
-
-      this.mensaje = 'Error al conectar con el servidor';
-
-      this.tipoMensaje = 'error';
-
-    }
-
-  });
+    });
 
   }
 

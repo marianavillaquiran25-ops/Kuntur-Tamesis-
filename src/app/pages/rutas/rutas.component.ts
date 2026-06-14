@@ -26,23 +26,21 @@ export class RutasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.cargarRutas();
+    this.rutaService.obtenerRutas().subscribe({
 
-  }
+      next: (data) => {
 
-  cargarRutas() {
+        this.rutas = data;
 
-    this.rutaService.obtenerRutas()
-      .subscribe({
+      },
 
-        next: (data) => {
-          console.log('RUTAS RECIBIDAS');
-          console.log(data);
-          this.rutas = data;
-        
-        }
+      error: (err) => {
 
-      });
+        console.error(err);
+
+      }
+
+    });
 
   }
 

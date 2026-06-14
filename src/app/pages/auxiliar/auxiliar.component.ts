@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OnInit } from '@angular/core';
+import { ReservaService } from '../../services/reserva.service';
+import { TuristaService } from '../../services/turista.service';
 
 @Component({
   selector: 'app-auxiliar',
@@ -9,7 +12,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./auxiliar.component.scss']
 })
 
-export class AuxiliarComponent {
+export class AuxiliarComponent implements OnInit {
+
+  constructor(
+  private reservaService: ReservaService,
+  private turistaService: TuristaService
+) {}
 
   auxiliar = {
     nombre: 'Laura Gómez',
@@ -18,39 +26,10 @@ export class AuxiliarComponent {
 
   vistaActual = 'dashboard';
 
-  reservas = [
+  reservas: any[] = [];
 
-    {
-      turista: 'Juan Pérez',
-      ruta: 'Cerro Cristo Rey',
-      fecha: '28/05/2026',
-      estado: 'Confirmada'
-    },
+  turistas: any[] = [];
 
-    {
-      turista: 'Ana López',
-      ruta: 'Cascada La Peinada',
-      fecha: '30/05/2026',
-      estado: 'Pendiente'
-    }
-
-  ];
-
-  turistas = [
-
-    {
-      nombre: 'Carlos Ruiz',
-      nacionalidad: 'Colombiano',
-      telefono: '3104567890'
-    },
-
-    {
-      nombre: 'María Torres',
-      nacionalidad: 'Mexicana',
-      telefono: '3209876543'
-    }
-
-  ];
 
   cambiarVista(vista:string){
 
@@ -112,5 +91,21 @@ supervisarSistema(){
     window.location.href = '/login';
 
   }
+
+  ngOnInit(): void {
+
+  this.reservaService.obtenerReservas().subscribe({
+    next: (data) => {
+      this.reservas = data;
+    }
+  });
+
+  this.turistaService.listar().subscribe({
+    next: (data) => {
+      this.turistas = data;
+    }
+  });
+
+}
 
 }

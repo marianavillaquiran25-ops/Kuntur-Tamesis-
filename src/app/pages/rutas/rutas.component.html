@@ -1,10 +1,9 @@
 <header class="navbar">
 
-    <!-- LOGO -->
     <div class="logo-container">
 
         <img
-        src="assets/logo.png"
+        src="assets/imagenes/logo.jpeg"
         alt="Logo"
         class="logo-img">
 
@@ -12,41 +11,51 @@
 
     </div>
 
-    <!-- MENÚ -->
     <nav class="nav-links">
 
         <a routerLink="/">
             Inicio
         </a>
 
-
-
     </nav>
 
 </header>
 
-<header class="rutas-header">
+<!-- HERO -->
 
-    <h1>
-        Rutas Turísticas
-    </h1>
 
-    <p>
-        Descubre todas las experiencias que Kuntur Támesis tiene para ti.
-    </p>
 
-</header>
+<section class="hero-rutas">
 
-<section class="rutas-container">
+  <div class="hero-overlay">
+    <h1>Rutas Turísticas</h1>
+    <p>Descubre todas las experiencias que Kuntur Támesis tiene para ti.</p>
+  </div>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path
+        fill="#101010"
+        d="M0,96L80,106.7C160,117,320,139,480,133.3C640,128,800,96,960,80C1120,64,1280,64,1360,64L1440,64L1440,160L1360,160C1280,160,1120,160,960,160C800,160,640,160,480,160C320,160,160,160,80,160L0,160Z">
+      </path>
+    </svg>
+  </div>
+
+</section>
+
+<!-- TARJETAS -->
+
 <section class="rutas-container">
 
     <div
-    class="ruta-card"
-    *ngFor="let ruta of rutas">
+        class="ruta-card"
+        *ngFor="let ruta of rutas"
+    >
 
         <img
-        src="https://via.placeholder.com/500x300"
-        alt="Ruta">
+            [src]="ruta.imagen"
+            [alt]="ruta.nombre"
+        >
 
         <div class="ruta-info">
 
@@ -65,20 +74,17 @@
             <div class="botones">
 
                 <button
-                class="btn-reservar"
-                (click)="reservarRuta()">
-
+                    class="btn-reservar"
+                    (click)="reservarRuta()"
+                >
                     Reservar Ruta
-
                 </button>
 
                 <button
                 class="btn-info"
-                routerLink="/ruta-detalle">
-
-                    Más Información
-
-                </button>
+                [routerLink]="['/ruta-detalle', ruta.id]">
+                Más Información
+            </button>
 
             </div>
 
@@ -88,8 +94,7 @@
 
 </section>
 
-</section>
-<!-- MODAL LOGIN -->
+<!-- MODAL -->
 
 <div
 class="modal-overlay"
@@ -97,12 +102,10 @@ class="modal-overlay"
 
     <div class="modal">
 
-        <h2>
-            Debes iniciar sesión
-        </h2>
+        <h2>Debes iniciar sesión</h2>
 
         <p>
-            Debes Iniciar Sesión o Crear una Cuenta antes de Reservar tu Ruta.
+            Debes iniciar sesión o crear una cuenta antes de reservar tu ruta.
         </p>
 
         <div class="modal-buttons">
@@ -110,17 +113,13 @@ class="modal-overlay"
             <button
             class="btn-login"
             (click)="irLogin()">
-
                 Iniciar Sesión
-
             </button>
 
             <button
             class="btn-register"
             (click)="irRegister()">
-
                 Crear Cuenta
-
             </button>
 
         </div>
@@ -128,9 +127,7 @@ class="modal-overlay"
         <button
         class="cerrar-modal"
         (click)="cerrarModal()">
-
             ✕
-
         </button>
 
     </div>

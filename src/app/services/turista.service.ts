@@ -9,7 +9,7 @@ import {environment} from '../../environments/environments';
 })
 
 export class TuristaService{
-    private baseUrl=`${environment.apiUrl}/turista`;
+    private baseUrl=`${environment.apiUrl}/turistas`;
     
     constructor(private http:HttpClient){}
     
@@ -21,9 +21,9 @@ export class TuristaService{
         return this.http.get<Turista>(`${this.baseUrl}/${id}`);
     }
 
-    buscarPorDocumento(documento:string):Observable<Turista>{
+    buscarPorDocumentoIdentidad(documentoIdentidad:string):Observable<Turista>{
         return this.http.get<Turista>(`${this.baseUrl}/documento`, {
-            params: {documento}
+            params: {documentoIdentidad}
         });
     }
 

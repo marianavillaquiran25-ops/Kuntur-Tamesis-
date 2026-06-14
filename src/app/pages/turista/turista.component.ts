@@ -22,7 +22,7 @@ export class TuristasComponent implements OnInit {
   readonly form = this.fb.nonNullable.group({
     nombre: ['', [Validators.required]],
     correo: ['', [Validators.email]],
-    documento: ['', [Validators.required]],
+    documentoIdentidad: ['', [Validators.required]],
     telefono: [''],
     direccion: [''],
     password: ['']
@@ -56,9 +56,9 @@ export class TuristasComponent implements OnInit {
     });
   }
 
-  buscarPorDocumento(): void {
-    const documento = this.filtroDocumento.value.trim();
-    if (!documento) {
+  buscarPorDocumentoIdentidad(): void {
+    const documentoIdentidad = this.filtroDocumento.value.trim();
+    if (!documentoIdentidad) {
       this.cargarTuristas();
       return;
     }
@@ -67,13 +67,13 @@ export class TuristasComponent implements OnInit {
     this.error = '';
     this.mensaje = '';
 
-    this.turistaService.buscarPorDocumento(documento).subscribe({
+    this.turistaService.buscarPorDocumentoIdentidad(documentoIdentidad).subscribe({
       next: (turista: Turista) => {
         this.turistas = [turista];
         this.cargando = false;
       },
       error: (err: HttpErrorResponse) => {
-        this.error = this.obtenerMensajeError(err, 'No se encontró turista con ese documento');
+        this.error = this.obtenerMensajeError(err, 'No se encontró turista con ese documento de identidad');
         this.turistas = [];
         this.cargando = false;
       }
@@ -115,7 +115,7 @@ export class TuristasComponent implements OnInit {
         this.form.reset({
           nombre: '',
           correo: '',
-          documento: '',
+          documentoIdentidad: '',
           telefono: '',
           direccion: '',
           password: ''
@@ -133,7 +133,7 @@ export class TuristasComponent implements OnInit {
     this.form.patchValue({
       nombre: turista.nombre,
       correo: turista.correo,
-      documento: turista.documento,
+      documentoIdentidad: turista.documentoIdentidad,
       telefono: turista.telefono,
       direccion: turista.direccion,
       password: turista.password
@@ -145,7 +145,7 @@ export class TuristasComponent implements OnInit {
     this.form.reset({
       nombre: '',
       correo: '',
-      documento: '',
+      documentoIdentidad: '',
       telefono: '',
       direccion: '',
       password: ''

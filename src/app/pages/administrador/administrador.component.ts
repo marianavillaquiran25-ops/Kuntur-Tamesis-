@@ -1,77 +1,145 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { RutaService } from '../../services/ruta.service';
+import { TuristaService } from '../../services/turista.service';
+import { ReservaService } from '../../services/reserva.service';
+
 @Component({
-selector: 'app-administrador',
-standalone: true,
-imports: [CommonModule],
-templateUrl: './administrador.component.html',
-styleUrls: ['./administrador.component.scss']
+  selector: 'app-administrador',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './administrador.component.html',
+  styleUrls: ['./administrador.component.scss']
 })
-export class AdministradorComponent {
+export class AdministradorComponent implements OnInit {
 
-administradorLogueado = {
-nombre: 'Administrador'
-};
+  administradorLogueado = {
+    nombre: 'Administrador'
+  };
 
-totalRutas = 0;
-totalTuristas = 0;
-totalReservas = 0;
+  totalRutas = 0;
+  totalTuristas = 0;
+  totalReservas = 0;
 
-reporteVisible = false;
-reporteTexto = '';
+  reporteVisible = false;
+  reporteTexto = '';
 
-constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private rutaService: RutaService,
+    private turistaService: TuristaService,
+    private reservaService: ReservaService
+  ) {}
 
-irACrearRuta() {
-this.router.navigate(['/crear-ruta']);
-}
+  ngOnInit(): void {
 
-irAVerRutas() {
-this.router.navigate(['/ver-rutas']);
-}
+    this.cargarMetricas();
 
-irAEditarRuta() {
-this.router.navigate(['/editar-ruta']);
-}
+  }
 
-irAEliminarRuta() {
-this.router.navigate(['/eliminar-ruta']);
-}
+  cargarMetricas(): void {
 
-irAUsuarios() {
-this.router.navigate(['/turistas']);
-}
+    // RUTAS
+    this.rutaService.obtenerRutas().subscribe({
 
-irAReservas() {
-this.router.navigate(['/reservas']);
-}
+      next: (rutas) => {
 
-irAPagos() {
-this.router.navigate(['/pagos']);
-}
+        this.totalRutas = rutas.length;
 
-generarReporte() {
+      },
 
+      error: (err) => {
 
-this.reporteVisible = true;
+        console.error('Error cargando rutas', err);
 
-this.reporteTexto =
-  'REPORTE GENERAL KUNTUR TÁMESIS\n\n' +
-  'Rutas registradas: ' + this.totalRutas + '\n\n' +
-  'Turistas registrados: ' + this.totalTuristas + '\n\n' +
-  'Reservas realizadas: ' + this.totalReservas;
+      }
 
+    });
 
-}
+    // TURISTAS
+    this.turistaService.listar().subscribe({
 
-logout() {
+      next: (turistas) => {
 
+        this.totalTuristas = turistas.length;
 
-localStorage.removeItem('usuario');
-this.router.navigate(['/login']);
+      },
 
-}
+      error: (err) => {
+
+        console.error('Error cargando turistas', err);
+
+      }
+
+    });
+
+    // RESERVAS
+    this.reservaService.obtenerReservas().subscribe({
+
+      next: (reservas) => {
+
+        this.totalReservas = reservas.length;
+
+      },
+
+      error: (err) => {
+
+        console.error('Error cargando reservas', err);
+
+      }
+
+    });
+
+  }
+
+  irACrearRuta() {
+    this.router.navigate(['/crear-ruta']);
+  }
+
+  irAVerRutas() {
+    this.router.navigate(['/ver-rutas']);
+  }
+
+  irAEditarRuta(id: number) {
+    this.router.navigate(['/editar-ruta', id]);
+  }
+
+  irAEliminarRuta() {
+    this.router.navigate(['/ver-rutas']);
+  }
+
+  irAUsuarios() {
+    this.router.navigate(['/turistas']);
+  }
+
+  irAReservas() {
+    this.router.navigate(['/reservas']);
+  }
+
+  irAPagos() {
+    this.router.navigate(['/pagos']);
+  }
+
+  generarReporte() {
+
+    this.reporteVisible = true;
+
+    this.reporteTexto =
+      'REPORTE GENERAL KUNTUR TÁMESIS\n\n' +
+      'Rutas registradas: ' + this.totalRutas + '\n\n' +
+      'Turistas registrados: ' + this.totalTuristas + '\n\n' +
+      'Reservas realizadas: ' + this.totalReservas;
+
+  }
+
+  logout() {
+
+    localStorage.removeItem('usuario');
+
+    this.router.navigate(['/login']);
+
+  }
 
 }
