@@ -1,301 +1,473 @@
+
 <div class="dashboard">
 
-  <!-- SIDEBAR -->
+    <!-- SIDEBAR -->
 
-  <aside class="sidebar">
+    <aside class="sidebar">
 
-    <div>
+       <div class="logo">
 
-      <!-- LOGO -->
+    <img
+    src="assets/imagenes/logo.jpeg"
+    alt="logo">
 
-      <div class="logo">
+    <h1>KUNTUR</h1>
 
-        <img
-          src="/assets/logo/logokuntur.png"
-          alt="Kuntur Támesis"
-        > 
-
-      </div>
-
-      <!-- PERFIL -->
-
-      <div class="perfil">
-
-        <img
-          class="perfil-img"
-          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-          alt="perfil"
-        >
-
-        <div>
-
-          <h3>Carlos Pérez</h3>
-
-          <p>Guía Turístico</p>
+    <span>TÁMESIS</span>
 
         </div>
 
-      </div>
+        <nav>
 
-      <!-- MENU -->
+            <a
+            (click)="cambiarSeccion('dashboard')"
+            [class.active]="seccionActiva==='dashboard'">
 
-      <nav class="menu">
+                🏠 Inicio
 
-        <button
-          [class.active]="mostrarRutas"
-          (click)="toggleRutas()"
-        >
+            </a>
 
-          🗺️ Rutas asignadas
+            <a
+            (click)="cambiarSeccion('rutas')"
+            [class.active]="seccionActiva==='rutas'">
 
+                🗺️ Rutas asignadas
+
+            </a>
+
+            <a
+            (click)="cambiarSeccion('disponibilidad')"
+            [class.active]="seccionActiva==='disponibilidad'">
+
+                🟢 Disponibilidad
+
+            </a>
+
+            <a (click)="cerrarSesion()">
+
+                🚪 Cerrar sesión
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+
+    <main class="content">
+
+        <!-- HEADER -->
+
+        <div class="banner-bienvenida">
+    <div class="banner-overlay"></div> <header>
+        <div>
+            <h1>¡Bienvenido, {{ perfil.nombre }}!</h1>
+            <p>{{ perfil.profesion }}</p>
+        </div>
+    </header>
+</div>
+
+        <!-- DASHBOARD -->
+
+       
+
+            <!-- PERFIL RESUMEN -->
+
+            <section class="profile-card">
+
+                <div class="profile-img">
+
+                   <img
+                   [src]="fotoUrl"
+                   alt="guia"
+                   class="foto-perfil">
+                </div>
+
+                <div class="profile-info">
+
+                    
+
+                    <h2>{{ perfil.nombre }}</h2>
+
+                    <p>{{ perfil.profesion }}</p>
+
+                    <p>📧 {{ perfil.correo }}</p>
+
+                    <p>📞 {{ perfil.telefono }}</p>
+
+                    <p>📍 {{ perfil.ciudad }}</p>
+
+                    <p>📅 Miembro desde {{ perfil.miembro }}</p>
+
+                    <p>🌎 {{ perfil.idiomas }}</p>
+
+                </div>
+
+                <div class="profile-about">
+
+                    <h3>Sobre mí</h3>
+
+                    <p>{{ perfil.descripcion }}</p>
+
+                </div>
+
+                <button
+                class="edit-btn"
+                (click)="editarPerfil()">
+
+                    ✏️ Editar perfil
+
+                </button>
+
+            </section>
+
+        
+
+          <!-- RUTAS -->
+           <div *ngIf="seccionActiva==='rutas'">
+
+
+          <h2 class="titulo-seccion">
+            Rutas asignadas
+        </h2>
+        
+        <div class="contenedor-rutas">
+            <div
+            
+            class="ruta-card"
+            *ngFor="let ruta of rutasAsignadas">
+            
+            <img
+            
+            [src]="ruta.imagen || 'assets/imagenes/ruta-default.jpg'"
+            alt="ruta">
+
+        <div class="capacidad-badge">
+            👥 {{ ruta.cuposDisponibles }}
+        </div>
+
+        <div class="ruta-info">
+
+            <h3>{{ ruta.nombre }}</h3>
+
+            <p>
+                📍 {{ ruta.destino }}
+            </p>
+
+            <p>
+                ⏰ Duración: {{ ruta.duracion }}
+            </p>
+
+         <button
+         (click)="abrirDetalleRuta(ruta)">
+         Ver detalles
         </button>
-
-        <button
-          [class.active]="mostrarTuristas"
-          (click)="toggleTuristas()"
-        >
-
-          👥 Turistas asignados
-
-        </button>
-
-        <button (click)="cambiarDisponibilidad()">
-
-          {{ guia.disponible ? '🟢 Disponible' : '🔴 No disponible' }}
-
-        </button>
-
-      </nav>
+        </div>
 
     </div>
 
-    <!-- LOGOUT -->
+</div>
 
-    <button
-      class="logout-btn"
-      (click)="cerrarSesion()"
-    >
+</div>
+        <!-- PERFIL -->
 
-      🚪 Cerrar sesión
+        <div *ngIf="seccionActiva==='perfil'">
 
-    </button>
+            <section class="profile-card">
 
-  </aside>
+                <div class="profile-img">
 
-  <!-- CONTENIDO -->
+                    <img
+                    src="assets/guia.jpg"
+                    alt="guia">
 
-  <main class="contenido">
+                </div>
 
-    <!-- HERO -->
+                <div class="profile-info">
 
-    <div class="hero">
+                    <h2>Perfil de Usuario</h2>
 
-      <div class="overlay">
+                    <p><strong>Nombre:</strong> Juan Pérez</p>
 
-        <h1>
-          Bienvenido, Carlos Pérez 👋
-        </h1>
+                    <p><strong>Fecha de registro:</strong> 24 noviembre 2022</p>
 
-        <p>
-          Explora y administra tus rutas turísticas en Támesis Antioquia
-        </p>
+                    <p><strong>País:</strong> Colombia</p>
 
-      </div>
+                    <p><strong>Ciudad:</strong> Támesis</p>
+
+                    <p><strong>Correo:</strong> guia&#64;kuntur.com</p>
+
+                    <p><strong>Teléfono:</strong> 3001234567</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- TURISTAS -->
+
+<div *ngIf="seccionActiva==='turistas'">
+
+    <h2 class="titulo-seccion">
+        Turistas Asignados
+    </h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Documento</th>
+                <th>Correo</th>
+                <th>Alergias</th>
+
+            </tr>
+
+        </thead>
+
+    </table>
+
+</div>
+
+        <!-- DISPONIBILIDAD -->
+
+<div *ngIf="seccionActiva==='disponibilidad'">
+
+    <div class="card-disponibilidad">
+
+        <h2>Estado del guía</h2>
+
+        <h3>
+            {{ disponible ? 'Disponible' : 'No Disponible' }}
+        </h3>
+
+        <button (click)="toggleDisponibilidad()">
+            {{ disponible ? 'Desactivar' : 'Activar' }}
+        </button>
 
     </div>
 
-    <!-- RUTAS -->
+</div>
 
-    <section *ngIf="mostrarRutas">
+<!-- MODAL DETALLE RUTA -->
 
-      <h2 class="titulo">
-        🗺️ Rutas asignadas
-      </h2>
+<div
+*ngIf="mostrarDetalleRuta"
+class="modal">
 
-      <div class="cards">
+    <div class="detalle-ruta-modal">
 
-        <div
-          class="card"
-          *ngFor="let ruta of rutas"
-        >
+        <button
+        class="cerrar-modal"
+        (click)="cerrarDetalleRuta()">
+            ✕
+        </button>
 
-          <img
-            [src]="ruta.imagen"
-            alt="ruta"
-          >
+        <div class="detalle-layout">
 
-          <div class="card-body">
+            <!-- IZQUIERDA -->
 
-            <div class="top-card">
+            <div class="detalle-galeria">
 
-              <h3>{{ ruta.nombre }}</h3>
+                <img
+                [src]="rutaSeleccionada?.imagen"
+                class="imagen-principal"
+                alt="Ruta">
 
-              <span>
-                👥 {{ ruta.cantidadTuristas }}
-              </span>
+               
+            </div>
+
+            <!-- DERECHA -->
+
+            <div class="detalle-panel">
+
+                <div class="etiqueta-ruta">
+                    🌿 RUTA DE LAS FLORES
+                </div>
+
+                <h2>
+                    {{ rutaSeleccionada?.nombre }}
+                </h2>
+
+                <p class="descripcion-ruta">
+                    {{ rutaSeleccionada?.descripcion }}
+                </p>
+
+                <div class="item-info">
+                    <span>📍 Ubicación</span>
+                    <strong>{{ rutaSeleccionada?.destino }}</strong>
+                </div>
+
+                <div class="item-info">
+                    <span>🕒 Duración</span>
+                    <strong>{{ rutaSeleccionada?.duracion }}</strong>
+                </div>
+
+                <div class="item-info">
+                    <span>👥 Capacidad</span>
+                    <strong>{{ rutaSeleccionada?.cuposDisponibles }} personas</strong>
+                </div>
+
+                <div class="item-info">
+                    <span>📈 Dificultad</span>
+                    <strong>Baja</strong>
+                </div>
+
+                <div class="item-info">
+                    <span>🥾 Tipo de ruta</span>
+                    <strong>Senderismo</strong>
+                </div>
 
             </div>
 
-            <p>
-              📍 {{ ruta.destino }}
-            </p>
-
-            <p>
-              ⏰ {{ ruta.duracion }}
-            </p>
-
-            <button (click)="verDetalles(ruta)">
-              Ver detalles →
-            </button>
-
-          </div>
-
         </div>
 
-      </div>
+        <div class="recomendaciones-box">
 
-    </section>
+    <h3>🌱 Recomendaciones</h3>
 
-    <!-- MODAL -->
+    <p>
+        Llevar calzado cómodo, ropa adecuada,
+        hidratación y protector solar.
+        Respeta la naturaleza y sigue las
+        indicaciones del guía.
+    </p>
 
-    <div
-      class="modal"
-      *ngIf="rutaSeleccionada"
-    >
+    <hr>
+    
+    <h3>👥 Turistas inscritos</h3>
+    <table
+*ngIf="turistasAsignados.length > 0"
+class="tabla-turistas">
 
-      <div class="modal-content">
+  <thead>
+
+    <tr>
+
+      <th>Nombre</th>
+      <th>Documento</th>
+      <th>Correo</th>
+      <th>Teléfono</th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let turista of turistasAsignados">
+
+      <td>{{ turista.nombre }}</td>
+
+      <td>
+        {{ turista.documentoIdentidad }}
+      </td>
+
+      <td>{{ turista.correo }}</td>
+
+      <td>{{ turista.telefono }}</td>
+
+    </tr>
+
+  </tbody>
+  <p *ngIf="turistasAsignados.length === 0">
+    
+    No hay turistas inscritos en esta ruta.
+</p>
+
+            <!-- MODAL EDITAR PERFIL -->
+
+<div
+*ngIf="mostrarModal"
+class="modal">
+
+    <div class="detalle-ruta-modal">
 
         <button
-          class="cerrar"
-          (click)="cerrarDetalles()"
-        >
-          ✖️
+        class="cerrar-modal"
+        (click)="cerrarModal()">
+            ✕
         </button>
 
-        <img
-          [src]="rutaSeleccionada.imagen"
-          alt="ruta"
-        >
+       <div class="detalle-info">
 
-        <h2>
-          {{ rutaSeleccionada.nombre }}
-        </h2>
+    <h2>Editar Perfil</h2>
 
-        <p class="descripcion">
+    <div class="form-group">
 
-          {{ rutaSeleccionada.descripcion }}
+        <label>Foto de perfil</label>
 
-        </p>
-
-        <!-- RECOMENDACIONES -->
-
-        <div class="info-box">
-
-          <h3>
-            ✅ Recomendaciones
-          </h3>
-
-          <ul>
-
-            <li
-              *ngFor="let item of rutaSeleccionada.recomendaciones"
-            >
-
-              {{ item }}
-
-            </li>
-
-          </ul>
-
-        </div>
-
-        <!-- ATUENDOS -->
-
-        <div class="info-box">
-
-          <h3>
-            👕 Atuendos recomendados
-          </h3>
-
-          <ul>
-
-            <li
-              *ngFor="let item of rutaSeleccionada.atuendos"
-            >
-
-              {{ item }}
-
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
+        <input
+        type="file"
+        accept="image/*"
+        (change)="seleccionarFoto($event)">
 
     </div>
 
-    <!-- TURISTAS -->
+    <div class="form-group">
+        <label>Nombre</label>
+        <input
+        type="text"
+        [(ngModel)]="perfil.nombre">
+    </div>
 
-    <section *ngIf="mostrarTuristas">
+            <div class="form-group">
+                <label>Profesión</label>
+                <input
+                type="text"
+                [(ngModel)]="perfil.profesion">
+            </div>
 
-      <div
-  class="tabla-container"
-  *ngIf="mostrarTuristas"
->
+            <div class="form-group">
+                <label>Correo</label>
+                <input
+                type="email"
+                [(ngModel)]="perfil.correo">
+            </div>
 
-  <h2>
-    👥 Turistas asignados
-  </h2>
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input
+                type="text"
+                [(ngModel)]="perfil.telefono">
+            </div>
 
-  <table>
+            <div class="form-group">
+                <label>Ciudad</label>
+                <input
+                type="text"
+                [(ngModel)]="perfil.ciudad">
+            </div>
 
-    <thead>
+            <div class="form-group">
+                <label>Idiomas</label>
+                <input
+                type="text"
+                [(ngModel)]="perfil.idiomas">
+            </div>
 
-      <tr>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea
+                rows="4"
+                [(ngModel)]="perfil.descripcion"></textarea>
+            </div>
 
-        <th>Nombre completo</th>
+            <button
+            class="guardar-btn"
+            (click)="guardarPerfil()">
 
-        <th>Teléfono</th>
+                Guardar cambios
 
-        <th>Documento</th>
+            </button>
 
-        <th>Nacionalidad</th>
+        </div>
 
-        <th>Alergias</th>
-
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      <tr *ngFor="let turista of turistas">
-
-        <td>
-          {{ turista.nombreCompleto }}
-        </td>
-
-        <td>
-          {{ turista.telefono }}
-        </td>
-
-        <td>
-          {{ turista.documento }}
-        </td>
-
-        <td>
-          {{ turista.nacionalidad }}
-        </td>
-
-        <td>
-          {{ turista.afeccionesAlergias }}
-        </td>
-
-      </tr>
-
-    </tbody>
-
-  </table>
+    </div>
 
 </div>

@@ -50,14 +50,16 @@ export class EditarRutaComponent implements OnInit {
       .subscribe({
         next: (data: any) => {
           this.ruta = {
-            id: data.id ?? data.idRuta ?? data.id_Ruta ?? id,
-            nombre: data.nombre ?? '',
-            destino: data.destino ?? '',
-            descripcion: data.descripcion ?? '',
-            precio: data.precio ?? '',
-            duracion: data.duracion ?? '',
-            cuposDisponibles: data.cuposDisponibles ?? data.cupos ?? ''
-          };
+            id: data.id,
+            nombre: data.nombre,
+            destino: data.destino,
+            descripcion: data.descripcion,
+            precio: data.precio,
+            duracion: data.duracion,
+            cuposDisponibles: data.cuposDisponibles,
+            activa: data.activa,
+            imagen: data.imagen
+};
           this.cargando = false;
         },
         error: (err: any) => {
@@ -75,14 +77,17 @@ export class EditarRutaComponent implements OnInit {
       return;
     }
 
-    const rutaActualizada = {
-      nombre: this.ruta.nombre,
-      destino: this.ruta.destino,
-      descripcion: this.ruta.descripcion,
-      precio: Number(this.ruta.precio),
-      duracion: this.ruta.duracion,
-      cuposDisponibles: Number(this.ruta.cuposDisponibles)
-    };
+   const rutaActualizada = {
+
+    nombre: this.ruta.nombre,
+    destino: this.ruta.destino,
+    descripcion: this.ruta.descripcion,
+    precio: Number(this.ruta.precio),
+    duracion: this.ruta.duracion,
+    cuposDisponibles: Number(this.ruta.cuposDisponibles),
+    activa: this.ruta.activa,
+    imagen: this.ruta.imagen
+  };
 
     this.rutaService.actualizarRuta(id, rutaActualizada)
       .subscribe({

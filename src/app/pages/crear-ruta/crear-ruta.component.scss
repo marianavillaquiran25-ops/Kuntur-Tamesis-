@@ -1,201 +1,196 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.dashboard{
-min-height:100vh;
-background:linear-gradient(
-135deg,
-#006837 0%,
-#0a8f4c 60%,
-#d8b15a 100%
-);
+/* =========================
+   FONDO GENERAL (IMAGEN)
+========================= */
+
+.dashboard {
+  min-height: 100vh;
+
+  background-image: url('assets/imagenes/tamesis-montana.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  display: flex;
+  justify-content: center;
 }
 
-.contenido{
-padding:35px;
+/* capa oscura suave */
+.dashboard::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
 }
 
-.hero{
-position:relative;
-
-height:260px;
-
-border-radius:25px;
-
-background-image:
-linear-gradient(
-rgba(0,104,55,.75),
-rgba(0,104,55,.75)
-),
-url('https://src/app/assets/imagenes/tamesis-montana.jpg'); 
-background-size:cover;
-background-position:center;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-margin-bottom:35px;
+.contenido {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 30px;
 }
 
-.btn-volver{
+/* =========================
+   HERO TRANSPARENTE
+========================= */
 
-position:absolute;
+.hero {
+  position: relative;
+  height: 220px;
 
-top:20px;
-left:20px;
+  border-radius: 20px;
 
-background:white;
-color:#006837;
+  background: rgba(0, 104, 55, 0.35);
+  backdrop-filter: blur(10px);
 
-border:none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-padding:12px 18px;
+  margin-bottom: 30px;
 
-border-radius:12px;
-
-font-weight:600;
-
-cursor:pointer;
-
-transition:.3s;
+  color: white;
+  text-align: center;
 }
 
-.btn-volver:hover{
-background:#d8b15a;
-color:white;
+.hero h1 {
+  font-size: 38px;
 }
 
-.overlay{
-text-align:center;
-color:white;
+.hero p {
+  font-size: 14px;
+  opacity: 0.9;
 }
 
-.overlay h1{
-font-size:48px;
-margin-bottom:10px;
+.btn-volver {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  background: white;
+  color: #006837;
+
+  border: none;
+  padding: 10px 14px;
+
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.overlay p{
-font-size:16px;
+/* =========================
+   FORMULARIO CARD
+========================= */
+
+.form-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  max-width: 1100px;
+  margin: auto;
 }
 
-.mensaje-exito{
-background:#d4edda;
-color:#155724;
-padding:15px;
-border-radius:12px;
-text-align:center;
-font-weight:bold;
-margin-bottom:20px;
-border-left:5px solid #006837;
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.form-container{
-
-background:white;
-
-padding:35px;
-
-border-radius:25px;
-
-box-shadow:
-0 15px 35px rgba(0,0,0,.15);
-
-margin-top:-20px;
-
-position:relative;
-
-z-index:10;
+.input-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.form-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-}
-
-.input-group{
-display:flex;
-flex-direction:column;
-}
-
-.input-group label{
-margin-bottom:10px;
-font-weight:600;
-color:#1e293b;
+.input-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1e293b;
 }
 
 .input-group input,
-.input-group select,
-.input-group textarea{
+.input-group textarea {
+  padding: 12px;
+  border-radius: 10px;
 
-padding:15px;
+  border: 1px solid #cbd5e1;
 
-border-radius:14px;
+  outline: none;
 
-border:1px solid #cbd5e1;
-
-outline:none;
-
-font-size:15px;
-
-transition:.3s;
+  transition: 0.3s;
 }
 
 .input-group input:focus,
-.input-group select:focus,
-.input-group textarea:focus{
-  border:2px solid #006837;
+.input-group textarea:focus {
+  border: 2px solid #006837;
 }
 
-.full-width{
-  grid-column:1/-1;
+.full-width {
+  grid-column: 1 / -1;
 }
 
-/* BOTON CREAR */
+/* =========================
+   BOTÓN
+========================= */
 
-.btn-crear{
-  width:100%;
-  margin-top:30px;
-  border:none;
-  padding:18px;
-  border-radius:16px;
-  background:#006837;
-  color:white;
-  font-size:18px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
+.btn-crear {
+  width: 100%;
+  margin-top: 25px;
+
+  padding: 16px;
+  border: none;
+
+  background: #006837;
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  border-radius: 12px;
+  cursor: pointer;
+
+  transition: 0.3s;
 }
 
-.btn-crear:hover{
-  background:#004f29;
+.btn-crear:hover {
+  background: #004f29;
 }
 
-/* RESPONSIVE */
+/* =========================
+   MENSAJE
+========================= */
 
-@media(max-width:900px){
+.mensaje-exito {
+  background: #d4edda;
+  color: #155724;
 
-  .contenido{
-    padding:20px;
+  padding: 15px;
+  border-radius: 10px;
+
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 
-  .overlay h1{
-    font-size:34px;
+  .hero h1 {
+    font-size: 26px;
   }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .btn-volver{
-    top:15px;
-    left:15px;
-  }
-
 }

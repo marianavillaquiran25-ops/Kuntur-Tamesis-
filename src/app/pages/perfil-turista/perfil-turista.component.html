@@ -1,0 +1,194 @@
+<div class="perfil-page">
+
+  <button class="back-home" (click)="irHome()">
+    ←
+  </button>
+
+  <aside class="sidebar">
+
+    <div class="logo">
+
+      <img
+        src="assets/imagenes/logo.jpeg"
+        alt="logo">
+
+      <h2>KUNTUR</h2>
+
+      <span>TÁMESIS</span>
+
+    </div>
+
+    <nav>
+
+      <a class="active">
+        👤 Mi Perfil
+      </a>
+
+    </nav>
+
+    <div class="logout-container">
+
+      <button
+        class="logout-btn"
+        (click)="cerrarSesion()">
+
+        🚪 Cerrar sesión
+
+      </button>
+
+    </div>
+
+  </aside>
+
+  <main class="content">
+
+    <section class="cover">
+
+      <img
+        src="assets/imagenes/fondo.jpg"
+        alt="portada">
+
+    </section>
+
+    <section class="profile-card">
+
+      <img
+        class="profile-image"
+        [src]="fotoPerfil">
+
+      <div class="profile-info">
+
+        <h1>{{ nombre }}</h1>
+
+        <span class="role">
+          Turista
+        </span>
+
+      </div>
+
+      <button
+        class="edit-btn"
+        (click)="abrirEditarPerfil()">
+
+        ✏️ Editar Perfil
+
+      </button>
+
+    </section>
+
+    <section class="info-section">
+
+  <div class="card">
+
+    <h2>Información Personal</h2>
+
+    <div class="info-item">
+      <span>Nombre</span>
+      <strong>{{ nombre }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Correo</span>
+      <strong>{{ correo }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Teléfono</span>
+      <strong>{{ telefono }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Documento</span>
+      <strong>{{ documentoIdentidad }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Fecha de nacimiento</span>
+      <strong>{{ fechaNacimiento }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Nacionalidad</span>
+      <strong>{{ nacionalidad || 'No registrada' }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Afecciones / Alergias</span>
+      <strong>
+        {{ afeccionesAlergias || 'Ninguna registrada' }}
+      </strong>
+    </div>
+
+  </div>
+
+</section>
+
+  </main>
+
+</div>
+
+<div
+  class="modal"
+  *ngIf="editarPerfilActivo">
+
+  <div class="modal-content">
+
+    <h2>
+      Editar Perfil
+    </h2>
+
+    <label>
+      Foto
+    </label>
+
+    <input
+      type="file"
+      (change)="onFileSelected($event)">
+
+    <label>
+      Nombre
+    </label>
+
+    <input
+      type="text"
+      [(ngModel)]="usuarioEditando.nombre">
+
+    <label>
+      Correo
+    </label>
+
+    <input
+      type="email"
+      [(ngModel)]="usuarioEditando.correo">
+
+    <label>
+      Teléfono
+    </label>
+
+    <input
+      type="text"
+      [(ngModel)]="usuarioEditando.telefono">
+
+    <div class="modal-buttons">
+
+      <button
+        class="btn-save"
+        (click)="guardarPerfil()">
+
+        Guardar
+
+      </button>
+
+      <button
+        class="btn-cancel"
+        (click)="cerrarEditarPerfil()">
+
+        Cancelar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

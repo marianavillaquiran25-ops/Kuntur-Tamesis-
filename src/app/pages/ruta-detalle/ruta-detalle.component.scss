@@ -309,22 +309,88 @@ button[type="submit"]:hover {
 @media(max-width:900px){
 
     .detalle-container{
-
         grid-template-columns: 1fr;
-
     }
 
     form{
-
         grid-template-columns: 1fr;
-
     }
 
     textarea,
     button[type="submit"]{
-
         grid-column: span 1;
+    }
+}
 
+/* =======================================
+   SECCIÓN AFECCIONES Y ALERGIAS
+======================================= */
+
+.afeccion-section{
+    grid-column: span 2;
+
+    background: #161616;
+    border: 1px solid #2b2b2b;
+    border-radius: 16px;
+
+    padding: 22px;
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.titulo-afeccion{
+    color: #d8b15a;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.afeccion-section select{
+    width: 220px;
+    background: #1f1f1f;
+    border: 1px solid #444;
+    color: white;
+}
+
+.subtitulo-afeccion{
+    color: #e5e5e5;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.afeccion-section textarea{
+    width: 100%;
+    min-height: 120px;
+
+    background: #1b1b1b;
+    border: 1px solid #333;
+    border-radius: 12px;
+
+    color: white;
+    padding: 15px;
+
+    resize: vertical;
+}
+
+.afeccion-section textarea:focus,
+.afeccion-section select:focus{
+    outline: none;
+    border-color: #d8b15a;
+    box-shadow: 0 0 8px rgba(216,177,90,.3);
+}
+
+@media(max-width:900px){
+
+    .afeccion-section{
+        grid-column: span 1;
     }
 
+    .afeccion-section select{
+        width: 100%;
+    }
 }
+

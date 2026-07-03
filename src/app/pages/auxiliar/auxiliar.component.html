@@ -4,107 +4,74 @@
 
   <aside class="sidebar">
 
+<div>
+
+  <div class="logo">
+    <img src="/assets/logo/logokuntur.png" alt="Kuntur">
+  </div>
+
+  <div class="perfil">
+
+    <img
+      class="perfil-img"
+      src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+      alt="perfil">
+
     <div>
-
-      <!-- LOGO -->
-
-      <div class="logo">
-
-        <img
-          src="/assets/logo/logokuntur.png"
-          alt="Kuntur Támesis"
-        > 
-
-      </div>
-
-      <!-- PERFIL -->
-
-      <div class="perfil">
-
-        <img
-          class="perfil-img"
-          src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-          alt="perfil"
-        >
-
-        <div>
-
-          <h3>Laura Gómez</h3>
-
-          <p>Auxiliar Administrativo</p>
-
-        </div>
-
-      </div>
-
-      <!-- MENU -->
-
-      <nav class="menu">
-
-        <button
-          [class.active]="vistaActual === 'dashboard'"
-          (click)="cambiarVista('dashboard')"
-        >
-
-          📊 Dashboard
-
-        </button>
-
-        <button
-          [class.active]="vistaActual === 'reservas'"
-          (click)="cambiarVista('reservas')"
-        >
-
-          📋 Reservas
-
-        </button>
-
-        <button
-          [class.active]="vistaActual === 'turistas'"
-          (click)="cambiarVista('turistas')"
-        >
-
-          👥 Turistas
-
-        </button>
-
-        <button (click)="generarReporte()">
-
-          📄 Generar reportes
-
-        </button>
-
-        <button (click)="supervisarSistema()">
-
-          🖥️ Supervisar sistema
-
-        </button>
-
-        <button
-          (click)="cambiarDisponibilidad()"
-        >
-
-          {{ auxiliar.disponible
-            ? '🟢 Disponible'
-            : '🔴 No disponible'
-          }}
-
-        </button>
-
-      </nav>
-
+      <h3>{{ auxiliar.nombre }}</h3>
+      <p>Auxiliar Administrativo</p>
     </div>
 
-    <!-- LOGOUT -->
+  </div>
+
+  <nav class="menu">
 
     <button
-      class="logout-btn"
-      (click)="cerrarSesion()"
-    >
-
-      🚪 Cerrar sesión
-
+      [class.active]="vistaActual === 'dashboard'"
+      (click)="cambiarVista('dashboard')">
+      📊 Dashboard
     </button>
+
+    <button
+      [class.active]="vistaActual === 'reservas'"
+      (click)="cambiarVista('reservas')">
+      📋 Reservas
+    </button>
+
+    <button
+      [class.active]="vistaActual === 'turistas'"
+      (click)="cambiarVista('turistas')">
+      👥 Turistas
+    </button>
+
+    <button
+      [class.active]="vistaActual === 'guias'"
+      (click)="cambiarVista('guias')">
+      🧑‍💼 Guías
+    </button>
+
+    <button
+      [class.active]="vistaActual === 'rutas'"
+      (click)="cambiarVista('rutas')">
+      🗺️ Rutas
+    </button>
+
+    <button (click)="abrirModalReporte()">
+      📄 Generar Reporte
+    </button>
+
+  </nav>
+
+</div>
+
+<button
+  class="logout-btn"
+  (click)="cerrarSesion()">
+
+  🚪 Cerrar sesión
+
+</button>
+
 
   </aside>
 
@@ -112,169 +79,272 @@
 
   <main class="contenido">
 
-    <!-- HERO -->
 
-    <div class="hero">
+<div class="hero">
 
-      <div class="overlay">
+  <div class="overlay">
 
-        <h1>
-          Bienvenida, Laura Gómez 
-        </h1>
+    <h1>
+      Bienvenido(a), {{ auxiliar.nombre }}
+    </h1>
 
-        <p>
-          Panel auxiliar de supervisión turística
-        </p>
+    <p>
+      Panel de supervisión turística
+    </p>
 
-      </div>
+  </div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<section *ngIf="vistaActual === 'dashboard'">
+
+  <div class="stats">
+
+    <div class="stat-card">
+      <h2>{{ reservas.length }}</h2>
+      <p>Reservas</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>{{ turistas.length }}</h2>
+      <p>Turistas</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>{{ rutas.length }}</h2>
+      <p>Rutas</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>{{ guias.length }}</h2>
+      <p>Guías</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- RESERVAS -->
+
+<section *ngIf="vistaActual === 'reservas'">
+
+  <div class="tabla-container">
+
+    <h2>📋 Reservas registradas</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Turista</th>
+          <th>Ruta</th>
+          <th>Estado</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let reserva of reservas">
+
+          <td>{{ reserva.turista?.nombre }}</td>
+
+          <td>{{ reserva.ruta?.nombre }}</td>
+
+          <td>{{ reserva.estado }}</td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<!-- TURISTAS -->
+
+<section *ngIf="vistaActual === 'turistas'">
+
+  <div class="tabla-container">
+
+    <h2>👥 Turistas registrados</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Nombre</th>
+          <th>Documento</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let turista of turistas">
+
+          <td>{{ turista.nombre }}</td>
+          <td>{{ turista.documentoIdentidad }}</td>
+          <td>{{ turista.correo }}</td>
+          <td>{{ turista.telefono }}</td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<!-- GUIAS -->
+
+<section *ngIf="vistaActual === 'guias'">
+
+  <div class="tabla-container">
+
+    <h2>🧑‍💼 Guías turísticos</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Disponibilidad</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let guia of guias">
+
+          <td>{{ guia.nombre }}</td>
+
+          <td>{{ guia.correo }}</td>
+
+          <td>{{ guia.telefono }}</td>
+
+          <td>
+
+            <span
+              [style.color]="guia.disponible ? 'green' : 'red'">
+
+              {{ guia.disponible ? 'Disponible' : 'No disponible' }}
+
+            </span>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<!-- RUTAS -->
+
+<section *ngIf="vistaActual === 'rutas'">
+
+  <div class="tabla-container">
+
+    <h2>🗺️ Rutas registradas</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Ruta</th>
+          <th>Destino</th>
+          <th>Cupos</th>
+          <th>Guía</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let ruta of rutas">
+
+          <td>{{ ruta.nombre }}</td>
+
+          <td>{{ ruta.destino }}</td>
+
+          <td>{{ ruta.cuposDisponibles }}</td>
+
+          <td>{{ ruta.guia?.nombre }}</td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+  </main>
+
+  <div
+  class="modal-overlay"
+  *ngIf="mostrarModalReporte">
+
+  <div class="modal-reporte">
+
+    <h2>📄 Nuevo Reporte</h2>
+
+    <input
+      type="text"
+      placeholder="Asunto"
+      [(ngModel)]="nuevoReporte.asunto">
+
+    <textarea
+      rows="6"
+      placeholder="Escriba el reporte"
+      [(ngModel)]="nuevoReporte.mensaje">
+    </textarea>
+
+    <div class="acciones-modal">
+
+      <button (click)="enviarReporte()">
+        Enviar
+      </button>
+
+      <button (click)="cerrarModalReporte()">
+        Cancelar
+      </button>
 
     </div>
 
-    <!-- MENSAJES -->
+  </div>
 
-<div
-  *ngIf="mostrarMensaje"
-  class="mensaje"
-  [ngClass]="tipoMensaje"
->
-
-  {{ mensaje }}
-
-</div> 
-
-    <!-- DASHBOARD -->
-
-    <section *ngIf="vistaActual === 'dashboard'">
-
-      <div class="stats">
-
-        <div class="stat-card">
-
-          <h2></h2>
-
-          <p>Reservas</p>
-
-        </div>
-
-        <div class="stat-card">
-
-          <h2></h2>
-
-          <p>Turistas</p>
-
-        </div>
-
-        <div class="stat-card">
-
-          <h2></h2>
-
-          <p>Rutas activas</p>
-
-        </div>
-
-        <div class="stat-card">
-
-          <h2>98%</h2>
-
-          <p>Sistema operativo</p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- RESERVAS -->
-
-    <section *ngIf="vistaActual === 'reservas'">
-
-      <div class="tabla-container">
-
-        <h2>
-          📋 Reservas registradas
-        </h2>
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>Turista</th>
-              <th>Ruta</th>
-              <th>Fecha</th>
-              <th>Estado</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            <tr *ngFor="let reserva of reservas">
-
-              <td>{{ reserva.turista }}</td>
-
-              <td>{{ reserva.ruta }}</td>
-
-              <td>{{ reserva.fecha }}</td>
-
-              <td>{{ reserva.estado }}</td>
-
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </section>
-
-    <!-- TURISTAS -->
-
-    <section *ngIf="vistaActual === 'turistas'">
-
-      <div class="tabla-container">
-
-        <h2>
-          👥 Turistas registrados
-        </h2>
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>Nombre</th>
-              <th>Nacionalidad</th>
-              <th>Teléfono</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            <tr *ngFor="let turista of turistas">
-
-              <td>{{ turista.nombre }}</td>
-
-              <td>{{ turista.nacionalidad }}</td>
-
-              <td>{{ turista.telefono }}</td>
-
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </section>
-
-  </main>
+</div>
 
 </div>

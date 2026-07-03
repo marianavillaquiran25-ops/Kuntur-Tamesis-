@@ -1,88 +1,133 @@
-<section class="page">
-    <h2>Turista</h2>
-    <p class="subtitle">CRUD al backend con SpringBoot</p>
-    
-    <div class="alerts">
-        @if (mensaje) {
-            <p class="success">{{ mensaje }}</p>
-        }
-        @if (error) {
-            <p class="error">{{ error }}</p>
-        }
-    </div>
-    
-    <div class="search-box">
-        <input
-        type="text"
-        [formControl]="filtroDocumento"
-        placeholder="Buscar por documento"
-        />
-        <button type="button" (click)="buscarPorDocumentoIdentidad()">Buscar</button>
-        <button type="button" class="secondary" (click)="limpiarBusqueda()">Limpiar</button>
-    </div>
-</section>
-<form [formGroup]="form" (ngSubmit)="guardar()" class="form-grid">
-    <input type="text" formControlName="nombre" placeholder="Nombre" />
-    <input type="text" formControlName="correo" placeholder="Correo" />
-    <input type="text" formControlName="documentoIdentidad" placeholder="Documento de Identidad" />
-    <input type="text" formControlName="telefono" placeholder="Telefono" />
-    <input type="text" formControlName="direccion" placeholder="Direccion" />
-    <input type="text" formControlName="password" placeholder="Password" />
-    <input type="text" formControlName="ubicacionDetalle" placeholder="Barrio/Vereda" />
-    
-    <label class="checkbox">
-        <input type="checkbox" formControlName="autorizacion" />
-        Autorizacion
-    </label>
-    
-    <div class="form-actions">
-        <button type="submit">{{ editandoId !== null ? 'Actualizar' : 'Crear' }}</button>
-        @if (editandoId !== null) {
-            <button type="button" class="secondary" (click)="cancelarEdicion()">Cancelar</button>
-        }
-    
+<div class="page-background">
+  <div class="content-overlay">
+
+    <!-- BOTÓN VOLVER -->
+    <div class="volver-container">
+      <button class="btn-volver" (click)="volverAdministrador()">
+        ← Volver al panel
+      </button>
     </div>
 
-</form>
+    <header class="top-nav">
+      <div class="breadcrumbs">
+        <span class="role-badge">Administrador</span>
+        <span class="divider">></span>
+        <span class="current-view">Turistas</span>
+      </div>
+    </header>
 
-@if (cargando) {
-    <p>Cargando...</p>
-} @else {
-    <div class="table-wrap">
+    <!-- CONTENIDO -->
+    <section class="page-content">
+
+      <h2 class="title">Turistas Registrados</h2>
+
+      <!-- MENSAJES -->
+      <div class="alerts">
+        <p *ngIf="mensaje" class="success">
+          {{ mensaje }}
+        </p>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+      </div>
+
+      <!-- BARRA DE CONTROL -->
+      <div class="control-bar">
+
+        <div class="search-box">
+
+          <input
+            type="text"
+            [formControl]="filtroDocumento"
+            placeholder="Buscar por documento"
+          />
+
+          <button
+            class="btn-search"
+            (click)="buscarPorDocumentoIdentidad()">
+            Buscar
+          </button>
+
+        </div>
+
+        <div class="action-trigger-box">
+
+          <button
+            class="btn-create"
+            (click)="abrirModalCrear()">
+           + Crear Turista
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- TABLA -->
+      <div class="table-wrap">
+
         <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>DocumentoIdentidad</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
-                    <th>Password</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (t of turistas; track $index) {
-                    <tr>
-                        <td>{{ t.id }}</td>
-                        <td>{{ t.nombre }}</td>
-                        <td>{{ t.correo }}</td>
-                        <td>{{ t.documentoIdentidad }}</td>
-                        <td>{{ t.telefono }}</td>
-                        <td>{{ t.direccion }}</td>
-                        <td>{{ t.password }}</td>
 
-                            <button type="button" class="secondary" (click)="iniciarEdicion(t)">Editar</button>
-                            <button type="button" class="danger" (click)="eliminar(t.id)">Eliminar</button>
-                        
-                    </tr>
-                }
-                @if (!turistas.length) {
-                    <tr>
-                        <td colspan="6" class="empty">No hay turistas para mostrar</td>
-                    </tr>
-                }
-            </tbody>
+          <thead>
+
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Documento</th>
+              <th>Teléfono</th>
+              <th>Nacionalidad</th>
+              <th>Estado</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr
+              *ngFor="let t of turistas"
+              class="row-clickable"
+              (click)="iniciarEdicion(t)"
+            >
+
+              <td>{{ t.id }}</td>
+              <td>{{ t.nombre }}</td>
+              <td>{{ t.correo }}</td>
+              <td>{{ t.documentoIdentidad }}</td>
+              <td>{{ t.telefono }}</td>
+
+              <td>
+                {{ t.nacionalidad || 'Sin nacionalidad registrada' }}
+              </td>
+
+              <td>
+                <span class="estado-activo">
+                  ● Activo
+                </span>
+              </td>
+
+              <td>
+
+              </td>
+
+            </tr>
+
+            <tr *ngIf="!turistas.length">
+
+              <td colspan="8" class="empty">
+                No hay turistas registrados
+              </td>
+
+            </tr>
+
+          </tbody>
+
         </table>
-    </div>
-}
+
+      </div>
+
+    </section>
+
+  </div>
+</div>
+

@@ -4,6 +4,9 @@
       <h1>Reservas registradas</h1>
       <p>Gestiona las reservas realizadas por los turistas.</p>
     </div>
+    <button class="btn-regresar" (click)="regresarAlPanel()">
+      <span>&#129044;</span> Volver al Panel
+    </button>
   </div>
 
   <div *ngIf="cargando" class="loading-state">Cargando reservas...</div>
@@ -40,4 +43,3 @@
     <div class="empty-state">No hay reservas registradas todavía.</div>
   </ng-template>
 </section>
-        

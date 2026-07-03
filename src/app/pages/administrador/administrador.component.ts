@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 import { RutaService } from '../../services/ruta.service';
 import { TuristaService } from '../../services/turista.service';
 import { ReservaService } from '../../services/reserva.service';
+import { GuiaService } from '../../services/guia.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-administrador',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './administrador.component.html',
   styleUrls: ['./administrador.component.scss']
 })
@@ -19,9 +21,12 @@ export class AdministradorComponent implements OnInit {
     nombre: 'Administrador'
   };
 
+  guias: any[] = [];
+
   totalRutas = 0;
   totalTuristas = 0;
   totalReservas = 0;
+  totalAuxiliares = 0;
 
   reporteVisible = false;
   reporteTexto = '';
@@ -30,116 +35,149 @@ export class AdministradorComponent implements OnInit {
     private router: Router,
     private rutaService: RutaService,
     private turistaService: TuristaService,
-    private reservaService: ReservaService
+    private reservaService: ReservaService,
+    private guiaService: GuiaService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
 
-    this.cargarMetricas();
+    const usuarioGuardado =
+      localStorage.getItem('usuario');
 
+    if (usuarioGuardado) {
+
+      const usuario =
+        JSON.parse(usuarioGuardado);
+
+      this.administradorLogueado.nombre =
+        usuario.nombre;
+    }
+
+    this.cargarMetricas();
+    this.cargarGuias();
+    this.cargarAuxiliares();
+    this.cargarReportes();
   }
 
   cargarMetricas(): void {
 
-    // RUTAS
     this.rutaService.obtenerRutas().subscribe({
-
-      next: (rutas) => {
-
+      next: (rutas: any[]) => {
         this.totalRutas = rutas.length;
-
       },
-
-      error: (err) => {
-
-        console.error('Error cargando rutas', err);
-
+      error: (err: any) => {
+        console.error(err);
       }
-
     });
 
-    // TURISTAS
     this.turistaService.listar().subscribe({
-
-      next: (turistas) => {
-
+      next: (turistas: any[]) => {
         this.totalTuristas = turistas.length;
-
       },
-
-      error: (err) => {
-
-        console.error('Error cargando turistas', err);
-
+      error: (err: any) => {
+        console.error(err);
       }
-
     });
 
-    // RESERVAS
     this.reservaService.obtenerReservas().subscribe({
-
-      next: (reservas) => {
-
+      next: (reservas: any[]) => {
         this.totalReservas = reservas.length;
-
       },
-
-      error: (err) => {
-
-        console.error('Error cargando reservas', err);
-
+      error: (err: any) => {
+        console.error(err);
       }
-
     });
-
   }
 
-  irACrearRuta() {
+  cargarGuias(): void {
+
+    this.guiaService.listarGuias().subscribe({
+      next: (guias: any[]) => {
+
+        this.guias = guias;
+
+        console.log(
+          'GUIAS CARGADOS:',
+          this.guias
+        );
+      },
+
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
+  }
+
+  cargarAuxiliares(): void {
+
+    this.usuarioService.listarUsuarios().subscribe({
+      next: (usuarios: any[]) => {
+
+        this.totalAuxiliares =
+          usuarios.filter(
+            u => u.rol === 'AUXILIAR'
+          ).length;
+      },
+
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
+  }
+
+  irACrearRuta(): void {
     this.router.navigate(['/crear-ruta']);
   }
 
-  irAVerRutas() {
+  irAVerRutas(): void {
     this.router.navigate(['/ver-rutas']);
   }
 
-  irAEditarRuta(id: number) {
+  irAEditarRuta(id: number): void {
     this.router.navigate(['/editar-ruta', id]);
   }
 
-  irAEliminarRuta() {
+  irAEliminarRuta(): void {
     this.router.navigate(['/ver-rutas']);
   }
 
-  irAUsuarios() {
+  irAUsuarios(): void {
     this.router.navigate(['/turistas']);
   }
 
-  irAReservas() {
+  irAReservas(): void {
     this.router.navigate(['/reservas']);
   }
 
-  irAPagos() {
+  irAPagos(): void {
     this.router.navigate(['/pagos']);
   }
 
-  generarReporte() {
+  irAGestionUsuarios(): void {
+    this.router.navigate(['/gestion-usuarios']);
+  }
+  reportesAuxiliares: any[] = [];
+  vistaActual = 'dashboard';
 
-    this.reporteVisible = true;
+  cargarReportes(): void {
 
-    this.reporteTexto =
-      'REPORTE GENERAL KUNTUR TÁMESIS\n\n' +
-      'Rutas registradas: ' + this.totalRutas + '\n\n' +
-      'Turistas registrados: ' + this.totalTuristas + '\n\n' +
-      'Reservas realizadas: ' + this.totalReservas;
+  const datos =
+    localStorage.getItem('reportesAuxiliar');
+
+  if(datos){
+
+    this.reportesAuxiliares =
+      JSON.parse(datos);
 
   }
 
-  logout() {
+}
+
+  logout(): void {
 
     localStorage.removeItem('usuario');
 
-    this.router.navigate(['/login']);
-
+    this.router.navigate(['/']);
   }
-
 }

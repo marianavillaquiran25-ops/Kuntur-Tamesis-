@@ -1,54 +1,70 @@
-<div class="contenedor">
+<div class="pantalla-fondo">
+    <div class="contenedor">
 
-    <h1>Editar Ruta</h1>
+        <h1>Editar Ruta</h1>
 
-    <div *ngIf="cargando" class="cargando">
-        <p>Cargando información de la ruta...</p>
-    </div>
-
-    <div *ngIf="!cargando" class="formulario-card">
-
-        <div class="form-titulo">
-            <h2>Detalles de la ruta</h2>
-            <p>Revisa los datos y guarda los cambios para actualizar la ruta en la base de datos.</p>
+        <div *ngIf="cargando" class="cargando">
+            <p>Cargando información de la ruta...</p>
         </div>
 
-        <div class="fila">
-            <label>Nombre</label>
-            <input type="text" [(ngModel)]="ruta.nombre" placeholder="Nombre de la ruta">
-        </div>
+        <div *ngIf="!cargando" class="formulario-card">
 
-        <div class="fila">
-            <label>Destino</label>
-            <input type="text" [(ngModel)]="ruta.destino" placeholder="Destino">
-        </div>
-
-        <div class="fila">
-            <label>Descripción</label>
-            <textarea [(ngModel)]="ruta.descripcion" placeholder="Descripción"></textarea>
-        </div>
-
-        <div class="fila-doble">
-            <div class="fila">
-                <label>Precio</label>
-                <input type="number" [(ngModel)]="ruta.precio" placeholder="Precio">
+            <div class="form-titulo">
+                <h2>Detalles de la ruta</h2>
+                <p>Revisa los datos y guarda los cambios para actualizar la ruta en la base de datos.</p>
             </div>
-            <div class="fila">
-                <label>Duración</label>
-                <input type="text" [(ngModel)]="ruta.duracion" placeholder="Duración">
+
+            <div class="fila-doble">
+                <div class="fila">
+                    <label>Nombre de la ruta</label>
+                    <input type="text" [(ngModel)]="ruta.nombre" placeholder="Ej: Cerro Cristo Rey">
+                </div>
+                <div class="fila">
+                    <label>Destino</label>
+                    <input type="text" [(ngModel)]="ruta.destino" placeholder="Ej: Támesis Antioquia">
+                </div>
             </div>
-        </div>
 
-        <div class="fila">
-            <label>Cupos disponibles</label>
-            <input type="number" [(ngModel)]="ruta.cuposDisponibles" placeholder="Cupos disponibles">
-        </div>
+            <div class="fila-triple">
+                <div class="fila">
+                    <label>Precio</label>
+                    <input type="number" [(ngModel)]="ruta.precio" placeholder="Precio">
+                </div>
+                <div class="fila">
+                    <label>Duración</label>
+                    <input type="text" [(ngModel)]="ruta.duracion" placeholder="Ej: 5 horas">
+                </div>
+                <div class="fila">
+                    <label>Cupos disponibles</label>
+                    <input type="number" [(ngModel)]="ruta.cuposDisponibles" placeholder="Cupos disponibles">
+                </div>
+            </div>
 
-        <div class="acciones-form">
-            <button class="btn-guardar" (click)="actualizarRuta()">Guardar cambios</button>
-            <button class="btn-volver" (click)="volver()">Volver</button>
-        </div>
+            <div class="input-group">
+                <label>Estado de la ruta</label>
+                <select [(ngModel)]="ruta.activa" name="activa">
+                    <option [ngValue]="true">🟢 Activa (Visible al público)</option>
+                    <option [ngValue]="false">🔴 Inactiva (Oculta / No reservable)</option>
+                </select>
+            </div>
 
+            <div class="fila">
+                <label>URL imagen</label>
+                <input type="text" [(ngModel)]="ruta.imagen" placeholder="https://...">
+            </div>
+
+            <div class="fila">
+                <label>Descripción y Detalles de la Ruta</label>
+                <textarea 
+                    [(ngModel)]="ruta.descripcion" 
+                    placeholder="Escribe la descripción de la ruta...&#10;&#10;📍 Recomendaciones:&#10;- Llevar agua, bloqueador...&#10;&#10;👕 Atuendos recomendados:&#10;- Ropa cómoda, tenis..."></textarea>
+            </div>
+
+            <div class="acciones-form">
+                <button class="btn-guardar" (click)="actualizarRuta()">Guardar cambios</button>
+                <button class="btn-volver" (click)="volver()">Volver</button>
+            </div>
+
+        </div>
     </div>
-
 </div>

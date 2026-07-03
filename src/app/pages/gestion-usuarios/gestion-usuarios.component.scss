@@ -1,0 +1,338 @@
+// PALETA DE COLORES KUNTUR TÁMESIS (Fondo oscuro, acentos verdes y tarjetas oscuras)
+$fondo-oscuro: #121212;
+$tarjeta-oscura: #1e1e1e;
+$verde-kuntur: #4ade80;
+$verde-hover: #22c55e;
+$texto-principal: #ffffff;
+$texto-secundario: #a3a3a3;
+$borde-oscuro: #2d2d2d;
+
+.gestion-usuarios-page {
+  background-color: $fondo-oscuro;
+  color: $texto-principal;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+
+  // BARRA SUPERIOR
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .btn-back {
+      background: none;
+      border: none;
+      color: $texto-secundario;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $verde-kuntur;
+      }
+    }
+
+    .btn-crear {
+      background-color: $verde-kuntur;
+      color: #000000;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+
+      &:hover {
+        background-color: $verde-hover;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  // HERO CARD
+  .hero-card {
+    background: linear-gradient(135deg, $tarjeta-oscura 0%, #15251b 100%);
+    border: 1px solid $borde-oscuro;
+    padding: 2.5rem;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+
+    .hero-badge {
+      background-color: rgba($verde-kuntur, 0.1);
+      color: $verde-kuntur;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      font-weight: 700;
+    }
+
+    p {
+      color: $texto-secundario;
+      margin: 0;
+      max-width: 600px;
+    }
+
+    .hero-stats {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      border: 1px solid $borde-oscuro;
+      text-align: center;
+
+      strong {
+        display: block;
+        font-size: 2.5rem;
+        color: $verde-kuntur;
+      }
+
+      span {
+        color: $texto-secundario;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // TABLA CONTENEDOR CONTORNO
+  .tabla-container {
+    background-color: $tarjeta-oscura;
+    border: 1px solid $borde-oscuro;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: $texto-secundario;
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid $borde-oscuro;
+    }
+
+    td {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid $borde-oscuro;
+      color: #e5e5e5;
+
+      strong {
+        color: $texto-principal;
+      }
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: rgba($verde-kuntur, 0.02);
+    }
+  }
+
+  // BADGES DE ROLES
+  .badge-rol {
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &.administrador {
+      background-color: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    &.guia {
+      background-color: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+    }
+
+    &.auxiliar {
+      background-color: rgba(234, 179, 8, 0.15);
+      color: #fde047;
+    }
+  }
+
+  // MENSAJE VACÍO
+  .sin-usuarios {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: $tarjeta-oscura;
+    border: 1px solid $borde-oscuro;
+    border-radius: 12px;
+
+    h2 {
+      color: $texto-principal;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: $texto-secundario;
+    }
+  }
+
+  // MODAL OVERLAY FLOTANTE
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background-color: $tarjeta-oscura;
+    border: 1px solid $borde-oscuro;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid $borde-oscuro;
+      padding-bottom: 1rem;
+
+      h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: $verde-kuntur;
+      }
+
+      .btn-cerrar {
+        background: none;
+        border: none;
+        color: $texto-secundario;
+        font-size: 1.8rem;
+        cursor: pointer;
+        line-height: 1;
+
+        &:hover {
+          color: #ef4444;
+        }
+      }
+    }
+
+    // FORMULARIO EN CUADRÍCULA (GRID)
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+
+      .full-width {
+        grid-column: span 2;
+      }
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      label {
+        font-size: 0.85rem;
+        color: $texto-secundario;
+        font-weight: 500;
+      }
+
+      input, select {
+        background-color: rgba(0, 0, 0, 0.25);
+        border: 1px solid $borde-oscuro;
+        color: $texto-principal;
+        padding: 0.75rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: $verde-kuntur;
+        }
+      }
+
+      select option {
+        background-color: $tarjeta-oscura;
+        color: $texto-principal;
+      }
+    }
+
+    // ACCIONES DEL MODAL
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      border-top: 1px solid $borde-oscuro;
+      padding-top: 1.2rem;
+
+      .btn-cancelar {
+        background-color: transparent;
+        border: 1px solid $borde-oscuro;
+        color: $texto-secundario;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover {
+          background-color: rgba(250, 250, 250, 0.05);
+          color: $texto-principal;
+        }
+      }
+
+      .btn-guardar {
+        background-color: $verde-kuntur;
+        color: #000000;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+
+        &:disabled {
+          background-color: #3b5344;
+          color: #7a8a80;
+          cursor: not-allowed;
+        }
+      }
+      .badge-turno {
+    background-color: #1a2e1a; /* Verde oscuro sutil */
+    color: #4ade80;            /* Texto verde brillante / alta legibilidad */
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+    }
+  }
+}

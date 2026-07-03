@@ -25,5 +25,12 @@ export class ReservaService {
   eliminarReserva(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
+
+  // OBTENER RESERVAS DE UNA RUTA
+  obtenerReservasPorRuta(idRuta: number) {
+  return this.http.get<any[]>(
+    `${this.apiUrl}/ruta/${idRuta}`
+  );
+}
 }
           

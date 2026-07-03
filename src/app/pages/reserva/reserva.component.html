@@ -1,73 +1,104 @@
 <div class="reserva-container">
 
+  <div class="overlay">
+
     <div class="reserva-card">
 
-        <h1>Reserva de Ruta</h1>
+      <h1>Reserva tu Aventura</h1>
 
-        <form>
+      <form>
 
-            <!-- NOMBRE -->
+        <!-- NOMBRE -->
 
-            <div class="input-group">
+        <div class="input-group">
 
-                <label>Nombre Completo</label>
+          <label>Nombre Completo</label>
 
-                <input
-                type="text"
-                placeholder="Ingresa tu nombre">
+          <input
+            type="text"
+            placeholder="Ingresa tu nombre">
 
-            </div>
+        </div>
 
-            <!-- PERSONAS -->
+        <!-- NACIONALIDAD -->
 
-            <div class="input-group">
+        <div class="input-group">
 
-                <label>Cantidad de Personas</label>
+          <label>Nacionalidad</label>
 
-                <input
-                type="number"
-                placeholder="Cantidad">
+          <input
+            type="text"
+            placeholder="Ej: Colombiana">
 
-            </div>
+        </div>
 
-            <!-- MÉTODO PAGO -->
+        <!-- ALERGIAS -->
 
-            <div class="input-group">
+        <div class="input-group">
 
-                <label>Método de Pago</label>
+          <label>¿Tiene alguna alergia o afección?</label>
 
-                <select>
+          <select [(ngModel)]="tieneAlergia" name="alergia">
 
-                    <option>Tarjeta</option>
+            <option>Si</option>
 
-                    <option>Nequi</option>
+            <option>No</option>
 
-                    <option>Daviplata</option>
+          </select>
 
-                    <option>Efectivo</option>
+        </div>
 
-                </select>
+        <!-- DETALLE -->
 
-            </div>
+        <div
+          class="input-group"
+          *ngIf="tieneAlergia === 'Si'">
 
-            <!-- TOTAL -->
+          <label>¿Cuál?</label>
 
-            <div class="total">
+          <textarea
+            rows="4"
+            placeholder="Describa su alergia o afección">
+          </textarea>
 
-                Total: $120.000
+        </div>
 
-            </div>
+        <!-- PAGO -->
 
-            <!-- BOTÓN -->
+        <div class="input-group">
 
-            <button type="submit">
+          <label>Método de Pago</label>
 
-                Confirmar Reserva
+          <select>
 
-            </button>
+            <option>Tarjeta</option>
 
-        </form>
+            <option>Nequi</option>
+
+            <option>Daviplata</option>
+
+            <option>Efectivo</option>
+
+          </select>
+
+        </div>
+
+        <div class="total">
+
+          Total: $120.000
+
+        </div>
+
+        <button type="submit">
+
+          Confirmar Reserva
+
+        </button>
+
+      </form>
 
     </div>
+
+  </div>
 
 </div>

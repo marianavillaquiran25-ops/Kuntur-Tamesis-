@@ -21,10 +21,6 @@
             Rutas Turísticas
         </a>
 
-        <a href="#">
-            Contáctanos
-        </a>
-
     </nav>
 
     <div class="profile-container">
@@ -37,33 +33,17 @@
 
         </button>
 
-        <div class="dropdown-menu" *ngIf="menuAbierto">
+        <div class="dropdown-menu" *ngIf="menuAbierto && !usuario">
 
-            <ng-container *ngIf="!usuario">
+    <a routerLink="/login">
+        Iniciar Sesión
+    </a>
 
-                <a routerLink="/login">
-                    Iniciar Sesión
-                </a>
+    <a routerLink="/register">
+        Crear Cuenta
+    </a>
 
-                <a routerLink="/register">
-                    Crear Cuenta
-                </a>
-
-            </ng-container>
-
-            <ng-container *ngIf="usuario">
-
-                <span class="usuario-nombre">
-                    Hola {{ usuario.nombre }}
-                </span>
-
-                <a (click)="cerrarSesion()">
-                    Cerrar Sesión
-                </a>
-
-            </ng-container>
-
-        </div>
+</div>
 
     </div>
 
@@ -266,7 +246,7 @@
             </p>
 
             <p>
-                +58 123 456 789
+                +57 3187450378
             </p>
 
         </div>

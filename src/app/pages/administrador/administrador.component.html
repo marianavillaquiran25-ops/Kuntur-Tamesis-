@@ -3,11 +3,8 @@
 <aside class="sidebar">
 
     <div class="logo-section">
-
         <img src="assets/logo/logokuntur.png" alt="Logo">
-
         <h2>Kuntur Támesis</h2>
-
     </div>
 
     <nav>
@@ -18,6 +15,10 @@
 
         <button (click)="irAVerRutas()" class="menu-btn">
             🗺️ Gestionar Rutas
+        </button>
+
+        <button (click)="irAGestionUsuarios()" class="menu-btn">
+            👤 Gestión Usuarios
         </button>
 
         <button (click)="irAUsuarios()" class="menu-btn">
@@ -32,131 +33,137 @@
             💳 Pagos
         </button>
 
-        <button (click)="generarReporte()" class="menu-btn">
-            📈 Reportes
-        </button>
+        <button
+        (click)="vistaActual='reportes'"
+        class="menu-btn">
+        📈 Reportes
+    </button>
 
     </nav>
 
     <button
         (click)="logout()"
         class="logout-btn">
-
         🚪 Cerrar Sesión
-
     </button>
 
 </aside>
 
 <main class="main-content">
+<header class="topbar">
+    <div class="admin-user">
+        {{ administradorLogueado.nombre }}
+    </div>
+</header>
 
-    <header class="topbar">
+<!-- DASHBOARD -->
 
+<section
+    class="cards"
+    *ngIf="vistaActual === 'dashboard'">
 
+    <div class="card">
+        <h3>{{ totalRutas }}</h3>
+        <p>Rutas Registradas</p>
+    </div>
 
-        <div class="admin-user">
+    <div class="card">
+        <h3>{{ totalTuristas }}</h3>
+        <p>Turistas Registrados</p>
+    </div>
 
-            {{ administradorLogueado.nombre }}
+    <div class="card">
+        <h3>{{ totalReservas }}</h3>
+        <p>Reservas Realizadas</p>
+    </div>
+
+    <div class="card highlight">
+        <h3>{{ administradorLogueado.nombre }}</h3>
+        <p>Administrador</p>
+    </div>
+
+</section>
+
+<section
+    class="dashboard-grid"
+    *ngIf="vistaActual === 'dashboard'">
+
+    <!-- RESUMEN -->
+
+    <div class="resumen-sistema">
+
+        <h2>📌 Resumen del Sistema</h2>
+
+        <div class="resumen-item">
+            <span>Rutas activas</span>
+            <strong>{{ totalRutas }}</strong>
+        </div>
+
+        <div class="resumen-item">
+            <span>Guías registrados</span>
+            <strong>{{ guias.length }}</strong>
+        </div>
+
+        <div class="resumen-item">
+            <span>Auxiliares registrados</span>
+            <strong>{{ totalAuxiliares }}</strong>
+        </div>
+
+    </div>
+
+    <!-- GUIAS -->
+
+    <div class="guias-card">
+
+        <h2>👨‍💼 Estado de Guías</h2>
+
+        <div
+            *ngFor="let guia of guias"
+            class="guia-item">
+
+            <div>
+
+                <h4>{{ guia.nombre }}</h4>
+
+                <p>{{ guia.correo }}</p>
+
+                <p>{{ guia.telefono }}</p>
+
+            </div>
+
+            <span
+                [class.disponible]="guia.disponible"
+                [class.ocupado]="!guia.disponible">
+
+                {{ guia.disponible ? '🟢 Disponible' : '🔴 No disponible' }}
+
+            </span>
 
         </div>
 
-    </header>
+    </div>
 
-    <section class="cards">
+</section>
 
-        <div class="card">
+<section
+    class="chart-card"
+    *ngIf="vistaActual === 'dashboard'">
 
-            <h3>{{ totalRutas }}</h3>
+    <h2>Estadísticas Generales</h2>
 
-            <p>Rutas Registradas</p>
+    <div class="grafica-admin">
 
-        </div>
+        <div class="fila">
 
-        <div class="card">
+            <span>Rutas Registradas</span>
 
-            <h3>{{ totalTuristas }}</h3>
+            <div class="barra">
 
-            <p>Turistas Registrados</p>
+                <div
+                    class="valor rutas"
+                    [style.width.%]="totalRutas * 5">
 
-        </div>
-
-        <div class="card">
-
-            <h3>{{ totalReservas }}</h3>
-
-            <p>Reservas Realizadas</p>
-
-        </div>
-
-        <div class="card highlight">
-
-            <h3>{{ administradorLogueado.nombre }}</h3>
-
-            <p>Administrador</p>
-
-        </div>
-
-    </section>
-
-    <section class="dashboard-grid">
-
-        <div class="chart-card">
-
-            <h2>Estadísticas Generales</h2>
-
-            <div class="grafica-admin">
-
-                <div class="fila">
-
-                    <span>Rutas Registradas</span>
-
-                    <div class="barra">
-
-                        <div
-                            class="valor rutas"
-                            [style.width.%]="totalRutas * 5">
-
-                            {{ totalRutas }}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="fila">
-
-                    <span>Turistas Registrados</span>
-
-                    <div class="barra">
-
-                        <div
-                            class="valor turistas"
-                            [style.width.%]="totalTuristas">
-
-                            {{ totalTuristas }}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="fila">
-
-                    <span>Reservas Realizadas</span>
-
-                    <div class="barra">
-
-                        <div
-                            class="valor reservas"
-                            [style.width.%]="totalReservas * 3">
-
-                            {{ totalReservas }}
-
-                        </div>
-
-                    </div>
+                    {{ totalRutas }}
 
                 </div>
 
@@ -164,19 +171,91 @@
 
         </div>
 
-    
+        <div class="fila">
 
-    </section>
+            <span>Turistas Registrados</span>
 
-    <section
-        *ngIf="reporteVisible"
-        class="info-card reporte-card">
+            <div class="barra">
 
-        <h2>Reporte General</h2>
+                <div
+                    class="valor turistas"
+                    [style.width.%]="totalTuristas">
 
-        <pre>{{ reporteTexto }}</pre>
+                    {{ totalTuristas }}
 
-    </section>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="fila">
+
+            <span>Reservas Realizadas</span>
+
+            <div class="barra">
+
+                <div
+                    class="valor reservas"
+                    [style.width.%]="totalReservas * 3">
+
+                    {{ totalReservas }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- REPORTES -->
+
+<section
+    *ngIf="vistaActual === 'reportes'"
+    class="info-card">
+
+    <h2>
+        📈 Reportes enviados por auxiliares
+    </h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Auxiliar</th>
+                <th>Fecha</th>
+                <th>Asunto</th>
+                <th>Mensaje</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let reporte of reportesAuxiliares">
+
+                <td>{{ reporte.auxiliar }}</td>
+
+                <td>{{ reporte.fecha }}</td>
+
+                <td>{{ reporte.asunto }}</td>
+
+                <td>{{ reporte.mensaje }}</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
 
 </main>
 

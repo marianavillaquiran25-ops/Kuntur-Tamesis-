@@ -8,174 +8,175 @@
     <button
         routerLink="/rutas"
         class="btn-volver">
-
         ←
-
     </button>
 
 </div>
 
-<section
-class="detalle-container"
-*ngIf="ruta">
+<section class="detalle-container" *ngIf="ruta">
 
     <div class="detalle-imagen">
-
         <img
             [src]="ruta?.imagen || 'assets/imagenes/ruta-default.jpg'"
             [alt]="ruta?.nombre">
-
     </div>
 
     <div class="detalle-info">
 
-        <span class="badge-ruta">
-            Ruta Ecológica
+        <span *ngIf="ruta?.activa" class="badge-estado activa">
+            🟢 Ruta Activa
+        </span>
+        <span *ngIf="!ruta?.activa" class="badge-estado inactiva">
+            🔴 Ruta Inactiva
         </span>
 
         <h1>
             {{ ruta?.nombre }}
         </h1>
 
-        <p>
+        <p class="descripcion-completa">
             {{ ruta?.descripcion }}
         </p>
 
         <div class="detalle-meta">
-
             <div>
                 📍 {{ ruta?.destino }}
             </div>
-
             <div>
                 ⏰ Duración: {{ ruta?.duracion }}
             </div>
-
             <div>
-                👥 Cupos disponibles:
-                {{ ruta?.cuposDisponibles }}
+                👥 Cupos disponibles: {{ ruta?.cuposDisponibles || ruta?.cupos }}
             </div>
-
         </div>
 
         <div class="precio">
-
             ${{ ruta?.precio }} COP
-
         </div>
-
-        <h3>Incluye</h3>
-
-        <ul>
-
-            <li>Guía turístico</li>
-
-            <li>Seguro de viaje</li>
-
-            <li>Transporte</li>
-
-            <li>Refrigerio</li>
-
-        </ul>
-
-        <h3>Recomendaciones</h3>
-
-        <ul>
-
-            <li>Usar ropa cómoda</li>
-
-            <li>Llevar hidratación</li>
-
-            <li>Protector solar</li>
-
-            <li>Calzado para senderismo</li>
-
-        </ul>
 
     </div>
 
+    
 </section>
+console.log('BOTON PRESIONADO'); 
 
-<section
-class="formulario-reserva"
-*ngIf="ruta">
+<section class="formulario-reserva" *ngIf="ruta">
 
-    <h2>
-        Reservar Ruta
-    </h2>
+<h2>
+    Reservar Ruta
+</h2>
 
-    <p>
-        Completa la información para realizar tu reserva.
-    </p>
+<p>
+    Completa la información para realizar tu reserva.
+</p>
 
-    <form>
+<div *ngIf="!ruta?.activa" class="alerta-inactiva">
+    ⚠️ Nota: Esta ruta se encuentra marcada como inactiva temporalmente.
+</div>
 
-        <input
-            type="text"
-            placeholder="Nombre Completo">
+<form (ngSubmit)="confirmarReserva()">
 
-        <input
-            type="email"
-            placeholder="Correo Electrónico">
+    <input
+        type="text"
+        placeholder="Nombre Completo"
+        [(ngModel)]="formulario.nombre"
+        name="nombre">
 
-        <input
-            type="number"
-            placeholder="Cantidad de Personas">
+    <input
+        type="email"
+        placeholder="Correo Electrónico"
+        [(ngModel)]="formulario.correo"
+        name="correo">
 
-        <input
-            type="tel"
-            placeholder="Número de Contacto">
+    <input
+        type="tel"
+        placeholder="Número de Contacto"
+        [(ngModel)]="formulario.telefono"
+        name="telefono">
 
-        <input
-            type="date">
+    <input
+        type="date"
+        [(ngModel)]="formulario.fecha"
+        name="fecha">
 
-        <select>
+    <select
+        [(ngModel)]="formulario.metodoPago"
+        name="metodoPago">
 
-            <option>
-                Método de Pago
+        <option value="">
+            Método de Pago
+        </option>
+
+        <option value="Tarjeta Débito">
+            Tarjeta Débito
+        </option>
+
+        <option value="Tarjeta Crédito">
+            Tarjeta Crédito
+        </option>
+
+        <option value="Nequi">
+            Nequi
+        </option>
+
+        <option value="Daviplata">
+            Daviplata
+        </option>
+
+    </select>
+
+    <div class="afeccion-section">
+
+        <label class="titulo-afeccion">
+            ¿Presentas alguna alergia, enfermedad o condición médica que debamos conocer?
+        </label>
+
+        <select
+            [(ngModel)]="tieneAfeccion"
+            name="tieneAfeccion">
+
+            <option value="No">
+                No
             </option>
 
-            <option>
-                Tarjeta Débito
-            </option>
-
-            <option>
-                Tarjeta Crédito
-            </option>
-
-            <option>
-                Nequi
-            </option>
-
-            <option>
-                Daviplata
+            <option value="Si">
+                Sí
             </option>
 
         </select>
 
-        <label>
-            Observaciones adicionales
-        </label>
+        <div *ngIf="tieneAfeccion === 'Si'">
 
-        <textarea
-            rows="5"
-            placeholder="Escriba aquí comentarios o solicitudes especiales">
-        </textarea>
+            <label class="subtitulo-afeccion">
+                Por favor, indícanos cuál es tu condición
+            </label>
 
-        <button type="submit">
+            <textarea
+                rows="4"
+                [(ngModel)]="afeccionesAlergias"
+                name="afeccionesAlergias"
+                placeholder="Ejemplo: alergia a picaduras de abejas, asma, hipertensión, diabetes, etc.">
+            </textarea>
 
-            Confirmar Reserva
+        </div>
 
-        </button>
+    </div>
 
-    </form>
+    <button type="submit">
+        Confirmar Reserva
+    </button>
+
+</form>
+
 
 </section>
 
 <div *ngIf="cargando">
 
-    <h2>
-        Cargando información de la ruta...
-    </h2>
+
+<h2>
+    Cargando información de la ruta...
+</h2>
+
 
 </div>

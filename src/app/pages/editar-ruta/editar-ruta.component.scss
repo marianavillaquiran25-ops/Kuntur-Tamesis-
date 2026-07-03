@@ -1,23 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.pantalla-fondo {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../../assets/imagenes/imagen4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .contenedor {
-    padding: 40px;
-    background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
-    min-height: calc(100vh - 80px);
+    padding: 40px 20px;
+    min-height: 100vh;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 25px;
-    color: #1e293b;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .formulario-card {
     width: min(100%, 1100px);
     margin: auto;
-    background: white;
+    background: rgba(255, 255, 255, 0.40); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-radius: 28px;
-    padding: 32px;
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.45);
     min-height: calc(100vh - 120px);
 }
 
@@ -32,72 +51,81 @@ h1 {
 .form-titulo h2 {
     font-size: 1.9rem;
     margin-bottom: 8px;
-    color: #0f172a;
+    color: #143d26;
 }
 
 .form-titulo p {
     margin-bottom: 24px;
-    color: #475569;
+    color: #1e293b;
+    font-weight: 500;
 }
 
-.fila,
-.fila-doble {
+/* FILAS FLEXIBLES Y MULTICOLUMNAS */
+.fila {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 18px;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .fila-doble {
-    flex-direction: row;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-.fila-doble .fila {
-    flex: 1;
+.fila-triple {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .fila-doble, .fila-triple {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
 
 label {
-    font-weight: 600;
-    color: #334155;
+    font-weight: 700;
+    color: #143d26; 
 }
 
+/* COMPONENTES DE ENTRADA (Añadido 'select') */
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 14px 16px;
     border-radius: 16px;
-    border: 1px solid #cbd5e1;
-    background: #f8fafc;
+    border: 1px solid rgba(20, 61, 38, 0.3); 
+    background: rgba(255, 255, 255, 0.55); 
     color: #0f172a;
     font-size: 0.98rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    border-color: #1e5236;
+    background: #ffffff; 
+    box-shadow: 0 0 0 4px rgba(30, 82, 54, 0.2);
 }
 
 textarea {
-    min-height: 140px;
+    min-height: 100px;
     resize: vertical;
-}
-
-input[disabled],
-input[readonly] {
-    background: #e2e8f0;
-    color: #475569;
-    cursor: not-allowed;
 }
 
 .acciones-form {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .btn-guardar,
@@ -112,18 +140,20 @@ input[readonly] {
 }
 
 .btn-guardar {
-    background: #2563eb;
+    background: #1e5236;
     color: white;
+    box-shadow: 0 4px 12px rgba(30, 82, 54, 0.3);
 }
 
 .btn-guardar:hover {
     transform: translateY(-1px);
-    background: #1d4ed8;
+    background: #276b46;
 }
 
 .btn-volver {
     background: #f1f5f9;
     color: #334155;
+    border: 1px solid #cbd5e1;
 }
 
 .btn-volver:hover {
@@ -136,8 +166,9 @@ input[readonly] {
     margin: 0 auto;
     text-align: center;
     padding: 36px;
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
     border-radius: 24px;
-    box-shadow: 0 24px 40px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.15);
     color: #334155;
 }

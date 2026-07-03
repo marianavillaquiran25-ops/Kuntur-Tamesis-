@@ -1,81 +1,154 @@
+
 .admin-reservas {
-  padding: 24px;
-    max-width: 1100px;
-      margin: 0 auto;
-      }
-      
-.admin-reservas-header {
   display: flex;
-    justify-content: space-between;
-      align-items: center;
-        margin-bottom: 20px;
-        }
+  flex-direction: column;
+  background-color: #0a0f0d; /* Fondo oscuro profundo idéntico al panel */
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  margin: 0;
+}
+      
+/* BANNER DE ENCABEZADO CON IMAGEN */
+.admin-reservas-header {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  background-image: linear-gradient(rgba(10, 15, 13, 0.85), rgba(10, 15, 13, 0.45)), url('/assets/imagenes/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
         
 .admin-reservas-header h1 {
   margin: 0;
-    font-size: 2rem;
-      color: #203040;
-        }
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
         
 .admin-reservas-header p {
-  margin: 8px 0 0;
-    color: #556270;
-      }
+  margin: 6px 0 0;
+  color: #4ade80; 
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* BOTÓN DE REGRESAR MODERNO */
+.btn-regresar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(26, 46, 34, 0.8);
+  color: #4ade80;
+  border: 1px solid #1f2d24;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+
+  span {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: #1e3f20;
+    color: #ffffff;
+    border-color: #4ade80;
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.3);
+    
+    span {
+      transform: translateX(-4px);
+    }
+  }
+}
       
-.loading-state, .error-state, .empty-state {
-  background: #fff6d6;
-      border: 1px solid #f2d68f;
-        color: #7a5a00;
-            padding: 16px;
-              border-radius: 10px;
-                margin-top: 16px;
-                }
-                
-.error-state {
-  background: #ffe6e6;
-      border-color: #f0a1a1;
-          color: #a12929;
-            }
-            
+/* CONTENEDOR DE LA TABLA (Estilo Tarjeta Premium Blanca) */
+.tabla-container {
+  background: #ffffff; 
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
 .reservas-table {
   width: 100%;
-    border-collapse: collapse;
-      background: #ffffff;
-          border-radius: 12px;
-            overflow: hidden;
-              box-shadow: 0 10px 24px rgba(0,0,0,0.07);
-              }
+  border-collapse: collapse;
+  background: #ffffff;
+}
               
-.reservas-table th, .reservas-table td {
-  padding: 16px 14px;
-    text-align: left;
-      border-bottom: 1px solid #eef1f5;
-      }
-      
-.reservas-table thead {
-  background: #f8fbff;
-    }
-    
 .reservas-table th {
+  padding: 18px 20px;
+  text-align: left;
   font-weight: 700;
-    color: #2b3a4b;
-      }
+  color: #14251c; /* Verde bosque oscuro */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid #eef1f5;
+}
+
+.reservas-table td {
+  padding: 20px;
+  color: #2d3748;
+  font-size: 1rem;
+  border-bottom: 1px solid #f0f4f8;
+}
       
-.reservas-table tbody tr:hover {
-  background: #f6f9ff;
-    }
+.reservas-table tbody tr {
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f4f8f5; /* Destacado sutil verde al pasar el mouse */
+  }
+
+  &:last-child td {
+    border-bottom: none;
+  }
+}
     
+/* BOTÓN ELIMINAR ESTILIZADO */
 .btn-eliminar {
-  background: #e74c3c;
-      color: #fff;
-          border: none;
-            border-radius: 8px;
-              padding: 10px 14px;
-                cursor: pointer;
-                  transition: background 0.2s ease;
-                  }
-                  
-.btn-eliminar:hover {
-  background: #c0392b;
-    }
-    
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+  }
+}
+
+/* ESTADOS COMPLEMENTARIOS */
+.loading-state, .error-state, .empty-state {
+  background: #111814;
+  border: 1px solid #1f2d24;
+  color: #4ade80;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 500;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router'; 
 
 import { ReservaService } from '../../services/reserva.service';
 
@@ -16,10 +17,17 @@ export class VerReservasComponent implements OnInit {
   cargando = true;
   errorMensaje = '';
 
-  constructor(private reservaService: ReservaService) {}
+  constructor(
+    private reservaService: ReservaService,
+    private router: Router 
+  ) {}
 
   ngOnInit(): void {
     this.cargarReservas();
+  }
+
+  regresarAlPanel(): void {
+    this.router.navigate(['/administrador']); 
   }
 
   cargarReservas(): void {
@@ -51,4 +59,3 @@ export class VerReservasComponent implements OnInit {
     });
   }
 }
-                                                                  

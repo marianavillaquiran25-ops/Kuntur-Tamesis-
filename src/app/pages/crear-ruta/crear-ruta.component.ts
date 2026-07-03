@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { RutaService } from '../../services/ruta.service';
 
 @Component({
@@ -14,33 +13,32 @@ import { RutaService } from '../../services/ruta.service';
 })
 export class CrearRutaComponent {
 
-  constructor(
-    private rutaService: RutaService,
-    private router: Router
-  ) {}
-
   mensajeExito = false;
 
   ruta = {
     nombre: '',
     destino: '',
     descripcion: '',
-    precio: '',
+    precio: 0,
     duracion: '',
-    cupos: '',
-    fecha: '',
-    hora: '',
-    guia: '',
-    dificultad: '',
+    cupos: 0,
     imagen: '',
-    recomendaciones: '',
-    atuendos: ''
+    activa: true
   };
 
-  crearRuta() {
+  constructor(
+    private rutaService: RutaService,
+    private router: Router
+  ) {}
+
+  crearRuta(): void {
+
+    if (!this.ruta.imagen || this.ruta.imagen.trim() === '') {
+      alert('Debes ingresar una URL de imagen');
+      return;
+    }
 
     const nuevaRuta = {
-
       nombre: this.ruta.nombre,
       destino: this.ruta.destino,
       descripcion: this.ruta.descripcion,
@@ -48,43 +46,29 @@ export class CrearRutaComponent {
       precio: Number(this.ruta.precio),
       cuposDisponibles: Number(this.ruta.cupos),
       duracion: this.ruta.duracion,
-      activa: true
-
+      activa: this.ruta.activa
     };
 
-    this.rutaService.crearRuta(nuevaRuta)
-      .subscribe({
+    this.rutaService.crearRuta(nuevaRuta).subscribe({
+      next: () => {
+        this.mensajeExito = true;
 
-        next: () => {
-
-          this.mensajeExito = true;
-
-          setTimeout(() => {
-
-            this.router.navigate(['/ver-rutas']);
-
-          }, 2000);
-
-        },
-
-        error: (err) => {
-
-          console.error(err);
-
-          alert('Error al crear ruta');
-
-        }
-
-      });
-
+        setTimeout(() => {
+          this.router.navigate(['/ver-rutas']);
+        }, 1500);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Error al crear ruta');
+      }
+    });
   }
 
-  cerrarSesion() {
-
-    this.router.navigate(['/login']);
-
-  }
   irAVerRutas(): void {
-  this.router.navigate(['/ver-rutas']);
-}
+    this.router.navigate(['/ver-rutas']);
+  }
+
+  volverAdmin(): void {
+    this.router.navigate(['/administrador']);
+  }
 }

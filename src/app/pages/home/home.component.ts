@@ -64,11 +64,39 @@ export class HomeComponent implements OnInit {
 
   }
 
-  toggleMenu(): void {
+ toggleMenu(): void {
+
+  if (!this.usuario) {
 
     this.menuAbierto = !this.menuAbierto;
+    return;
 
   }
+
+  switch (this.usuario.rol) {
+
+    case 'ADMINISTRADOR':
+      this.router.navigate(['/administrador']);
+      break;
+
+    case 'GUIA':
+      this.router.navigate(['/guia']);
+      break;
+
+    case 'AUXILIAR':
+      this.router.navigate(['/auxiliar']);
+      break;
+
+    case 'TURISTA':
+      this.router.navigate(['/perfil-turista']);
+      break;
+
+    default:
+      this.router.navigate(['/login']);
+      break;
+  }
+
+}
 
   cerrarSesion(): void {
 

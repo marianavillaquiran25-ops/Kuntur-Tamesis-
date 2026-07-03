@@ -1,0 +1,797 @@
+/* ==========================
+   CONTENEDOR GENERAL
+========================== */
+
+.perfil-page {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f7fa;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logout-container {
+    margin-top: auto; // lo empuja al fondo de la barra
+    padding: 20px;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar {
+    width: 260px;
+    background:
+        linear-gradient(
+            rgba(0, 40, 20, 0.85),
+            rgba(0, 40, 20, 0.95)
+        ),
+        url('/assets/sidebar-bg.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo img {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.logo h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.logo span {
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+/* ==========================
+   NAV
+========================== */
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar nav a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 18px;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sidebar nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar nav a.active {
+    background: #1b8f4d;
+    font-weight: 600;
+}
+
+/* ==========================
+   LOGOUT
+========================== */
+
+/* ==========================
+   CONTENEDOR GENERAL
+========================== */
+
+.perfil-page {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f7fa;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar {
+    width: 260px;
+    background:
+        linear-gradient(
+            rgba(0, 40, 20, 0.85),
+            rgba(0, 40, 20, 0.95)
+        ),
+        url('/assets/sidebar-bg.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo img {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.logo h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.logo span {
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+/* ==========================
+   NAV
+========================== */
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar nav a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 18px;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sidebar nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar nav a.active {
+    background: #1b8f4d;
+    font-weight: 600;
+}
+
+/* ==========================
+   LOGOUT (ARREGLADO)
+========================== */
+
+.logout {
+    margin-top: auto;
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    text-align: center;
+}
+
+.logout:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================
+   CONTENIDO
+========================== */
+
+.content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 30px;
+}
+
+/* ==========================
+   PORTADA
+========================== */
+
+.cover {
+    width: 100%;
+    height: 280px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================
+   PERFIL
+========================== */
+
+.profile-card {
+    background: white;
+    margin-top: -70px;
+    border-radius: 25px;
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    margin-top: -90px;
+}
+
+.profile-info {
+    flex: 1;
+    padding-left: 25px;
+}
+
+.profile-info h1 {
+    font-size: 38px;
+}
+
+.role {
+    color: #1b8f4d;
+    font-weight: 600;
+}
+
+/* ==========================
+   BOTÓN EDITAR
+========================== */
+
+.edit-btn {
+    background: #1b8f4d;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: #1b8f4d;
+}
+
+/* ==========================
+   INFO SECTION
+========================== */
+
+.info-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* ==========================
+   RUTAS
+========================== */
+
+.routes {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.route-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.route-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.route-card:hover {
+    transform: translateY(-5px);
+}
+
+.route-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* ==========================
+   HISTORIAL / PAGOS
+========================== */
+
+.history {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 1000px;
+
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.history table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.history th,
+.history td {
+    padding: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ==========================
+   BADGES
+========================== */
+
+.completed,
+.pending {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.completed {
+    background: #dff5e1;
+    color: #1b8f4d;
+}
+
+.pending {
+    background: #fff1d8;
+    color: #1b8f4d;
+}
+
+/* ==========================
+   MODAL (ARREGLADO - IMPORTANTE)
+========================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.modal-content {
+    background: white;
+    width: 380px;
+    max-width: 90%;
+    padding: 25px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-content input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-save,
+.btn-cancel {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-save {
+    background: #1b8f4d;
+    color: white;
+}
+
+.btn-cancel {
+    background: #ccc;
+}
+
+/* ==========================
+   BACK BUTTON (CORREGIDO)
+========================== */
+
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: white;
+    color: #1b8f4d;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+
+    transition: 0.25s;
+}
+
+.back-home:hover {
+    background: #1b8f4d;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ==========================
+   CONTENIDO (IMPORTANTE)
+========================== */
+
+.content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==========================
+   PORTADA
+========================== */
+
+.cover {
+    width: 100%;
+    max-width: 1100px;
+    height: 280px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================
+   PERFIL
+========================== */
+
+.profile-card {
+    background: white;
+    margin-top: -70px;
+    position: relative;
+    z-index: 10;
+
+    border-radius: 25px;
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* ==========================
+   FOTO PERFIL
+========================== */
+
+.profile-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    margin-top: -90px;
+}
+
+.profile-info {
+    flex: 1;
+    padding-left: 25px;
+}
+
+.profile-info h1 {
+    font-size: 38px;
+}
+
+.role {
+    color: #1b8f4d;
+    font-weight: 600;
+}
+
+/* ==========================
+   BOTÓN EDITAR
+========================== */
+
+.edit-btn {
+    background: #1b8f4d;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-btn:hover {
+    background: #1b8f4d;
+}
+
+/* ==========================
+   INFO SECTION
+========================== */
+
+.info-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+/* tarjeta grande */
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+
+    width: 100%;
+    max-width: 1100px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ==========================
+   INFO ITEMS
+========================== */
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* ==========================
+   RUTAS
+========================== */
+
+.routes {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.route-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.route-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.route-card:hover {
+    transform: translateY(-5px);
+}
+
+.route-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* ==========================
+   HISTORIAL / PAGOS (FIJO GRANDE)
+========================== */
+
+.history {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 1100px;
+
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* tabla */
+.history table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    min-width: 600px; /* evita que se "encoja" */
+}
+
+.history th,
+.history td {
+    padding: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+/* BADGES */
+.completed,
+.pending {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.completed {
+    background: #dff5e1;
+    color: #2e7d32;
+}
+
+.pending {
+    background: #fff1d8;
+    color: #1b8f4d;
+}
+
+/* ==========================
+   MODAL (ARREGLADO)
+========================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* caja del formulario */
+.modal-content {
+    background: white;
+    width: 380px;
+    max-width: 90%;
+    padding: 25px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* inputs */
+.modal-content input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+}
+
+.modal-content input:focus {
+    border-color: #1b8f4d;
+}
+
+/* botones */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.btn-save {
+    flex: 1;
+    background: #1b8f4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #ccc;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}

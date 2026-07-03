@@ -1,135 +1,97 @@
 <div class="contenedor ver-rutas-page">
 
-<div class="top-bar">
+    <div class="top-bar">
+        <button class="btn-back" (click)="volverAdmin()">
+            <span class="back-icon">←</span>
+            Volver al panel
+        </button>
 
-    <button class="btn-back" (click)="volverAdmin()">
-
-        <span class="back-icon">←</span>
-
-        Volver al panel
-
-    </button>
-
-    <button
-        class="btn-crear"
-        (click)="crearRuta()">
-
-        ➕ Crear Ruta
-
-    </button>
-
-</div>
-
-<section class="hero-card">
-
-    <div>
-
-        <span class="hero-badge">
-            Panel administrador
-        </span>
-
-        <h1>
-            Rutas Turísticas Registradas
-        </h1>
-
-        <p>
-            Revisa las rutas creadas, edita los detalles y elimina aquellas que ya no estén disponibles.
-        </p>
-
+        <button class="btn-crear" (click)="crearRuta()">
+            ➕ Crear Ruta
+        </button>
     </div>
 
-    <div class="hero-stats">
+    <section class="hero-card">
+        <div>
+            <span class="hero-badge">
+                Panel administrador
+            </span>
+            <h1>
+                Rutas Turísticas Registradas
+            </h1>
+            <p>
+                Revisa las rutas creadas, edita los detalles y elimina aquellas que ya no estén disponibles.
+            </p>
+        </div>
 
-        <article>
+        <div class="hero-stats">
+            <article>
+                <strong>{{ rutas.length }}</strong>
+                <span>Rutas activas</span>
+            </article>
+        </div>
+    </section>
 
-            <strong>{{ rutas.length }}</strong>
+    <div *ngIf="rutas.length > 0" class="grilla-rutas">
 
-            <span>Rutas activas</span>
+        <article class="ruta-card" *ngFor="let ruta of rutas">
+
+            <div class="imagen-card">
+                <img 
+                    [src]="ruta.imagen || 'assets/imagenes/default-ruta.jpg'" 
+                    alt="Ruta turística">
+            </div>
+
+            <div class="info-card">
+
+                <div class="info-top">
+                    <h2>{{ ruta.nombre }}</h2>
+                    <span class="badge destino">
+                        {{ ruta.destino }}
+                    </span>
+                </div>
+
+                <p class="descripcion">
+                    {{ ruta.descripcion }}
+                </p>
+
+                <div class="meta-grid">
+                    <span class="precio-info">
+                        💲 {{ ruta.precio }}
+                    </span>
+                    <span>
+                        ⏰ {{ ruta.duracion || 'Sin duración' }}
+                    </span>
+                    <span>
+                        👥 {{ ruta.cuposDisponibles ?? ruta.cupos ?? 'Sin cupos' }}
+                    </span>
+                </div>
+
+                <div class="acciones">
+                    <button 
+                        class="editar" 
+                        (click)="editarRuta(ruta.id)">
+                        ✏️ Editar
+                    </button>
+
+                    <button 
+                        class="eliminar" 
+                        (click)="eliminarRuta(ruta.id)">
+                        🗑️ Eliminar
+                    </button>
+                </div>
+
+            </div>
 
         </article>
 
     </div>
 
-</section>
-
-<div *ngIf="rutas.length > 0" class="grilla-rutas">
-
-    <article class="ruta-card" *ngFor="let ruta of rutas">
-
-        <div class="imagen-card">
-
-            <img
-                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
-                alt="Ruta turística">
-
-        </div>
-
-        <div class="info-card">
-
-            <div class="info-top">
-
-                <h2>{{ ruta.nombre }}</h2>
-
-                <span class="badge destino">
-                    {{ ruta.destino }}
-                </span>
-
-            </div>
-
-            <p class="descripcion">
-                {{ ruta.descripcion }}
-            </p>
-
-            <div class="meta-grid">
-
-                <span class="precio-info">
-                    💲 {{ ruta.precio }}
-                </span>
-
-                <span>
-                    ⏰ {{ ruta.duracion || 'Sin duración' }}
-                </span>
-
-                <span>
-                    👥 {{ ruta.cuposDisponibles ?? ruta.cupos ?? 'Sin cupos' }}
-                </span>
-
-            </div>
-
-            <div class="acciones">
-
-                <button
-                    class="editar"
-                    (click)="editarRuta(ruta.id)">
-
-                    ✏️ Editar
-
-                </button>
-
-                <button
-                    class="eliminar"
-                    (click)="eliminarRuta(ruta.id)">
-
-                    🗑️ Eliminar
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-</div>
-
-<div *ngIf="rutas.length === 0" class="sin-rutas">
-
-    <h2>No hay rutas registradas</h2>
-
-    <p>
-        Crea una ruta desde el panel administrador para visualizarla aquí.
-    </p>
-
-</div>
+    <div *ngIf="rutas.length === 0" class="sin-rutas">
+        <h2>No hay rutas registradas</h2>
+        <p>
+            Crea una ruta desde el panel administrador para visualizarla aquí.
+        </p>
+    </div>
 
 </div>

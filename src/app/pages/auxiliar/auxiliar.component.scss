@@ -8,19 +8,20 @@
 .dashboard{
   display:flex;
   min-height:100vh;
-  background:#f1f5f9;
+  background:#0a0f0d; /* Fondo oscuro profundo general */
 }
 
 /* SIDEBAR */
 
 .sidebar{
   width:300px;
-  background:#0f172a;
+  background:#111814; /* Negro verdoso sólido */
   color:white;
   padding:25px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  border-right:1px solid #1f2d24; /* Borde verde oscuro sutil */
 }
 
 /* LOGO */
@@ -41,10 +42,9 @@
   height:auto;
   object-fit:contain;
   border-radius:116px;
-  background:linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #fbb034 100%);
+  background:linear-gradient(135deg, #1e3f20 0%, #111814 100%); /* Gradiente adaptado a Kuntur */
   padding:10px;
-  box-shadow:0 10px 25px rgba(255, 107, 53, 0.3);
- 
+  box-shadow:0 10px 25px rgba(74, 222, 128, 0.15); /* Brillo verde sutil */
 }
 
 .logo h2{
@@ -58,10 +58,11 @@
   display:flex;
   align-items:center;
   gap:15px;
-  background:#1e293b;
+  background:#1a2e22; /* Fondo de perfil verde bosque sutil */
   padding:15px;
   border-radius:18px;
   margin-bottom:35px;
+  border:1px solid #1f2d24;
 }
 
 .perfil-img{
@@ -80,19 +81,24 @@
   border:none;
   padding:16px;
   border-radius:14px;
-  background:#1e293b;
+  background:#1a2e22; /* Botones integrados al tema oscuro */
   color:white;
   cursor:pointer;
   transition:0.3s;
   font-size:16px;
+  border:1px solid #1f2d24;
 }
 
 .menu button:hover{
-  background:#2563eb;
+  background:#1e3f20;
+  color:#4ade80;
+  border-color:#4ade80;
 }
 
 .active{
-  background:#2563eb !important;
+  background:#1e3f20 !important; /* Fondo activo verde oscuro */
+  color:#4ade80 !important;       /* Texto activo verde brillante */
+  border-color:#4ade80 !important;
 }
 
 .logout-btn{
@@ -119,10 +125,10 @@
 
   background-image:
   linear-gradient(
-    rgba(0,0,0,0.5),
-    rgba(0,0,0,0.5)
+    rgba(10,15,13,0.85), /* Capa protectora oscura integrada */
+    rgba(10,15,13,0.4)
   ),
-  url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');
+  url('/assets/imagenes/fondo.jpg'); /* Apunta a tu imagen local de fondo */
 
   background-size:cover;
   background-position:center;
@@ -132,6 +138,7 @@
   align-items:center;
 
   margin-bottom:40px;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
 }
 
 .overlay{
@@ -142,10 +149,13 @@
 .overlay h1{
   font-size:50px;
   margin-bottom:10px;
+  text-shadow:2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .overlay p{
   font-size:22px;
+  color:#4ade80; /* Subtítulo resaltado en verde Kuntur */
+  text-shadow:1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* STATS */
@@ -157,31 +167,32 @@
 }
 
 .stat-card{
-  background:white;
+  background:#111814;
   padding:35px;
   border-radius:22px;
   text-align:center;
-
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+  border:1px solid #1f2d24;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 .stat-card h2{
   font-size:45px;
-  color:#2563eb;
+  color:#4ade80; /* Números en verde brillante */
 }
 
 .stat-card p{
   margin-top:10px;
-  color:#64748b;
+  color:#adbcac;
 }
 
 /* TABLAS */
 
 .tabla-container{
-  background:white;
+  background:#111814;
   padding:30px;
   border-radius:22px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+  border:1px solid #1f2d24;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 table{
@@ -190,8 +201,8 @@ table{
 }
 
 thead{
-  background:#2563eb;
-  color:white;
+  background:#1a2e22; /* Encabezado de tabla verde oscuro */
+  color:#4ade80;      /* Texto en verde brillante */
 }
 
 th{
@@ -201,11 +212,12 @@ th{
 
 td{
   padding:18px;
-  border-bottom:1px solid #e2e8f0;
+  border-bottom:1px solid #1f2d24;
+  color:#e0e0e0;
 }
 
 tbody tr:hover{
-  background:#f8fafc;
+  background:#16221b; /* Fila seleccionada sutilmente verdosa */
 }
 
 /* MENSAJES BONITOS */
@@ -214,20 +226,16 @@ tbody tr:hover{
 
   width:100%;
   padding:18px;
-
   border-radius:18px;
-
   margin-bottom:25px;
 
   color:white;
-
   font-size:17px;
-
   font-weight:600;
 
   animation:fadeIn 0.4s ease;
 
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
 
 }
 
@@ -235,9 +243,11 @@ tbody tr:hover{
 
   background:linear-gradient(
     135deg,
-    #16a34a,
-    #22c55e
+    #1e3f20,
+    #14251c
   );
+  border: 1px solid #4ade80;
+  color: #4ade80;
 
 }
 
@@ -245,9 +255,11 @@ tbody tr:hover{
 
   background:linear-gradient(
     135deg,
-    #2563eb,
-    #3b82f6
+    #111814,
+    #1a2e22
   );
+  border: 1px solid #4ade80;
+  color: white;
 
 }
 
@@ -256,17 +268,115 @@ tbody tr:hover{
 @keyframes fadeIn{
 
   from{
-
     opacity:0;
     transform:translateY(-10px);
-
   }
 
   to{
-
     opacity:1;
     transform:translateY(0);
-
   }
+
+}
+
+/* MODAL REPORTE */
+
+.modal-overlay{
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background:rgba(0,0,0,.85); /* Mayor nivel de oscuridad en el fondo */
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:9999;
+
+}
+
+.modal-reporte{
+
+  background:#111814;
+
+  width:500px;
+  max-width:90%;
+
+  padding:25px;
+
+  border-radius:15px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:15px;
+  border:1px solid #1f2d24;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+.modal-reporte h2{
+
+  color:#4ade80;
+
+}
+
+.modal-reporte input,
+.modal-reporte textarea{
+
+  width:100%;
+
+  padding:12px;
+
+  border:1px solid #1f2d24;
+
+  border-radius:8px;
+
+  resize:none;
+  background:#0a0f0d;
+  color:white;
+
+}
+
+.acciones-modal{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+}
+
+.acciones-modal button{
+
+  padding:10px 20px;
+
+  border:none;
+
+  border-radius:8px;
+
+  cursor:pointer;
+  font-weight:600;
+
+}
+
+.btn-cancelar{
+
+  background:#dc2626;
+  color:white;
+
+}
+
+.btn-enviar{
+
+  background:#1e3f20;
+  color:#4ade80;
+  border:1px solid #4ade80;
 
 }

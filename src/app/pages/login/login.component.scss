@@ -1,225 +1,362 @@
-/* CONFIGURACIÓN GENERAL */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins','Segoe UI',sans-serif;
 }
 
-/* FONDO */
-.container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #111111;
-    position: relative;
-    overflow: hidden;
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+.container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#0f0f0f;
 }
 
-/* IMAGEN DE FONDO */
-.container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+/* =========================
+   IMAGEN DE FONDO
+========================= */
 
-    background-image: url('/img/Tamesis-sol.jpg');
+.container::before{
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    content:"";
 
-    opacity: 0.55;
-    filter: brightness(0.75) blur(1px);
+    position:absolute;
 
-    z-index: 1;
+    inset:0;
+
+    background-image:url("/assets/imagenes/fondo.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    transform:scale(1.05);
+
+    filter:brightness(0.45);
+
+    z-index:1;
 }
 
-/* CAPA OSCURA */
-.container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-    z-index: 2;
+/* =========================
+   CAPA DE COLOR KUNTUR
+========================= */
+
+.container::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,0,0,.80),
+        rgba(16,55,34,.70),
+        rgba(230,137,23,.25)
+    );
+
+    z-index:2;
 }
 
-/* CAJA DEL FORMULARIO */
-.form-box {
-    position: relative;
-    z-index: 3;
+/* =========================
+   FORMULARIO
+========================= */
 
-    background: rgba(255, 255, 255, 0.85);
+.form-box{
 
-    padding: 40px;
-    border-radius: 20px;
+    position:relative;
 
-    width: 100%;
-    max-width: 450px;
+    z-index:3;
 
-    text-align: center;
+    width:100%;
 
-    border: 2px solid #e1e1e1;
+    max-width:460px;
 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    padding:45px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.35);
+
+    animation:aparecer .6s ease;
 }
 
-/* TÍTULO */
-h2 {
-    color: #f39c12;
-    font-size: 2rem;
-    margin-bottom: 8px;
-    font-weight: 700;
+/* =========================
+   TITULOS
+========================= */
+
+.form-box h2{
+
+    text-align:center;
+
+    color:#ffffff;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:10px;
 }
 
-/* TEXTO */
-p {
-    color: #7f8c8d;
-    font-size: 0.9rem;
-    margin-bottom: 25px;
+.form-box p{
+
+    text-align:center;
+
+    color:#e4e4e4;
+
+    margin-bottom:25px;
+
+    line-height:1.5;
 }
 
-/* GRUPOS DE INPUT */
-.input-group {
-    text-align: left;
-    margin-bottom: 18px;
+/* =========================
+   INPUTS
+========================= */
+
+.input-group{
+
+    margin-bottom:18px;
 }
 
-/* LABELS */
-label {
-    display: block;
-    font-size: 0.85rem;
-    color: #333;
-    margin-bottom: 6px;
-    font-weight: 600;
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#ffffff;
+
+    font-size:.9rem;
+
+    font-weight:600;
 }
 
-/* INPUTS */
-input {
-    width: 100%;
-    padding: 12px 15px;
+.input-group input{
 
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    width:100%;
 
-    outline: none;
+    padding:14px 16px;
 
-    font-size: 0.95rem;
+    border-radius:14px;
 
-    background-color: #fbfbfb;
+    border:1px solid rgba(255,255,255,.20);
 
-    transition: all 0.2s ease;
+    background:rgba(255,255,255,.10);
+
+    color:white;
+
+    font-size:.95rem;
+
+    transition:.3s;
 }
 
-/* EFECTO INPUT */
-input:focus {
-    border-color: #f39c12;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(243, 156, 18, 0.15);
+.input-group input::placeholder{
+
+    color:rgba(255,255,255,.65);
 }
 
-/* CONTRASEÑA */
-.password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+.input-group input:focus{
+
+    outline:none;
+
+    border-color:#e68917;
+
+    box-shadow:0 0 15px rgba(230,137,23,.35);
 }
 
-/* BOTÓN LOGIN */
-.btn-login {
-    width: 100%;
+/* =========================
+   PASSWORD
+========================= */
 
-    padding: 15px;
+.password-wrapper{
 
-    background: linear-gradient(to right, #f39c12, #e67e22);
-
-    color: white;
-
-    border: none;
-    border-radius: 10px;
-
-    font-size: 1rem;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: transform 0.1s, box-shadow 0.2s;
-
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    position:relative;
 }
 
-/* HOVER BOTÓN */
-.btn-login:hover {
-    transform: translateY(-2px);
+/* =========================
+   BOTÓN LOGIN
+========================= */
 
-    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+.btn-login{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:1rem;
+
+    letter-spacing:.5px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #e68917,
+        #ffab2d
+    );
+
+    transition:.3s;
 }
 
-/* OLVIDASTE CONTRASEÑA */
-.forgot-password {
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 20px;
+.btn-login:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 25px rgba(230,137,23,.40);
 }
 
-/* LINK OLVIDASTE */
-.forgot-password a {
-    color: #e67e22;
-    font-size: 0.8rem;
-    text-decoration: none;
-    font-weight: 600;
+/* =========================
+   LINKS
+========================= */
+
+.forgot-password{
+
+    text-align:center;
+
+    margin-top:18px;
 }
 
-/* HOVER LINK */
-.forgot-password a:hover {
-    text-decoration: underline;
+.forgot-password a{
+
+    color:#ffb347;
+
+    text-decoration:none;
+
+    font-weight:600;
 }
 
-/* TEXTO FINAL */
-.footer-text {
-    margin-top: 25px;
-    font-size: 0.85rem;
-    color: #666;
+.forgot-password a:hover{
+
+    text-decoration:underline;
 }
 
-/* LINK REGISTRO */
-.footer-text a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 700;
+.footer-text{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#f0f0f0;
 }
 
-/* HOVER REGISTRO */
-.footer-text a:hover {
-    text-decoration: underline;
-}
-.mensaje {
+.footer-text a{
 
-    margin-top: 20px;
+    color:#ffb347;
 
-    padding: 12px;
+    font-weight:700;
 
-    border-radius: 10px;
-
-    text-align: center;
-
-    font-weight: 600;
-
+    text-decoration:none;
 }
 
-.success {
+.footer-text a:hover{
 
-    background: #d4edda;
-
-    color: #155724;
-
+    text-decoration:underline;
 }
 
-.error {
+/* =========================
+   MENSAJES
+========================= */
 
-    background: #f8d7da;
+.mensaje{
 
-    color: #721c24;
+    margin-top:20px;
 
+    padding:12px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+.success{
+
+    background:#d4edda;
+
+    color:#155724;
+}
+
+.error{
+
+    background:#f8d7da;
+
+    color:#721c24;
+}
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .form-box{
+
+        width:90%;
+
+        padding:30px;
+    }
+
+    .form-box h2{
+
+        font-size:1.7rem;
+    }
 }

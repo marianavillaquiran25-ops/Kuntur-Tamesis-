@@ -23,6 +23,7 @@ export class RegisterComponent {
   telefono: string = '';
   password: string = '';
   confirmarPassword: string = '';
+  nacionalidad: string = '';
 
   constructor(
     private loginService: LoginService,
@@ -47,7 +48,10 @@ export class RegisterComponent {
       documentoIdentidad: this.documentoIdentidad,
       correo: this.correo,
       telefono: this.telefono,
-      password: this.password
+      password: this.password,
+      nacionalidad: this.nacionalidad,
+
+      rol: 'TURISTA'
 
     };
 

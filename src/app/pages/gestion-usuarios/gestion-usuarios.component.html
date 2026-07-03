@@ -1,0 +1,137 @@
+<div class="contenedor gestion-usuarios-page">
+
+    <div class="top-bar">
+        <button class="btn-back" (click)="volverAdministrador()">
+            <span class="back-icon">←</span> Volver al panel
+        </button>
+
+        <button class="btn-crear" (click)="abrirModal()">
+            👤 + Crear Usuario
+        </button>
+    </div>
+
+    <section class="hero-card">
+        <div>
+            <span class="hero-badge">Panel administrador</span>
+            <h1>Gestión de Usuarios Administrativos</h1>
+            <p>Administra el personal de Kuntur Támesis. Crea y revisa los perfiles de Guías, Auxiliares y Administradores.</p>
+        </div>
+        <div class="hero-stats">
+            <article>
+                <strong>{{ listaEmpleados.length }}</strong>
+                <span>Usuarios Registrados</span>
+            </article>
+        </div>
+    </section>
+
+    <div class="tabla-container" *ngIf="listaEmpleados.length > 0">
+    <table class="tabla-usuarios">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Turno</th> </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of listaEmpleados">
+                <td><strong>{{ empleado.nombre }}</strong></td>
+                <td>{{ empleado.documentoIdentidad }}</td>
+                <td>{{ empleado.correo }}</td>
+                <td>{{ empleado.telefono }}</td>
+                <td>
+                    <span *ngIf="empleado.rol" class="badge-rol" [ngClass]="empleado.rol.toLowerCase()">
+                        {{ empleado.rol }}
+                    </span>
+                    <span *ngIf="!empleado.rol" style="color: #a3a3a3; font-style: italic;">
+                        No asignado
+                    </span>
+                </td>
+                <td>
+                    <span *ngIf="empleado.rol === 'AUXILIAR'" class="badge-turno">
+                        {{ empleado.turno || 'Sin asignar' }}
+                    </span>
+                    <span *ngIf="empleado.rol !== 'AUXILIAR'" style="color: #666;">
+                        -
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    <div *ngIf="listaEmpleados.length === 0" class="sin-usuarios">
+        <h2>No hay personal registrado</h2>
+        <p>Registra un nuevo empleado usando el botón superior.</p>
+    </div>
+
+    <div class="modal-overlay" *ngIf="modalAbierto">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Registrar Nuevo Miembro del Equipo</h2>
+                <button class="btn-cerrar" (click)="cerrarModal()">×</button>
+            </div>
+
+            <form (ngSubmit)="registrarEmpleado()" #userForm="ngForm">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required placeholder="Ej: Carlos Pérez">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Documento de Identidad</label>
+                        <input type="text" [(ngModel)]="nuevoUsuario.documentoIdentidad" name="documento" required placeholder="Ej: 1023456">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" [(ngModel)]="nuevoUsuario.correo" name="correo" required placeholder="carlos@kuntur.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Teléfono</label>
+                        <input type="text" [(ngModel)]="nuevoUsuario.telefono" name="telefono" required placeholder="Ej: 3001234567">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" [(ngModel)]="nuevoUsuario.fechaNacimiento" name="fechaNacimiento" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Contraseña </label>
+                        <input type="password" [(ngModel)]="nuevoUsuario.password" name="password" required placeholder="******">
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label>Asignar Rol Administrativo</label>
+                        <select [(ngModel)]="nuevoUsuario.rol" name="rol" required>
+                            <option value="GUIA"> Guía Turístico</option>
+                            <option value="AUXILIAR"> Auxiliar</option>
+                            <option value="ADMINISTRADOR"> Administrador</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group full-width" *ngIf="nuevoUsuario.rol === 'AUXILIAR'">
+                        <label>Asignar Turno del Auxiliar</label>
+                        <select [(ngModel)]="nuevoUsuario.turno" name="turno" [required]="nuevoUsuario.rol === 'AUXILIAR'">
+                            <option value="">-- Selecciona un turno --</option>
+                            <option value="Mañana">☀️ Mañana (6:00 AM - 2:00 PM)</option>
+                            <option value="Tarde">⛅ Tarde (2:00 PM - 10:00 PM)</option>
+                            <option value="Noche">🌙 Noche (10:00 PM - 6:00 AM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancelar" (click)="cerrarModal()">Cancelar</button>
+                    <button type="submit" class="btn-guardar" [disabled]="!userForm.form.valid">Guardar Usuario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

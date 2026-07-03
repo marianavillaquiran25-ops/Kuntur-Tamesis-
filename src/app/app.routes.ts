@@ -15,6 +15,8 @@ import { CrearRutaComponent } from './pages/crear-ruta/crear-ruta.component';
 import { EditarRutaComponent } from './pages/editar-ruta/editar-ruta.component';
 import { VerReservasComponent } from './pages/ver-reservas/ver-reservas.component';
 import { VerRutasComponent } from './pages/ver-rutas/ver-rutas.component';
+import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuarios.component';
+import { PerfilTuristaComponent } from './pages/perfil-turista/perfil-turista.component';
 
 export const routes: Routes = [
 
@@ -87,7 +89,6 @@ export const routes: Routes = [
     // GUIA
     {
         path: 'guia',
-
         loadComponent: () =>
             import('./pages/guia/guia.component')
                 .then(m => m.GuiaComponent)
@@ -99,22 +100,32 @@ export const routes: Routes = [
         component: AuxiliarComponent
     },
 
-   // PAGOS
-{
-    path: 'pagos',
-    component: PagosComponent
-},
+    // PAGOS
+    {
+        path: 'pagos',
+        component: PagosComponent
+    },
 
-// VER RUTAS
-{
-    path: 'ver-rutas',
-    component: VerRutasComponent
-},
+    // VER RUTAS
+    {
+        path: 'ver-rutas',
+        component: VerRutasComponent
+    },
 
-// ERROR
-{
-    path: '**',
-    redirectTo: ''
-}
+    
+    { 
+        path: 'gestion-usuarios', 
+        component: GestionUsuariosComponent 
+    },
 
+    {
+        path: 'perfil-turista',
+        component: PerfilTuristaComponent
+    },
+
+    
+    {
+        path: '**',
+        redirectTo: ''
+    }
 ];

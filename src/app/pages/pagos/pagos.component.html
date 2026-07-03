@@ -1,329 +1,123 @@
-<div class="dashboard">
 
-  <!-- SIDEBAR -->
+<main class="contenido">
+  <button class="btn-back" (click)="volverAdmin()">
+  ← Volver al panel
+</button>
 
-  <aside class="sidebar">
+  <div class="hero">
+    <div class="overlay">
+      <h1>
+        Gestión de pagos turísticos de Kuntur Támesis
+      </h1>
+      <p>
+        Administra los pagos registrados en el sistema.
+      </p>
+    </div>
+  </div>
+  
 
-    <div>
+  <div class="estadisticas">
+    <div class="stat-card">
+      <h2>{{ pagosRealizados.length }}</h2>
+      <p>Pagos registrados</p>
+    </div>
 
-      <!-- LOGO -->
+    <div class="stat-card">
+      <h2>{{ pagosPendientes.length }}</h2>
+      <p>Pagos pendientes</p>
+    </div>
+  </div>
 
-      <div class="logo">
-
-        <img
-          src="/assets/logo/logokuntur.png"
-          alt="logo"
-        >
-
-      </div>
-
-     
-      <!-- MENU -->
-
-      <nav class="menu">
-
-        <button
-          [class.active]="mostrarPagos"
-          (click)="verPagos()"
-        >
-
-          Todos los pagos
-
+  <div class="tabla-container" *ngIf="mostrarPagos">
+    <h2>Todos los pagos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Turista</th>
+          <th>Ruta</th>
+          <th>Monto</th>
+          <th>Método</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagosRealizados">
+          <td>{{ pago.turista?.nombre }}</td>
+          <td>{{ pago.ruta?.nombre }}</td>
+          <td>${{ pago.monto }}</td>
+          <td>{{ pago.metodoPago }}</td>
+          <td>{{ pago.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <span [class]="pago.estado === 'PAGADO' ? 'estado-pagado' : 'estado-pendiente'">
+              {{ pago.estado }}
+            </span>
+          </td>
+         <td>
+          <button
+          class="btn-ver"(click)="abrirComprobante(pago)">
+           Ver detalle
+          </button>
+          <button
+          class="btn-aprobar"(click)="aprobarPago(pago.id)"
+          *ngIf="pago.estado === 'PENDIENTE'">
+          ✓ Aprobar
         </button>
-
         <button
-          [class.active]="mostrarPendientes"
-          (click)="verPendientes()"
-        >
+        class="btn-rechazar"(click)="rechazarPago(pago.id)"
+        *ngIf="pago.estado === 'PENDIENTE'">
+        ✕ Rechazar
+      </button>
+    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-           Pagos pendientes
+  <div class="tabla-container" *ngIf="mostrarPendientes">
+    <h2>Pagos pendientes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Turista</th>
+          <th>Ruta</th>
+          <th>Monto</th>
+          <th>Método</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagosPendientes">
+          <td>{{ pago.turista?.nombre }}</td>
+          <td>{{ pago.ruta?.nombre }}</td>
+          <td>${{ pago.monto }}</td>
+          <td>{{ pago.metodoPago }}</td>
+          <td>{{ pago.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <span class="estado-pendiente">
+              {{ pago.estado }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        </button>
-
-      </nav>
-
-    </div>
-
-   
-
-  </aside>
-
-  <!-- CONTENIDO -->
-
-  <main class="contenido">
-
-    <!-- HERO -->
-
-    <div class="hero">
-
-      <div class="overlay">
-
-        <h1>
-          Gestión de pagos turísticos de Kuntur Támesis
-        </h1>
-
-        <p>
-          Administra pagos turísticos de Kuntur Támesis 
-        </p>
-
+  <div class="modal" *ngIf="pagoSeleccionado">
+    <div class="modal-content">
+      <button class="cerrar" (click)="cerrarModal()">✖️</button>
+      <h2>Detalle del pago</h2>
+      <div class="info">
+        <p>👤 {{ pagoSeleccionado.turista?.nombre }}</p>
+        <p>🗺️ {{ pagoSeleccionado.ruta?.nombre }}</p>
+        <p>💰 ${{ pagoSeleccionado.monto }}</p>
+        <p>💳 {{ pagoSeleccionado.metodoPago }}</p>
+        <p>📅 {{ pagoSeleccionado.fecha | date:'dd/MM/yyyy HH:mm' }}</p>
+        <p>📌 {{ pagoSeleccionado.estado }}</p>
       </div>
-
     </div>
+  </div>
 
-    <!-- ESTADISTICAS -->
-
-    <div class="estadisticas">
-
-      <div class="stat-card">
-
-        <h2>$</h2>
-
-        <p>
-          Ingresos totales
-        </p>
-
-      </div>
-
-      <div class="stat-card">
-
-        <h2></h2>
-
-        <p>
-          Pagos realizados
-        </p>
-
-      </div>
-
-      <div class="stat-card">
-
-        <h2></h2>
-
-        <p>
-          Pagos pendientes
-        </p>
-
-      </div>
-
-    </div>
-
-    <!-- TODOS LOS PAGOS -->
-
-    <div
-      class="tabla-container"
-      *ngIf="mostrarPagos"
-    >
-
-      <h2>
-        Todos los pagos
-      </h2>
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>Turista</th>
-
-            <th>Ruta</th>
-
-            <th>Valor</th>
-
-            <th>Método</th>
-
-            <th>Fecha</th>
-
-            <th>Estado</th>
-
-            <th>Acción</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          <tr *ngFor="let pago of pagosRealizados">
-
-            <td>{{ pago.turista }}</td>
-
-            <td>{{ pago.ruta }}</td>
-
-            <td>{{ pago.valor }}</td>
-
-            <td>{{ pago.metodo }}</td>
-
-            <td>{{ pago.fecha }}</td>
-
-            <td>
-
-              <span
-                [class]="
-                  pago.estado === 'Pagado'
-                  ? 'estado-pagado'
-                  : 'estado-pendiente'
-                "
-              >
-
-                {{ pago.estado }}
-
-              </span>
-
-            </td>
-
-            <td>
-
-              <button
-                class="btn-ver"
-                (click)="abrirComprobante(pago)"
-              >
-
-                Ver comprobante
-
-              </button>
-
-            </td>
-
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-    <!-- PAGOS PENDIENTES -->
-
-    <div
-      class="tabla-container"
-      *ngIf="mostrarPendientes"
-    >
-
-      <h2>
-        Pagos pendientes
-      </h2>
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>Turista</th>
-
-            <th>Ruta</th>
-
-            <th>Valor</th>
-
-            <th>Método</th>
-
-            <th>Fecha</th>
-
-            <th>Estado</th>
-
-            <th>Acción</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          <tr
-            *ngFor="let pago of pagosPendientes">
-
-            <ng-container *ngIf="pago.estado === 'Pendiente'">
-
-              <td>{{ pago.turista }}</td>
-
-              <td>{{ pago.ruta }}</td>
-
-              <td>{{ pago.valor }}</td>
-
-              <td>{{ pago.metodo }}</td>
-
-              <td>{{ pago.fecha }}</td>
-
-              <td>
-
-                <span class="estado-pendiente">
-
-                  {{ pago.estado }}
-
-                </span>
-
-              </td>
-
-              <td>
-
-                <button
-                  class="btn-ver"
-                  (click)="abrirComprobante(pago)"
-                >
-
-                  Ver comprobante
-
-                </button>
-
-              </td>
-
-            </ng-container>
-
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-    <!-- MODAL -->
-
-    <div
-      class="modal"
-      *ngIf="pagoSeleccionado"
-    >
-
-      <div class="modal-content">
-
-        <button
-          class="cerrar"
-          (click)="cerrarModal()"
-        >
-
-          ✖️
-
-        </button>
-
-        <h2>
-          Comprobante de pago
-        </h2>
-
-        <img
-          [src]="pagoSeleccionado.comprobante"
-          alt="comprobante"
-        >
-
-        <div class="info">
-
-          <p>
-            👤 {{ pagoSeleccionado.turista }}
-          </p>
-
-          <p>
-            🗺️ {{ pagoSeleccionado.ruta }}
-          </p>
-
-          <p>
-            💰 {{ pagoSeleccionado.valor }}
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-</div>
+</main>

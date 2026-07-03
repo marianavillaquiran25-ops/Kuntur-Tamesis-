@@ -14,11 +14,8 @@ import { LoginService } from '../../services/login.service';
 export class LoginComponent {
 
   usuario: string = '';
-
   password: string = '';
-
   mensaje: string = '';
-
   tipoMensaje: string = '';
 
   constructor(
@@ -27,74 +24,37 @@ export class LoginComponent {
   ) {}
 
   iniciarSesion() {
-
     this.mensaje = '';
 
     this.loginService.login({
       correo: this.usuario,
       password: this.password
     }).subscribe({
-
       next: (usuarioEncontrado: any) => {
-
-        localStorage.setItem(
-          'usuario',
-          JSON.stringify(usuarioEncontrado)
-        );
+        localStorage.setItem('usuario', JSON.stringify(usuarioEncontrado));
 
         this.mensaje = 'Bienvenido';
         this.tipoMensaje = 'success';
 
         setTimeout(() => {
+          const rol = usuarioEncontrado.rol?.toUpperCase();
 
-          if (
-            usuarioEncontrado.rol === 'ADMINISTRADOR' ||
-            usuarioEncontrado.rol === 'administrador'
-          ) {
-
+          if (rol === 'ADMINISTRADOR') {
             this.router.navigate(['/administrador']);
-
-          }
-
-          else if (
-            usuarioEncontrado.rol === 'GUIA' ||
-            usuarioEncontrado.rol === 'guia' ||
-            usuarioEncontrado.rol === 'Guia'
-          ) {
-
+          } else if (rol === 'GUIA') {
             this.router.navigate(['/guia']);
-
-          }
-
-          else if (
-            usuarioEncontrado.rol === 'AUXILIAR' ||
-            usuarioEncontrado.rol === 'auxiliar' ||
-            usuarioEncontrado.rol === 'Auxiliar'
-          ) {
-
+          } else if (rol === 'AUXILIAR') {
             this.router.navigate(['/auxiliar']);
-
-          }
-
-          else {
-
+          } else {
             this.router.navigate(['/']);
-
           }
-
         }, 1000);
-
       },
-
-      error: () => {
-
+      error: (err) => {
+        console.error('Error en el login:', err);
         this.mensaje = 'Usuario o contraseña incorrectos';
         this.tipoMensaje = 'error';
-
       }
-
     });
-
   }
-
 }
